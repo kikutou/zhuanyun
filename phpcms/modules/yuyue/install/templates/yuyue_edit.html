@@ -1,0 +1,192 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+  
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">预约取件</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>修改预约信息</h3>
+                                <div class="plink-mod">
+                                	<a href="/index.php?m=yuyue&c=index&a=init" class="p-btn radius-five" title="返回">返&nbsp;回</a>
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+
+				  <form action="/index.php?m=yuyue&c=index&a=edit&aid={$aid}" id="mainForm" name="mainForm" method="post"  enctype="multipart/form-data">
+                            <div class="pcont-mod-bd pro-info " style="display:none;" id="new_yuyue_address">
+                                <div class="balance-info">填写新发货地址</div><!--E .balance-info-->
+                                <span class="blank"></span>
+                                    
+								<div class="pro-info-v02">
+                                  
+                     <ul class="pform-list tip-pform-list">
+                  
+                 <li>
+                    <label for="name">寄件人<em class="color-red">*</em></label>
+                    <input id="truename" name="address[truename]" value=""  maxlength="20" class="inp w268" type="text" tabindex="1"> <input type="hidden" value="2" name="address[addresstype]"  id="addresstype" />    
+                                                              
+                </li> 
+				 <li>
+                    <label for="country">国家<em class="color-red">*</em></label>
+                    <input id="country" name="address[country]" value="" maxlength="20" class="inp w268" type="text" tabindex="1">     
+                                                              
+                </li> 
+                 <li class="li_receiver">
+                    <label for="add">所在地区<em class="color-red">*</em></label>
+                    <input id="province" name="address[province]" value=""  maxlength="20" class="inp w88" type="text" tabindex="1"> &nbsp;省/州&nbsp; 
+ 					<input id="city" name="address[city]" value=""  maxlength="20" class="inp w88" type="text" tabindex="1">&nbsp;市
+                   
+                                                                   
+                </li>     
+                <li>
+                    <label for="add">详细地址<em class="color-red">*</em></label>
+                    <input id="address" name="address[address]"  value=""  maxlength="100" class="inp w268" type="text" tabindex="4">     
+                                                                     
+                </li>
+				 <li>
+                    <label for="company">公司名称<em class="color-red">*</em></label>
+                    <input id="company" name="address[company]"  value="" maxlength="100" class="inp w268" type="text" tabindex="4">     
+                                                                     
+                </li>
+                <li>
+                    <label for="a4">邮政编码<em class="color-red">*</em></label>
+                    <input id="postcode" name="address[postcode]" onKeyUp="this.value=this.value.replace(/[^0-9]/gi,'')" style="ime-mode:disabled;" datatype="*" nullmsg="请输入邮政编码!" value="" maxlength="6" class="inp w268" type="text" tabindex="5">     
+                                                                  
+                </li>
+                <li>
+                    <label for="a5">手机号码<em class="color-red">*</em></label>
+                    <input id="mobile" name="address[mobile]"  value="" style="ime-mode:disabled;" maxlength="30"  class="inp w268" type="text" tabindex="6">     
+                                                                  
+                </li>
+
+                  <li>
+                    <label for="email">邮箱地址</label>
+                    <input id="email" name="address[email]"  style="ime-mode:disabled;" value="" maxlength="30" class="inp w268" type="text" tabindex="10">     
+                                                         
+                </li>
+                </ul>
+                                </div><!--E .pro-info-v01-->
+                           
+                             <span class="blank22"></span>
+                          </div><!--E .pcont-mod-bd-->
+
+
+					
+
+					<div class="pcont-mod-bd pro-info" >
+                                <div class="balance-info">修改预约信息</div><!--E .balance-info-->
+                                <span class="blank"></span>
+                                    
+								<div class="pro-info-v02">
+                                  
+                     <ul class="pform-list tip-pform-list">
+                  
+                 <li>
+                    <label for="shippingtype">转运类别<em class="color-red">*</em></label>
+                    <select name="yuyue[shippingtype]"  id="shippingtype" class="inp inp-select">
+						<option value="0">请选择</option>
+						{loop $shippingtypes $row}
+						<option value="{$row[aid]}" {if $an_info[shippingtype]==$row[aid]}selected{/if}>{$row[storagename]}</option>
+						{/loop}
+					</select>   
+                                                              
+                </li> 
+				 <li>
+                    <label for="yuyuetm">预约时间<em class="color-red">*</em></label>
+                    {$yuyuetm}                                                
+                </li> 
+                  
+                <li>
+                    <label for="number">取货件数<em class="color-red">*</em></label>
+                    <input id="number" name="yuyue[number]"  value="{$an_info[number]}"  maxlength="100" class="inp w88" type="text" tabindex="4">     
+                                                                     
+                </li>
+				<li>
+                    <label for="addressid">取货地址<em class="color-red">*</em></label>
+
+					{loop $addresslist $k $v}
+					 <input {if $k>0}style="margin-left:200px;"{/if} type="radio" value="{$v[aid]}" name="yuyue[addressid]"  id="addressid{$v[aid]}" onclick="newaddress({$v[aid]})" {if $v[aid]==$an_info[addressid]}checked{/if}/><label class="label-other">{$v[truename]} &nbsp;{$v[mobile]}&nbsp;{$v[province]}&nbsp;{$v[city]},&nbsp;{$v[country]}&nbsp;{$v[postcode]}</label> <br/>
+					{/loop}
+                    <input style="margin-left:200px;" type="radio" value="0" name="yuyue[addressid]"  id="addressid" onclick="newaddress(this.value)"/><label class="label-other">填写新发货地址</label>    
+                                                                     
+                </li>
+				 <li>
+                    <label for="lianxiren">联系人<em class="color-red">*</em></label>
+                    <input id="lianxiren" name="yuyue[lianxiren]"  value="{$an_info[lianxiren]}" maxlength="100" class="inp w268" type="text" tabindex="4">     
+                                                                     
+                </li>
+                
+                <li>
+                    <label for="a5">联系人电话<em class="color-red">*</em></label>
+                    <input id="mobile" name="yuyue[mobile]"  value="{$an_info[mobile]}" datatype="m" nullmsg="请输入手机号码!" errormsg="手机号码格式不对!" style="ime-mode:disabled;" maxlength="30"  class="inp w268" type="text" tabindex="6">     
+                                                                  
+                </li>
+
+                  <li>
+                    <label for="email">联系人邮箱</label>
+                    <input id="email" name="yuyue[email]"  style="ime-mode:disabled;" value="{$an_info[email]}" maxlength="30" class="inp w268" type="text" tabindex="10">     
+                                                         
+                </li>
+				<li>
+                    <label for="remark">备注<em class="color-red"></em></label>
+                    <textarea id="remark" name="yuyue[remark]"  class="inp w268" style="height:60px;">{$an_info[remark]}</textarea>     
+                                                                  
+                </li>
+ 
+                 <li>
+					<label for="">&nbsp;</label>
+					 <input type="hidden" name="dosubmit" id="dosubmit" value="1"/>
+                    
+					<button type="submit" class="btn-login radius-three fl" tabindex="17" title="保存">保&nbsp;存</button>
+					<button type="button" onclick="window.location.href='/index.php?m=yuyue&c=index&a=init'" class="btn-login btn-cancel radius-three fl" tabindex="18" title="取消">取&nbsp;消</button>
+				</li>
+                </ul>
+                                </div><!--E .pro-info-v01-->
+                              
+                             <span class="blank22"></span>
+                          </div><!--E .pcont-mod-bd-->
+					 </form>
+		
+
+
+
+
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     
+				  
+				 {template 'member', 'left'}
+
+
+
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   
+  <script>
+  function newaddress(flag){
+	if(flag==0){
+		document.getElementById('new_yuyue_address').style.display="";
+	}else{
+		document.getElementById('new_yuyue_address').style.display="none";
+	}
+  }
+  </script>
+  {template 'member', 'footer'}

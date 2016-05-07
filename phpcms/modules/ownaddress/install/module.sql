@@ -1,0 +1,1 @@
+INSERT INTO `phpcms_module` (`module`, `name`, `url`, `iscore`, `version`, `description`, `setting`, `listorder`, `disabled`, `installdate`, `updatedate`) VALUES ('ownaddress', '私人地址簿', 'ownaddress/', 0, '1.0', '私人地址簿', '', 0, 0, '2013-10-15', '2013-10-15');

@@ -1,0 +1,48 @@
+.main{width:920px;margin:-14px auto 0;overflow:auto;}
+.subnav{background:url(../images/kuaidi/sub_navbg.gif) no-repeat;height:29px;line-height:29px;padding-left:10px;width:910px;margin:-14px auto 0;color:#878787;}
+.subnav a{color: #878787;text-decoration: none; padding:0 5px;}
+.mt{margin:10px 0 0;}
+input{color:#0B324D;}
+.col-auto{ width:540px; padding:0; }
+.grid{width:370px; }
+.info{padding:0 0 5px 20px; color:#9B9C9C;}
+.info em{ font-size:14px; margin-right:5px;}
+.grid dl{border-top:#CCCCCC 1px solid;width:370px;float:left;}
+.grid dt{font-size:14px;font-weight:bold;float:left;}
+.grid dt.space{width:44px;float:left;}
+.stock{background:url(../images/kuaidi/synastry_pics.gif) no-repeat 0px -87px;width:44px;height:31px;line-height:25px;text-align:center;color:#FFFFFF;}
+.letter{background:url(../images/kuaidi/synastry_pics.gif) no-repeat 0px -59px;width:33px;height:23px;line-height:23px;color:#0A8ECE;font-family:Tahoma;font-size:14px;font-weight:bold;text-align:center;}
+.grid dd{float:left;font-size:14px;}
+.grid dd h3{padding:5px 5px 5px 0px;display:block;float:left;font-weight:normal;font-size:14px;white-space:nowrap; width:23%;overflow:hidden;}
+.grid dd h3 label{cursor:pointer; }
+.grid dd.dd1{padding:0px 5px;width:85%;}
+.grid dd.dd2{padding:0px 0px 0px 16px;width:85%;}
+.grid dd.dd3{padding:0px 0px 0px 5px;width:80%;}
+h2.l-title{background:url(../images/kuaidi/03_07.jpg) no-repeat;width:205px;height:35px;padding:0px 0px 15px 0px;}
+h2.r-title{background:url(../images/kuaidi/03_09.jpg) no-repeat;width:202px;height:35px; margin:0 0 0 20px;padding:0px 0px 15px 0px;}
+.container{margin-left:auto;margin-right:auto;width:920px;}
+.content-mis{padding:0px 20px;}
+
+.queryborder{padding-top: 0px; padding-bottom: 0px; padding-left: 140px;}
+.query-way{ text-align:left; line-height:48px; padding-top: 0px; padding-right: 0px; padding-bottom: 10px; padding-left: 20px; }
+.query-way img{vertical-align:middle;border:#CCCCCC 1px solid;margin:0px 10px 0px 0px;}
+.query-way a{padding:0px 10px 0px 5px;}
+.search{width:520px;padding:0px 20px;}
+.search-t{background:url(../images/kuaidi/cont_search.gif) no-repeat;width:520px;height:6px;overflow:hidden;}
+.search-m{background:url(../images/kuaidi/cont_search.gif) repeat-y -520px 0px;width:520px;overflow:hidden;}
+.search-b{background:url(../images/kuaidi/cont_search.gif) no-repeat 0px -6px;width:520px;height:6px;overflow:hidden;}
+.search-m span.odd{width:100%;font-size:14px; display:block; float:left;}
+.search-m span.odd .input{width:388px;height:26px;line-height:26px;padding:5px 0px;border:none;text-indent:10px;background:none;display:inline;background:url(../images/kuaidi/synastry_pics.gif) no-repeat 0px -341px;font-size:14px; float:left;}
+
+a.query{background:url(../images/kuaidi/synastry_pics.gif) no-repeat 0px -123px; width:100px;height:35px;margin:0 0 0 5px; float:left;}
+a.query:hover{background:url(../images/kuaidi/synastry_pics.gif) no-repeat -100px -123px; width:100px;height:35px;margin:0 0 0 5px; display:inline; float:left;}
+#retData table{ width:900px; margin:10px auto}
+#retData a{ color:#fe8d1d;}
+.introduce{line-height:2em;}
+.introduce h5{background:url(../images/kuaidi/bg_tit01.gif) no-repeat right;width:120px;height:29px;color:#0F6B99;font-size:12px;font-weight:bold;line-height:29px;text-align:center;border-left:#CCCCCC 1px solid;}
+.introduce .c{ border:1px solid #CCC; padding:20px;}
+.c p{text-indent:20px;line-height:22px;padding:0px 0px 10px 0px;}
+
+.footer{ margin-top:10px;}
+
+

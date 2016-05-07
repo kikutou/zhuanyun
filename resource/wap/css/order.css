@@ -1,0 +1,61 @@
+﻿.mainCont{padding:10px;}
+.form-box,.order-box{background:#fff; margin-bottom:10px; padding:20px;}
+.form-box div{font-size:22px; color:#777; border-bottom:1px dashed #ccc; padding-bottom:20px; margin-bottom:20px;}
+.form-box div:last-of-type{border-bottom:none; margin-bottom:0; padding-bottom:0;}
+.form-title{padding:0px 10px 5px 25px; margin-bottom:25px; font-size:30px; color:#00b9ff; background:url("../images/route/turn-s.png") 7px 11px no-repeat;}
+.form-box div span{display:block;}
+.form-box div span:first-of-type{float:left; padding-left:25px;}
+.form-box div span:last-of-type{padding-left:140px; text-align:right;}
+.route-form input{display:block; width:100%; font-size:26px; font-family:"Microsoft YaHei"; color:#555; border:1px solid #ccc; padding:12px;}
+.buy-num{position:relative; padding-left:200px!important;}
+.buy-num input{text-align:center; border:1px solid #00b9ff; color:#00b9ff; font-size:30px;}
+.dec,.add{position:absolute; z-index:1; font-size:30px; background:#a6e7ff; padding:12px; top:1px; color:#00b9ff; font-weight:bold; width:34px;height:39px; text-align:center; text-shadow:1px 1px 0 #fff;}
+.dec{left:201px; border-right:1px solid #00b9ff;}
+.add{right:1px; border-left:1px solid #00b9ff;}
+.taocan-info{padding:0 25px 15px;}
+.taocan-info em{color:#f60;}
+.pay-total{color:#f60; font-size:40px;}
+.order-box .form-title{border-bottom:1px dashed #ccc; padding-bottom:5px; margin-bottom:20px;}
+.order-box p{margin-bottom:25px; padding:0 25px;}
+.order-box p:last-of-type{margin-bottom:0;}
+.order-box a{display:block; width:100%; font-size:26px; color:#777; border:1px solid #ccc; padding:12px;}
+.order-box a span{float:right; color:#00b9ff;}
+.route-submit{padding:20px 45px; margin-bottom:0;}
+.route-submit input{background:#00b9ff; border:none; color:#fff;}
+
+.spec-left{position:relative; top:12px;}
+
+/*浮动框*/
+.float-box{position:absolute; top:80px; left:0; width:100%; height:100%; z-index:998; background:#ebf0f6; padding-top:15px;}
+.box-title{font-size:24px; background:#c5cfdb; margin-bottom:15px; padding:5px 25px;}
+.begin-city{margin-bottom:15px;}
+.begin-city li{font-size:18px; padding:10px 35px; border-bottom:1px solid #ddd;}
+.begin-city li:last-of-type{border-bottom:none;}
+/*团期选择*/
+.tuanqi-box span{display:block; float:left; padding:10px;}
+.tuan-time span,.timelist-body li{padding:24px 10px;}
+.list-top span:nth-of-type(1),.tuan-time span:nth-of-type(1){display:none;}
+.list-top span:nth-of-type(2),.tuan-time span:nth-of-type(2){width:20%; padding-left:25px;}
+.list-top span:nth-of-type(3),.tuan-time span:nth-of-type(3){width:20%;}
+.list-top span:nth-of-type(4),.tuan-time span:nth-of-type(4){width:30%;}
+.list-top span:nth-of-type(5),.tuan-time span:nth-of-type(5){width:20%; padding-right:25px;}
+.list-top,.timelist-head{background:#c4cfdc; font-size:20px;}
+.tuan-time{font-size:20px; color:#555;}
+.tuan-time span:nth-child(3){color:#f60;}
+.tuan-time,.timelist-body li{display:block; width:100%; border-top:1px solid #fff; border-bottom:1px solid #c4cfdc;}
+
+
+/* 到店时间 */
+.timelist-head{padding:10px;padding-left: 25px;}
+.floatbox-inner{left: 0; position: absolute; top: 0; width: 100%; background:#fff;}
+.timelist-body li{padding-left: 25px;font-size: 20px;}
+
+@media screen and (max-width:700px) and (min-width:640px)
+{
+    .float-box,.floatbox-inner{top:72px;}
+    
+}
+@media screen and (max-width:640px)
+{
+    .float-box,.floatbox-inner{top:64px;}
+}

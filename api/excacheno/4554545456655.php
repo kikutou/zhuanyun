@@ -1,0 +1,1 @@
+<?php  defined("IN_PHPCMS") or exit("No permission resources.");  $no = trim($_GET["no"]); $result = file_get_contents("http://www.kuaidi100.com/applyurl?key=9a04067e75ab4699&com=yuantong&nu=4554545456655"); echo $result;exit;?>

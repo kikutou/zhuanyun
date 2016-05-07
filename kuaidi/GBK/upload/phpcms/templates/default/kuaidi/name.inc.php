@@ -1,0 +1,5 @@
+<?php
+return array (
+  'show.html' => 'ÄÚÈÝÒ³',
+);
+?>

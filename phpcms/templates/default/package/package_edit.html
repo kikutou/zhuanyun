@@ -1,0 +1,179 @@
+ {template 'member', 'header'}
+ <link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+
+        <!--E 导航-->   
+  
+        <!--S 内容-->
+            <div id="ht-main" class="clearfixed">	
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">包裹取件</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">   
+			{template 'member', 'top'}
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>修改包裹信息</h3>
+                                <div class="plink-mod">
+                                	
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+				  {php $allship = $this->getallship();}
+				  <form action="/index.php?m=waybill&c=index&a=edit&hid={$an_info[storageid]}&aid={$aid}" id="mainForm" name="mainForm" method="post"  enctype="multipart/form-data"> 
+
+					<div class="pcont-mod-bd pro-info" >
+                                <div class="balance-info">修改包裹信息</div><!--E .balance-info-->
+                                <span class="blank"></span>
+                                    
+								<div class="pro-info-v02">
+                                  
+                <ul class="pform-list tip-pform-list">
+                   <li>
+                    <label for="postno">极速发货选项<em class="color-red">*</em></label>
+                    <select name="package[gsexpress]"  id="gsexpress" class="inp inp-select" onchange="if(this.value==2){$('#gsexdiv').html('注，“急速原箱发货直接扣除账户余额，如余额不足扣除运费则转入库”');}else{$('#gsexdiv').html('');}">
+							<option value="1" {if $an_info[gsexpress]==1}selected{/if}>包裹入库</option>	
+							<option value="2" {if $an_info[gsexpress]==2}selected{/if}>急速原箱发货</option>	
+					</select>     <span id="gsexdiv" style="color:red"></span>
+                                                             
+                </li> 
+                  <li>
+                    <label for="postno">商家发货快递<em class="color-red">*</em></label>
+                    <select name="package[expressid]"  id="expressid" class="inp inp-select" onchange="javascript:document.getElementById('expressname').value=document.getElementById('expressid').options[document.getElementById('expressid').selectedIndex].text;">
+							<option value="0">请选择</option>
+							{loop $allship $v}
+							<option value="{$v[aid]}" {if $an_info[expressname]==$v[title]}selected{/if}>{$v[title]}</option>	
+							{/loop}
+					</select>     
+					 <input id="expressname" name="package[expressname]" value="{$an_info[expressname]}"  type="hidden"> 
+                                                                     
+                </li> 
+				 <li>
+                    <label for="expressno">邮单号<em class="color-red">*</em></label>
+                  
+					<input id="expressno" name="package[expressno]"  value="{$an_info[expressno]}" maxlength="100" class="inp w268" type="text" tabindex="4"  {if $an_info[status]!=1}readonly {/if} onKeyUp="this.value=this.value.replace(/[^0-9a-z]/gi,'')"  >     
+                   
+                </li>  
+				<li>
+                    <label for="goodsname">物品名称<em class="color-red">*</em></label>
+                    <input id="goodsname" name="package[goodsname]"  value="{$an_info[goodsname]}" maxlength="100" class="inp w268" type="text" tabindex="4">                   
+                </li>
+                <li>
+                    <label for="amount">物品数量(样/件/个)<em class="color-red">*</em></label>
+                    <input id="amount" name="package[amount]"  value="{$an_info[totalamount]}"  maxlength="100" class="inp w168" type="text" tabindex="4" onKeyUp="this.value=this.value.replace(/[^0-9]/gi,'')" >     
+                                                                     
+                </li>
+				
+				 
+                
+                <li>
+                    <label for="weight">物品重量(磅)<em class="color-red">*</em></label>
+					 
+                    <input id="weight" name="package[weight]"  value="{$an_info[totalweight]}"  style="ime-mode:disabled;" maxlength="30"  class="inp w168" type="text" tabindex="6" onKeyUp="this.value=this.value.replace(/[^0-9.]/gi,'')" {if $an_info[status]!=1}readonly {/if}>     
+					
+                                                                  
+                </li>
+
+                  <li>
+                    <label for="price">物品价值(美金)<em class="color-red">*</em></label>
+                    <input id="price" name="package[price]"  style="ime-mode:disabled;" value="{$an_info[totalprice]}" maxlength="30" class="inp w168" type="text" tabindex="10" onKeyUp="this.value=this.value.replace(/[^0-9.]/gi,'')" >     
+                                                         
+                </li>
+					<li>
+                    <label for="package_l">货物长宽高<em class="color-red">*</em></label>
+                    长：<input id="package_l" name="package[package_l]"  value="{$an_info[bill_long]}"  class="inp w88" type="text" tabindex="4"  >  x 宽：<input id="package_w" name="package[package_w]"  value="{$an_info[bill_width]}"  class="inp w88" type="text" tabindex="5">  x 高：<input id="package_h" name="package[package_h]"  value="{$an_info[bill_height]}"  class="inp w88" type="text" tabindex="6">
+                                                                     
+                </li>
+			
+				<!--<li>
+                    <label for="issecure">是否保险</label>
+                    <input id="issecure" name="package[issecure]"  style="ime-mode:disabled;" value="1"  type="checkbox" class="inp" {if $an_info[issecure]==1}checked{/if}>                               
+                </li>-->
+				
+				<li>
+                    <label for="remark">备注<em class="color-red"></em></label>
+                    <textarea id="remark" name="package[remark]"  class="inp w268" style="height:60px;">{$an_info[remark]}</textarea>     
+                                                                  
+                </li>
+				{if $an_info[status]!=3}
+                 <li>
+					<label for="">&nbsp;</label>
+					 <input type="hidden" name="dosubmit" id="dosubmit" value="1"/>
+                    
+					<button type="submit" class="btn-login radius-three fl" tabindex="17" title="保存">保&nbsp;存</button>
+					<button type="button" onclick="window.location.href='/index.php?m=package&c=index&a=init&hid={$an_info[storageid]}'" class="btn-login btn-cancel radius-three fl" tabindex="18" title="取消">取&nbsp;消</button>
+				</li>
+				{/if}
+                </ul>
+                                </div><!--E .pro-info-v01-->
+                              
+                             <span class="blank22"></span>
+                          </div><!--E .pcont-mod-bd-->
+					 </form>
+		
+
+
+
+
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     
+				  
+				 {template 'member', 'left'}
+
+
+
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   
+  <script>
+  function newaddress(flag){
+	if(flag==0){
+		document.getElementById('new_package_address').style.display="";
+	}else{
+		document.getElementById('new_package_address').style.display="none";
+	}
+  }
+
+
+  $(document).ready(function(){
+	$.formValidator.initConfig({autotip:true,formid:"mainForm",onerror:function(msg){}});
+	$("#expressid").formValidator({onshow:"请选择商家发货快递",onfocus:"请选择商家发货快递"}).inputValidator({min:1,onerror:"请选择商家发货快递"});
+	$("#expressno").formValidator({onshow:"邮单号必填项",onfocus:"邮单号必填项"}).inputValidator({min:2,max:50,onerror:"邮单号不能为空!"}).ajaxValidator({
+						type : "post",
+						url  : "/index.php?m=package&c=index&a=public_check_expressno&hid={$an_info[storageid]}&aid={$aid}",
+						success: function(data){
+							if(data == "0"){
+								return true;
+							}else if(data == "1"){
+								return false;
+							}
+						},
+						onerror: "该邮单号已存在！"
+	});
+
+	$("#goodsname").formValidator({onshow:"物品名称必填项",onfocus:"物品名称必填项"}).inputValidator({min:1,onerror:"物品名称不能为空"});
+	$("#price").formValidator({onshow:"物品价值必填项",onfocus:"物品价值必填项"}).inputValidator({type:'number',min:1,onerror:"物品价值必填项"});
+
+	
+
+});
+
+  </script>
+  
+</div>
+</div>  
+  {template 'member', 'footer'}

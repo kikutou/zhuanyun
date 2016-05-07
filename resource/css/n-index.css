@@ -1,0 +1,267 @@
+﻿@charset "utf-8";
+.n_banner{width:950px; height:184px; text-align:center}
+
+.n_left{width:250px; float:left; margin-top:10px;   background:#fff}
+.n_left_title{ height:2px; font-size:0px; background:#0078D4}
+.n_billsearch{border:1px solid #cccccc; text-align:center; border-top:0px;  }
+.n_billsearch .title{ height:44px; display:block; width:248px; background:url(../images/billsearch_bg.jpg) no-repeat; text-indent:-9999px; border-bottom:1px solid #EAEAEA}
+.n_billsearch .titleru{ height:44px; display:block; width:248px; background:url(../images/billsearch_bgru.jpg) no-repeat; text-indent:-9999px; border-bottom:1px solid #EAEAEA}
+.n_billsearch textarea{ width:210px; height:150px; padding:2px; border:1px solid #DDDDDD; font-size:14px; color:#B2B2B2}
+.n_btn{width:110px; position:relative; height:30px; margin:0px auto;margin-top:15px; }
+.n_btn a{ color:#fff}
+
+
+/*内页单号查询框*/
+#formbill{ position:relative}
+#formbill textarea{ width:210px; margin:0px auto}
+.n_btns{height: 28px; margin-top:10px}
+.n_btns a{ display:block;height:28px; font-size:14px;line-height:28px;position:absolute;color:#fff; }
+.n_so{ width:90px;  left:133px; background:url(../images/n_searchbtn.png)  no-repeat 0px -28px; text-indent:-99999px; height:27px; overflow:hidden}
+.n_so:hover{ background:url(../images/n_searchbtn.png) no-repeat }
+.n_esc{ width:90px; background:#787878; display:block; overflow:hidden;   left:25px}
+.n_esc:hover{ background:#909090;}
+
+
+.tbl4,.tbl4 td{border:1px solid #EDEDED;border-collapse:collapse; padding-left:4px; height:30px;}
+.tbl4 input,.tbl4 select{ border:1px solid #C1C1C1}
+/*文本框样式*/
+.textinput{
+	width:145px;
+	font-size: 12px; 
+	border-color:#C1C1C1;
+	border-style:solid;
+	border-width:1px;
+	color:#336699;
+	height: 22px;
+	line-height: 22px;
+	padding-left:2px;
+	outline:0px;
+	float:left;
+}
+.textarea{
+	 
+	overflow: auto;
+	width: 240px;
+	height: 80px;
+	color: #000000;
+	border-color:#C1C1C1;
+	border-style:solid;
+	border-width:1px;
+	font-size:12px;
+	word-break:break-all;
+	word-wrap:break-word;
+	padding:5px;
+	outline:0px;
+}
+
+/*按钮样式*/
+.button{
+	background:transparent url(../images/btn_bg.jpg) repeat scroll 0 0;
+	border:1px solid #83b1f2;
+	font-size:12px;
+	height:24px;
+	line-height:22px;
+	margin-right:4px;
+}
+
+.submit
+{
+	height: 23px;
+	width: 60px;
+	border: 0px solid #00A7D1;
+	background: url(../images/sou.jpg);
+}
+.submit1
+{
+	height: 22px;
+	width: 60px;
+	border: 0px solid #00A7D1;
+	background: url(../images/chong.jpg);
+}
+
+.gridview2
+{
+	border: solid 0px #D9D9D9;
+	padding: 1px 1px 1px 1px;
+	clear: both;
+	height: 20px;
+}
+.gridview2 td
+{
+	border: solid 1px #D9D9D9;
+	padding: 1px 1px 1px 1px;
+	vertical-align: middle;
+	clear: both;
+}
+.gridview2 th
+{
+	border: solid 1px #D9D9D9;
+	text-align: center;
+	height: 24px;
+}
+
+.n_title2{ height:44px; display:block; width:248px; background:url(../images/bg_siten.png) no-repeat; text-indent:-9999px; border-bottom:1px solid #E4E4E4; }
+.n_title3{ height:44px; display:block; width:248px;_width:248px; background:url(../images/bg_service.png) no-repeat; text-indent:-9999px; border-bottom:1px solid #E4E4E4;}
+.n_titleorder{ height:44px; display:block; width:248px;_width:248px; background:url(../images/bg_ordern.png) no-repeat; text-indent:-9999px; border-bottom:1px solid #E4E4E4;}
+
+.n_s_list{ width:210px; margin-left:25px;  }
+.n_s_list li{width:105px; float:left; margin-top:10px; height:18px;}
+.n_s_list li a{display:block; float:left;padding-left:20px; height:18px; line-height:18px; padding-top:2px;}
+
+
+#tab1{ width:230px; margin:0px auto; margin-top:5px; margin-bottom:5px;} 
+#tab1 dl{ clear:both}
+#tab1 dd{ width:30px; height:40px; float:left; line-height:40px; color:#FE7F00; font-weight:bold; text-align:center }
+#tab1 dt{ width:200px; float:right;  }
+.tddd li{width:40px; float:left; overflow:hidden; height:25px; line-height:25px}
+.tddd li a{color:#747474; display:block; width:40px; height:25px; text-align:center}
+.tddd li a:link{color:#747474;}
+.tddd li a:visited {color:#747474 ;}
+.tddd li a:hover{ color:#fff; background:#3687D9}
+.tddd li a:active {color:#fff ;} 
+.spanred{color:#FF5900;}
+
+
+
+
+.n_r{margin-top:10px; float:right; width:780px;}
+.n_title{height:30px; line-height:30px; border-bottom:2px solid #0078D4; color:#707070; font-size:14px}
+#n_t_ico{ width:250px; float:left;background:url(../images/n_t_ico.gif) no-repeat; padding-left:20px; height:30px; line-height:30px; display:block}
+.n_weizhi{width:400px; float:right; display:block; text-align:right; font-size:12px;}
+.n_content{width:760px; background:#fff; border:1px solid #DEDEDE; padding:10px;}
+.content_tb{font-size: 14px; margin: 0px auto; margin-bottom: 10px;line-height: 30px; padding: 20px; border: 0px solid #dedede}
+.help_table,.help_table td{border:1px solid #DCDCDC;border-collapse:collapse; padding-left:15px; height:50px}
+.help_table .bg{ background:#F1F1F1; font-weight:bold}
+.help_table a{ color:#E1292B}
+.help_table a:hover{ text-decoration:underline}
+.weixint{ position:absolute; display:none; height:240px; width:180px; border:0px solid #fff; background:#fff; cursor:pointer; z-index:999}
+.w630{ width:630px;}
+.w150{ width:150px;}
+.w120{ width:120px;}
+.n_content p{text-indent: 25px;line-height: 30px;}
+.n_sil{width:650px; height:208px; margin:0px auto;overflow:hidden}
+ 
+.faq{width:640px; margin:0px auto; margin-top:30px; line-height:200%; color:#656565; font-family:宋体}
+.faq_title{font-weight:bold; color:#F00}
+
+#error{display:none;width:600px; margin:0px auto; margin-top:10px; background:#FFE8B7; padding:20px; border:1px solid #FDB61F }
+#error_msg{height:30px; line-height:30px; font-size:14px;}
+#error_r{height:35px; line-height:35px;font-size:14px;}
+.n_error_bill{border:1px solid #BCBCBC; background:#fff; width:100px; float:left; text-align:center; overflow:hidden; height:35px;}
+.n_error_b{border:1px solid #BCBCBC; border-left:0px; background:#fff; width:200px; float:left; text-align:center; overflow:hidden; height:35px;}
+
+.tbtn{background:#0078D4; color:#FFF; margin-left:10px; width:150px; float:left; text-align:center; height:35px;}
+
+
+
+.tbl3,.tbl3 td{border:1px solid #DCDCDC;border-collapse:collapse; padding:4px; _padding:4px}
+.tab4{border:1px solid #dcdcdc; border-top:0px;border-bottom:0px;}
+.tab4 td{ border-bottom:1px solid #dcdcdc; font-size:12px}
+.b_title{height:40px; line-height:40px; background:url(../images/billNavBg.png) #EBEBEB; border-left:1px solid #DCDCDC; border-right:1px solid #DCDCDC;margin-top:10px;border-bottom: 1px solid #C2C2C2; position: relative  }
+.b_t{display:block; margin-left:5px; float:left; width:205px; font-size:14px}
+.b_t_close{display:block; margin-left:5px; float:right; width:26px; font-size:14px; margin-top:7px; margin-right:5px}
+
+
+.save_billcode{ display:block; width:80px; line-height:25px; height:25px; color:#fff; background:#3687D9; font-size:12px; text-align:center;}
+.save_billcode:link{color:#fff;}
+.save_billcode:visited {color:#fff ;}
+.save_billcode:hover{background:#FF683D; color:#fff }
+.save_billcode:active {color:#fff ;} 
+
+
+
+#service_content dl dd{ height:30px; width:650px; text-align:left;  line-height:30px;}
+#service_content dl dd span{ background:url(../images/link_ico.png) no-repeat; width:15px; height:10px; margin-top:10px; display:block; float:left}
+#service_content dl dt{ width:635px; text-align:left; float:right;}
+.s_ul li{ width:150px; height:30px; line-height:30px; float:left; text-align:left; margin:3px; position:relative; overflow:hidden}
+.s_ul li a{ display:block;width:148px; height:28px;border:1px solid #EFEFEF; line-height:30px; }
+.s_ul li a:hover{ border:1px solid #FFD6B5; background:#FFF7E7}
+.s_ul li a img{width:9px; height:9px; vertical-align:middle; position:absolute; left:11px; top:10px;}
+.abc{ display:block;width:125px; height:30px;line-height:30px;  position:absolute; right:0px; cursor:pointer;}
+.tbl5,.tbl5 td{border:1px solid #EFEFEF;border-collapse:collapse; padding:5px; _padding:5px; height:30px; line-height:30px}
+
+
+
+.title4{height:44px; line-height:44px; padding-left:60px;  width:185px;_width:185px; background:url(../images/title4.jpg) no-repeat; position:relative;border-bottom:1px solid #EAEAEA; text-align:left; font-size:14px;}
+ 
+.title4ul{width:220px; margin:0px auto }
+.title4ul li{ margin:10px; text-align:center; }
+.title4ul li a{ display:block; height:30px; line-height:30px; width:200px; color:#747474}
+.title4ul li a:link{color:#747474;}
+.title4ul li a:visited {color:#747474 ;}
+.title4ul li a:hover{background:#86c5f6; color:#fff }
+.title4ul li a:active {color:#fff ;} 
+.title4ul li .on{background:#0078D4; color:#fff}
+.title4ul li .on:link{color:#fff;}
+.title4ul li .on:visited {color:#fff ;}
+.title4ul li .on:hover{background:#0078D4; color:#fff }
+.title4ul li .on:active {color:#fff ;}
+
+.newslist li{height:25px; line-height:25px; border-bottom:1px dashed #dedede}
+.newslist li .index{ width:20px; display:block; float:left}
+.newslist li a{ display:block; width:480px; float:left}
+.newslist li .date{ width:80px; display:block; float:right}
+
+
+
+/*微信样式*/
+.wx_close{ display:block; width:18px; height:18px; background:url(../images/wx_close1.jpg); text-indent:-99999px; cursor:pointer;}
+.wx_close:hover{ display:block; width:18px; height:18px; background:url(../images/wx_close2.jpg)}
+.weixin2{display: none; z-index: 9999;position: absolute; left: 160px; top: -70px; background:#fff; text-align:center; border:1px solid #DEDEDE; line-height:150%; color:#747474}
+.weixin2t{display: none; width: 160px; height: 200px;}
+/*发送手机短信*/
+.sendmessage{ height:300px; width:300px; }
+#sendMsg{display: none; float: right; background: url(../images/SendMessage.png); width: 16px; height: 16px; overflow:hidden}
+#sendMsgDialog div{position: absolute; left: 275px; top: 5px;}
+#SiteTelephone{width:190px; float:left; word-spacing:inherit; display:block;word-break:break-all;word-wrap:break-word; overflow:hidden}
+
+.ulpro li{ height:70px; border-bottom:1px dashed #EAEAEA; margin-bottom:10px; position:relative}
+.ulpro li h3{ font-weight:normal; color:#747474; font-size:12px; display:block; position:absolute; left:35px; top:20px}
+.ulpro li h2{  font-size:14px; display:block; position:absolute; left:35px;}
+.ulpro li h2 a{color:#5D5D5D}
+.ulpro li h2 a:link{color:#5D5D5D;}
+.ulpro li h2 a:visited {color:#5D5D5D ;}
+.ulpro li h2 a:hover{ color:#FF5900 }
+.ulpro li img{ float:left; display:block; position:absolute;top:10px}
+.ulpro li span{ display:block; position:absolute; top:20px;}
+
+
+.ulpro2{color: #747474; font-size: 13px}
+.ulpro2 h4{ color:#333; font-size:14px; height:35px; margin-top:10px}
+.ulpro2 h3 img{ display:block; margin-right:10px; float:left;}
+.ulpro2 h3{ border-bottom:1px solid #DEDEDE; padding-bottom:5px; color:#333333}
+
+/*中国地图*/
+.jvectormap-label {
+    position: absolute;
+    display: none;
+    cursor: pointer;
+    color: #000;
+	
+    font-size: 12px;
+    z-index:10000;
+}
+
+.jvectormap-zoomin, .jvectormap-zoomout {
+    position: absolute;
+    left: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #292929;
+    padding: 3px;
+    color: white;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    line-height: 10px;
+    text-align: center;
+}
+
+.jvectormap-zoomin {
+    top: 10px;
+}
+
+.jvectormap-zoomout {
+    top: 30px;
+}

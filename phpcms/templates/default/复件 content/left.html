@@ -1,0 +1,57 @@
+ <div class="n_left">
+                <div class="n_left_title">
+                </div>
+                <div class="n_billsearch">
+                    <div class="title4">
+                        公司简介
+                    </div>
+                    <div class="clear10">
+                    </div>
+                    <ul class="title4ul">
+					{pc:content action="category" ctaid="$catid" siteid="$siteid" num="5" order="listorder ASC"}
+					{loop $data $r1}
+                        <li><a {if $r1[catname]=="$catname"} class="on"{/if}href="{$r1[url]}">{$r1[catname]}</a></li>
+                     {/loop}
+					 {/pc}
+                    </ul>
+                    <div class="clear10">
+                    </div>
+                    <a href="" class="title2" style="width:248px;">运单查询</a>
+                    <br />
+                    <form action="api.php" name="mainForm" id="mainForm" method="get">
+
+                   <input type="hidden" name="op" value="orderno"/>
+                    <div class="textarea-mod">
+                    	<textarea class="inp-tarea" id="ord" style="width: 220px;ime-mode:disabled;" name="ord" onblur="if (value ==''){value='UPS/Fedex/TNT/USPS/OnTrac/DHL等国际物流单号查询'}" onfocus="if (value =='UPS/Fedex/TNT/USPS/OnTrac/DHL等国际物流单号查询'){value =''}">UPS/Fedex/TNT/USPS/OnTrac/DHL等国际物流单号查询</textarea>
+                    </div>
+                    
+                    <div class="btn" style=" margin-top: 5px;">
+                        <a class="esc" style=" left: 15px;" href="javascript:tclear();">清空</a>
+                        <div class="soso" style=" left: 120px;">
+                            <a onclick="submitF();" style="cursor: pointer">查 找</a>
+                        </div>
+                    </div>
+                    </form>
+
+
+                    <div class="clear10">
+                    </div>
+                    
+                    
+                    <div style="position: relative; text-align: left;">
+                        <a class="n_title3">服务专区</a>
+                    </div>
+                    <div class="clear10">
+                    </div>
+                    <ul class="n_s_list">
+                         
+                        <li><a class="messages" href="/index.php?m=content&c=index&a=lists&catid=1">投诉建议</a></li>
+                        <li><a class="price" href="/index.php?m=content&c=index&a=lists&catid=12">收费标准</a></li>
+                        <li><a class="error" href="/index.php?m=content&c=index&a=lists&catid=7">违禁品查询</a></li>
+                        <li><a class="warn" href="/index.php?m=content&c=index&a=lists&catid=11">寄件注意事项</a></li>
+                    </ul>
+                    <div class="clear10">
+                    </div>
+                </div>
+            </div>
+

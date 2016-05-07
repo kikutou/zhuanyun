@@ -1,0 +1,153 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title><?php echo $this->__all__urls[0]['amount'];?>--<?php echo $this->wap['sitename'];?></title>
+
+<link href="/resource/wap/css/lists.css" rel="stylesheet" type="text/css" />
+
+<script src="/resource/wap/js/jquery.min.js" type="text/javascript"></script>
+<style>
+</style>
+</head>
+
+<body class="mode_webapp">
+
+{template "wap","header_min"}
+
+
+
+<link href="/resource/wap/css/news3_.css" rel="stylesheet" type="text/css" />
+
+<div id="ui-header">
+<div class="fixed">
+<a class="ui-title" id="popmenu"><?php echo $this->__all__urls[0]['amount'];?></a>
+<a class="ui-btn-left_pre" href="javascript:history.go(-1);"></a><a class="ui-btn-right_home" href="{WAP_SITEURL}"></a>
+</div>
+</div>
+
+    
+{if !$__is__userinfo__full[value]}
+
+ <form action="" method="post" name="mainForm" id="mainForm">
+ <input type="hidden" name="forward" id="forward" value="{php echo urlencode($_GET['forward']);}" />
+
+
+<div class="contact-info" style=" margin-top:10px;">
+
+<ul>
+<li><table border=0 width="100%"><tr><td><p>余额: <font color=red><?php echo $this->current_user['amount'];?>元</font></p><p>积分: <font color=red><?php echo $this->current_user['point'];?></font></p></td><td>
+<input type="button" id="address_add"  class="submit_b"  value="充 值" style="width:100%" onclick="window.location.href='<?php echo $this->__all__urls[1]['addmoney'];?>';"></td></tr></table> 
+</li>
+</ul>
+<ul>
+<li>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge" >
+ <tr>
+    <th width="50%" class="cc" style="{if $_GET[c]!='deposit'}background:#fff;{/if}cursor:pointer" onclick="window.location.href='index.php?m=wap&c=deposit&a=init'">充值记录</th>
+    <th width="50%" class="cc" style="{if $_GET[c]!='spend_list'}background:#fff;{/if}border-left:solid 1px #ededed;cursor:pointer" onclick="window.location.href='index.php?m=wap&c=spend_list&a=init'">消费记录</th>
+  </tr>
+  </table>
+ <table width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge" style="border-top:none;"> 
+  {if $_GET[c]=='deposit'}
+  <tr>
+    <th>流水号</th>
+    <th width="70" class="cc">金额(元)</th>
+    <th width="55" class="cc">状态</th>
+  </tr>
+  {loop $infos $info}
+   <tr>
+ 
+    <td>{$info['trade_sn']}</td>
+   
+    <td width="55" class="cc"><span class="color-red">{$info['money']} {php echo $info['type']==1 ? '':'积分'}</span></td>
+	<td width="70" class="cc">{__L__($info['status'])}</td>
+  </tr>
+  <tr>
+  <td colspan=5 style="border-top:none">{$info['payment']} 时间: {date('y-m-d H:i:s',$info['addtime'])} </td>
+  </tr>
+  {/loop}
+
+  {/if}
+
+   {if $_GET[c]=='spend_list'}
+  <tr>
+    <th>消费内容</th>
+	<th  class="cc">创建时间</th>
+    <th width="70" class="cc">金额(元)</th>
+    
+  </tr>
+  {loop $list $info}
+   <tr>
+    <td>{$info['msg']}</td>
+    <td width="70" class="cc">{format::date($info['creat_at'], 1)}</td>
+    <td width="55" class="cc"><span class="color-red">{$info['value']} {php echo $info['type']==1 ? '':'积分'}</span></td>
+  </tr>
+  {/loop}
+
+  {/if}
+  </table>
+</li>
+</ul>
+<ul>
+
+<li>
+		<div class="pages">{$pages}</div>			
+</li>
+</ul>
+   
+    </div>
+
+    
+    
+    <div class="footReturn" style="margin-bottom:80px;">
+	
+	
+	 
+<div class="window" id="windowcenter">
+<div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+<div class="content">
+<div id="txt"></div>
+</div>
+</div>
+</div></form>
+     <script type="text/javascript">
+   function allchk(obj){
+     $("input[name='aid[]']").attr("checked",obj.checked);
+   }
+   </script>
+<script type="text/javascript"> 
+
+
+var oLay = document.getElementById("overlay");	
+
+
+$("#windowclosebutton").click(function () { 
+$("#windowcenter").slideUp(500);
+oLay.style.display = "none";
+
+}); 
+$("#alertclose").click(function () { 
+$("#windowcenter").slideUp(500);
+oLay.style.display = "none";
+
+}); 
+
+function alert(title,url){ 
+
+$("#windowcenter").slideToggle("slow"); 
+$("#txt").html(title);
+if(url!=''){setTimeout('$("#windowcenter").slideUp(500,function(){window.location.href ="'+url+'";})',4000);}else{
+	setTimeout('$("#windowcenter").slideUp(500)',4000);
+}
+} 
+
+</script>
+{/if}
+{template "wap","footer"}
+</body>
+</html>

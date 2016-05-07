@@ -1,0 +1,70 @@
+{template "content","header"}
+<!--main-->
+<div class="main photo-channel">
+<div class="crumbs"><a href="{siteurl($siteid)}">首页</a><span> > {catpos($catid)}</div>
+<div class="bk10"></div>
+	
+		<ul class="photo-list picbig">
+			
+			<li>
+			
+<!---begin--->
+
+<link rel="stylesheet" href="{CSS_PATH}base5.css" />
+<link rel="stylesheet" href="{CSS_PATH}style5.css" />
+ <form action="/api.php?op=feedback" method='post'  enctype="multipart/form-data">
+                    <div class="bcf9 mt30 pl5 complain pb80">
+                        <div class="pt10 mb30" style="*margin-bottom:20px;">
+                            <h2 class="f18 c3 fb fl ml25">投诉/建议</h2>
+                            <span class="fr f12 fn cblack mr35 lh20">注：<i>*</i> 为必填项，<i>必填项未填写完整则无法提交。</i></span>
+                            <div class="clearfloat"></div>
+                        </div>
+                        <div class="f14 c6 mb10 labelTop">
+                            <label><span>*</span> 类别：</label>
+                            <select name="typename" class="select1 ComplaintType"><option value="投诉" selected>投诉</option><option value="建议">建议</option></select>
+                           
+							
+							
+							<label><span>*</span> 主题：</label>
+                            <input name="info[title]" type="text" class="input2 ContactFirst" style='width:240px;' />
+                            
+                        </div>
+                       
+                        <div class="f14 c6 mb10">
+                            <label class="top"><span>*</span> 内容：</label><textarea name="info[content]" class="textarea1 Remarks" style="resize:none"></textarea>
+                        </div>
+                        
+                        <div class="f14 c6 mb10">
+                            <label class="pra"><span>*</span> 姓名：</label><input name="ComplaintName" type="text" class="input1 ComplaintName" style='width:240px;' />
+                            <label class="labelTop"><span>*</span> 称谓：</label>
+                            <select name="Sex" class="select3 Sex" style='width:240px;' >
+                                <option value="先生">先生</option>
+                                <option value="女士">女士</option>
+                            </select>
+                            
+                        </div>
+                        <div class="f14 c6 mb10">
+                          <label class="pra"><span>*</span>电话：</label><input name="ContactFirst" type="text" class="input2 ContactFirst" style='width:240px;' />
+                          
+                        </div>
+                        
+
+                        <div class="btns tc mt40">
+                            <input type="hidden" value="1" name="ComplaintType"/>
+                            <button class="mr50" type="submit" name="dosubmit" value="1">提交</button>
+                           
+                            <button type="reset">重置</button>
+                        </div>
+                    </div>
+                    </form>
+
+<!--end--->
+			
+			</li>
+			
+		</ul>
+		
+	
+    </div>
+</div>
+{template "content","footer"}

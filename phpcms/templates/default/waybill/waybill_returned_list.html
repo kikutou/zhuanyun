@@ -1,0 +1,243 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/jscal2.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/border-radius.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/win2k.css"/>
+			<script type="text/javascript" src="{JS_PATH}calendar/calendar.js"></script>
+			<script type="text/javascript" src="{JS_PATH}calendar/lang/en.js"></script>
+
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">我的退货管理</span>
+            </div>
+             <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>我的退货管理</h3>
+								<div class="plink-mod">
+                               
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd">
+								<?php
+							$curruser=$this->get_current_userinfo();
+							$result=$this->db->query("select sum(payedfee) as nopay from t_waybill where status=8 and userid='".$curruser[userid]."' and storageid='".$this->hid."'");
+							$dataarray=$this->db->fetch_array($result);
+							$nopayamount=0;
+							foreach($dataarray as $r){
+								$nopayamount+=$r[nopay];
+							}
+
+							?>
+								 <div class="balance-info proInfo-cont" >
+                                	您的账户余额<strong>{$curruser[amount]}{L('unit_yuan')}</strong> 
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="/index.php?m=pay&c=deposit&a=pay" style="top:0px;text-decoration:none;" class="p-btn radius-five" title="我要充值" ><font color="#ffffff">我要充值</font></a>
+                                </div><!--E .balance-info-->
+
+                            	<!--S 右边内容开始-->
+			                	<div class="bag-mod">
+							        <div class="tab-mod">
+			                          <ul class="clearfix">	    	                          
+			                            <li {if $status==0}class="current"{/if}><a href="/index.php?m=waybill&c=index&a=waybill_returned_list&hid={php echo $this->hid}">所有订单</a></li>
+										 <li {if $status==15}class="current"{/if}><a href="/index.php?m=waybill&c=index&a=waybill_returned_list&hid={php echo $this->hid}&status=15">待退件</a></li>
+										 <li {if $status==11}class="current"{/if}><a href="/index.php?m=waybill&c=index&a=waybill_returned_list&hid={php echo $this->hid}&status=11">已退件</a></li>
+			                           <!-- <li {if $status==8}class="current"{/if}><a href="/index.php?m=waybill&c=index&a=init&hid={php echo $this->hid}&status=8">待付款</a></li>
+			                            <li {if $status==7}class="current"{/if}><a href="/index.php?m=waybill&c=index&a=init&hid={php echo $this->hid}&status=7">已付款</a></li> 
+										<li {if $status==10}class="current"{/if}><a href="/index.php?m=waybill&c=index&a=init&hid={php echo $this->hid}&status=10">待出货</a></li>
+										<li {if $status==9}class="current"{/if}><a href="/index.php?m=waybill&c=index&a=init&hid={php echo $this->hid}&status=9">已发货</a></li>
+										<li {if $status==16}class="current"{/if}><a href="/index.php?m=waybill&c=index&a=init&hid={php echo $this->hid}&status=16">已签收</a></li>-->
+			                          </ul>
+							        </div><!--E .tab-mod--> 
+							        <div id="tab-cont">
+							          <div id="tab-cont-v01"> 
+			                           		<div class="pcont-date-mod" style="padding-top:0;">
+				                               
+												 <form action="" method="post" name="mainForm" id="mainForm">
+												<div class="search-mod" style="padding-bottom:12px;width:98%; border:none;">
+											
+                           					 <input type="hidden" name="dosubmit" id="dosubmit" value="1"/>
+											           <ul class="pform-list clearfix">
+							                <li>
+							                   {php $allorderstatus = $this->getorderstatus();}
+							                    <select  name="status" id="status" class="inp inp-select" tabindex="1" rel="select">
+												<option value="">选择订单状态</option>
+												{loop $allorderstatus $status}
+												<option value="{$status[value]}" >{$status[title]}</option>
+												{/loop}
+												</select>                                   
+							                </li>
+							                
+							                   <li>
+							                    <label for="num">订单号</label>
+							                     <input id="orderno" name="orderno" value="" class="inp w108" type="text" tabindex="3">                                       
+							                </li>
+							                <li>
+							                    <label for="date">起止日期</label>
+							                    <input type="text" name="starttime" id="start_addtime" value="" size="10" class="date inp" readonly>&nbsp;<script type="text/javascript">
+			Calendar.setup({
+			weekNumbers: true,
+		    inputField : "start_addtime",
+		    trigger    : "start_addtime",
+		    dateFormat: "%Y-%m-%d",
+		    showTime: false,
+		    minuteStep: 1,
+		    onSelect   : function() {this.hide();}
+			});
+        </script>&nbsp;-&nbsp; <input type="text" name="endtime" id="end_addtime" value="" size="10" class="date inp" readonly>&nbsp;<script type="text/javascript">
+			Calendar.setup({
+			weekNumbers: true,
+		    inputField : "end_addtime",
+		    trigger    : "end_addtime",
+		    dateFormat: "%Y-%m-%d",
+		    showTime: false,
+		    minuteStep: 1,
+		    onSelect   : function() {this.hide();}
+			});
+        </script>
+                              
+							                </li>
+							               
+                                            <li class="search-smod">
+                                                <button type="submit" class="btn-login radius-three fr" tabindex="6" title="搜索">搜&nbsp;索</button>											                
+                                            </li>
+							            </ul>
+											                                          
+				                                </div><!--E .search-mod-->
+		
+			                                	<table class="table-date">
+			                                    	<caption>在库包裹列表</caption>
+			                                        <thead>
+			                                        	<tr>
+                                                          	
+			                                            <th scope="col" ><input type="checkbox" name="selectid" onclick="allchk(this)" ></th>
+														<th scope="col" >ID</th>
+														<th scope="col" >仓库/运单号</th>
+														<th scope="col" >快递单号</th>
+														<th scope="col" >状态</th>
+														<th scope="col" >退货费用</th>
+														<th scope="col" >备注</th>
+														<th scope="col" >下单时间</th>
+														<th scope="col" >操作</th>
+			                                        		
+			                                        	</tr>
+			                                        </thead>
+			                                        <tbody>
+			                                        <?php
+													$pdb = pc_base::load_model('package_model');
+													?>
+			                                        {loop $datas  $waybill}
+													{php $takeperson="";}
+													{php $takecity="";}
+
+													{php $addr = explode('|',$waybill['takeaddressname']);}
+													{php $takeperson=$addr[0];}
+													{php $takecity=$addr[4];}
+													
+
+												
+													
+															<tr>
+																	<td scope="col">
+																	{if $waybill[status]==1}
+																	<input type="checkbox" name="aid[]" value="{$waybill[aid]}">
+																	{/if}
+																	</td>
+
+																	<td scope="col" >{$waybill[aid]}</td>
+																	<td scope="col" >
+																	{$waybill[storagename]}<br>
+																	<a href="?m=waybill&c=index&a=waybill_detail&bid={$waybill[aid]}">{$waybill[waybillid]}</a></td>
+																	<td scope="col" >
+																	{php $allwaybill_goods = $this->getwaybill_goods($waybill[waybillid],$waybill[returncode]);}
+																	
+																	
+
+																	<?php 
+																	
+																	
+																	
+																	
+																	$exurl=str_replace('#',$waybill[expressnumber],$waybill[expressurl]);
+																	?>
+																		<a href="{$exurl}" target=_blank style="color:#ff6600" title="{$waybill[expressnumber]}">{$waybill[expressnumber]}</a><br>
+																	
+																	
+																	</td>
+																	<td scope="col" {if $waybill[status]==6} style="color:red"{/if}>{php echo $this->getonestatus($waybill[status],$waybill[placeid])}</td>
+																	<td scope="col" >{$allwaybill_goods[0][returnfee]}</td>
+																	<td scope="col" >{$allwaybill_goods[0][returnremarkf]}/<font color=red>{$allwaybill_goods[0][returnremark]}<p>{$waybill[remark]}</p></font></td>
+																	<td scope="col" >{date('y-m-d',$waybill[addtime])}</td>
+																	<td scope="col" ><a href="/index.php?m=waybill&c=index&a=waybill_detail&bid={$waybill[aid]}" >查看</a> | <a href="?m=waybill&c=index&a=printbill&bid={$waybill[aid]}" target="_blank">打印</a> {if $waybill[status]==8}| <a href="/index.php?m=pay&c=deposit&a=pay&oid={$waybill[aid]}" style="color:#ff6600">付款</a>
+																	{/if}
+
+																	{if trim($waybill[expressnumber])!=""}| <a href="{str_replace("#",trim($waybill[expressnumber]),trim($waybill[expressurl]))}" target=_blank>快递跟踪</a>
+																	{/if}
+
+																	<br/> <a href="/index.php?m=waybill&c=index&a=waybill_onlinequestion&bid={$waybill[aid]}" style="color:blue">在线提问</a>
+																	{if $waybill[status]==13 || $waybill[status]==14}
+																	| <a href="/index.php?m=waybill&c=index&a=waybill_finish&bid={$waybill[aid]}&retruned=1" style="color:green">签收</a>
+																	{/if}
+
+																	{if  ($waybill[status]==11 && $waybill[returnedstatus]==1) || ($waybill[status]==15 && $waybill[returnedstatus]==4) }
+																	| <a href="/index.php?m=waybill&c=index&a=waybill_returned&bid={$waybill[aid]}" style="color:red">付款退货</a>
+																	{/if}
+
+																	{if  $waybill[status]==1 || $waybill[status]==3 || $waybill[status]==8}
+																	| <a href="/index.php?m=waybill&c=index&a=waybill_cancel&bid={$waybill[aid]}" style="color:red" onclick="return confirm('确定要取消此订单？');">取消</a>
+																	{/if}
+
+
+</td>
+																</tr>
+													{/loop}
+			                                        </tbody>
+			                                    </table>
+			       
+																																							 </form>  
+									              <div class="function-page fr">
+									               
+	<div class="page">
+		
+	 
+		<!--<span class="page-total">共<em>&nbsp;0&nbsp;</em>条记录&nbsp;&nbsp;1/1 页</span>-->
+		{$pages}
+		</div> <!-- End page -->   
+		  
+									              </div><!--E .function-page--> 
+			                                      <div class="message-none hidden">暂无最新消息</div>
+			                                </div><!--E .pcont-date-mod-->                          
+			                          </div><!--E #tab-cont-v01-->
+							        
+			                        </div><!--E #tab-cont-->                      
+			                    </div><!--E .bag-mod-->  
+                                <!--E 右边内容结束-->
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     {template 'member', 'left'}
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   <script type="text/javascript">
+   function allchk(obj){
+     $("input[name='aid[]']").attr("checked",obj.checked);
+   }
+   </script>
+ 
+  {template 'member', 'footer'}

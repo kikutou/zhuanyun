@@ -1,0 +1,57 @@
+ <div class="col-sub">
+					<div class="p-nav p-nav-info">
+				
+						{php $_all___warehouse__lists = $this->get_warehouse__lists();}
+						{loop $_all___warehouse__lists $vrow}
+						
+						<div class="p-nav-hd" <?php if (strpos(','.$this->get_myaddress().',',','.$vrow[aid].',')===false){echo ' style="display:none;"';} ?>><a href="/index.php?m=member&c=index">我的{$vrow[title]}</a></div>
+						<ul class="p-nav-list" <?php if (strpos(','.$this->get_myaddress().',',','.$vrow[aid].',')===false){echo ' style="display:none;"';} ?>>
+						    
+							<!--<li {if $_GET['m']=='waybill' && $vrow[aid] ==$this->hid && ($_GET['a']=='add' )}class="current"{/if}><a href="/index.php?m=waybill&c=index&a=add&hid={$vrow[aid]}" >极速发货</a></li>-->
+
+                        	<li {if $_GET['m']=='package' && $vrow[aid] ==$this->hid && ($_GET['a']=='add' )}class="current"{/if}><a href="/index.php?m=package&c=index&a=add&hid={$vrow[aid]}" >包裹预报</a></li>
+
+							
+
+
+							<li {if $_GET['m']=='package' && $vrow[aid] ==$this->hid && ($_GET['a']=='init' )}class="current"{/if}><a href="/index.php?m=package&c=index&a=init&hid={$vrow[aid]}" >包裹管理</a></li>
+
+							<li {if $_GET['m']=='package' && $vrow[aid] ==$this->hid && ($_GET['a']=='sendedmanage' )}class="current"{/if}><a href="/index.php?m=package&c=index&a=sendedmanage&hid={$vrow[aid]}" >待处理包裹</a></li>
+							
+							<li {if ($_GET['m']=='package' || $_GET['m']=='waybill') && $vrow[aid] ==$this->hid && ( $_GET['a']=='housemanage' || $_GET['a']=='edit' )}class="current"{/if}><a href="/index.php?m=package&c=index&a=housemanage&hid={$vrow[aid]}">仓储管理</a></li>
+
+							<li {if $_GET['m']=='package' && $vrow[aid] ==$this->hid && ($_GET['a']=='nopaypackage' )}class="current"{/if}><a href="/index.php?m=package&c=index&a=nopaypackage&hid={$vrow[aid]}" >未付款包裹</a></li>
+
+							<li {if $_GET['m']=='package' && $vrow[aid] ==$this->hid && ($_GET['a']=='sendmanage' )}class="current"{/if}><a href="/index.php?m=package&c=index&a=sendmanage&hid={$vrow[aid]}" >发货管理</a></li>
+							
+							<li {if $_GET['m']=='waybill' && $vrow[aid] ==$this->hid && ($_GET['a']=='init' )}class="current"{/if}><a href="/index.php?m=waybill&c=index&a=init&hid={$vrow[aid]}" >运单管理</a></li>
+							
+                        </ul>
+						{/loop}
+
+                    	<div class="p-nav-hd">常用功能</div>
+                    	<ul class="p-nav-list">
+							<li {if $_GET['m']=='waybill' && $_GET['a']=='waybill_returned_list'}class="current"{/if}><a href="index.php?m=waybill&c=index&a=waybill_returned_list" title="退货管理">退货管理</a></li>
+							<li {if $_GET['m']=='address' && ($_GET['a']=='init' || $_GET['a']=='add' || $_GET['a']=='edit')}class="current"{/if}><a href="/index.php?m=address&c=index&a=init" title="地址薄">地址薄</a></li>
+                        	<li {if $_GET['m']=='member' && $_GET['a']=='promotion'}class="current"{/if}><a href="index.php?m=member&c=index&a=promotion&t=1" title="推荐奖励">推荐奖励</a></li>
+
+							
+							<!--<li><a href="#" title="关税信息">关税信息</a></li>-->
+                        </ul>
+						<div class="p-nav-hd">用户信息</div>
+                    	<ul class="p-nav-list">
+                        	<li {if $_GET['m']=='member' && $_GET['a']=='account_manage_info'}class="current"{/if}><a href="/index.php?m=member&c=index&a=account_manage_info&t=1" title="个人资料">个人资料</a></li>
+                        	<li {if $_GET['m']=='pay' && $_GET['c']=='deposit' && $_GET['a']=='init'}class="current"{/if}><a href="/index.php?m=pay&c=deposit&a=init" title="充值记录">充值记录</a></li>
+							
+							<li {if $_GET['m']=='pay' && $_GET['c']=='spend_list' && $_GET['a']=='init'}class="current"{/if}><a href="/index.php?m=pay&c=spend_list&a=init" title="消费记录">消费记录</a></li>
+
+                        	<li {if $_GET['m']=='pay' && $_GET['a']=='pay' || $_GET['a']=='pay_recharge'}class="current"{/if}><a href="/index.php?m=pay&c=deposit&a=pay" title="账户充值">账户充值</a></li>
+                        	<li {if $_GET['m']=='member' && $_GET['a']=='account_manage_password'}class="current"{/if}><a href="/index.php?m=member&c=index&a=account_manage_password&t=1" title="修改密码">{$a}修改密码</a></li>
+							<li {if $_GET['m']=='member' && $_GET['a']=='myaddress'}class="current"{/if}><a href="/index.php?m=member&c=index&a=myaddress&t=1" >{$a}我的转运地址</a></li>
+                        </ul>
+						<div class="p-nav-hd"><a  href="{APP_PATH}index.php?m=member&c=index&a=logout&siteid=1" target="_top">安全退出</a></div>
+						
+
+                    </div><!--E .p-nav-->
+
+                  </div><!--E .col-sub-->

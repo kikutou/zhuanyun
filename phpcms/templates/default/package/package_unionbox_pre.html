@@ -1,0 +1,239 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+		 
+           <link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/jscal2.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/border-radius.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/win2k.css"/>
+			<script type="text/javascript" src="{JS_PATH}calendar/calendar.js"></script>
+			<script type="text/javascript" src="{JS_PATH}calendar/lang/en.js"></script>
+			
+			
+        <!--S 内容-->
+        <div id="ht-main" class="clearfixed">	
+        <article class="content">
+        	
+         	<!--S 内容-->
+        	<div class="layout pro-mod" style="border-top:none;">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>合箱发货</h3>
+								<div class="plink-mod">
+                               
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+							
+							{php $allpackagestatus = $this->getpackagestatus();}
+                            <div class="pcont-mod-bd">
+							
+						
+                            	<!--S 右边内容开始-->
+			                	<div class="bag-mod">
+							    
+							        <div id="tab-cont">
+							          <div id="tab-cont-v01"> 
+			                           		<div class="pcont-date-mod" style="padding:0; width:850px">
+				                                <form action="/index.php?m=package&c=index&a=unionbox&hid={php echo $this->hid;}" method="post" name="mainForm" id="mainForm">
+									
+		
+			                                	<table class="table-date">
+			                                   
+			                                        <thead>
+			                                        	<tr>
+                                                          	
+			                                            <th scope="col" style="display:none;"><input type="checkbox" name="chk_all"  onclick="allchk(this)"></th>
+														<!---<th scope="col" >编号</th>-->
+														<th scope="col" >运单号</th>
+														<!---<th scope="col" >发货公司</th>-->
+														<th scope="col" >邮单号</th>
+														<!---<th scope="col" >数量</th>-->
+														
+														<!---<th scope="col" >价值</th>-->
+														<th scope="col" >物品名称</th>
+														<th scope="col" >重量(g)</th>
+														<!---<th scope="col" >长x宽x高 </th>-->
+														<!---<th scope="col" >运费</th>-->
+														<th scope="col" >状态</th>
+														<th scope="col" >添加时间</th>
+													
+			                                        		
+			                                        	</tr>
+			                                        </thead>
+			                                        <tbody>
+			                                        
+			                                        {loop $datas  $package}
+													
+															<tr>
+																	<td scope="col" style="display:none;">
+															
+																	<input type="checkbox" name="aid[]" value="{$package[aid]}" checked>
+															
+																	</td>
+																	
+																	<!---<td scope="col" >{$package[aid]}</td>-->
+											<td scope="col" ><a href="/index.php?m=waybill&c=index&a=waybill_detail&bid={$package[aid]}" target=_blank>{$package[waybillid]}</a></td>
+																	<!---<td scope="col" >{$package[expressname]}</td>-->
+																	<td scope="col" >{$package[expressno]}</td>
+																	<!---<td scope="col" >{$package[totalamount]}</td>-->
+																	
+																	<!---<td scope="col" >{$package[totalprice]}</td>-->
+																	<td style="max-width: 300px;" scope="col" >{$package[goodsname]}</td>
+																	<td scope="col" >{$package[totalweight]}</td>
+																	<!---<td scope="col" >{$package[bill_long]}x{$package[bill_width]}x{$package[bill_height]}</td>-->
+																	
+																	<!---<td scope="col" >{$package[payedfee]}</td>-->
+																	<td scope="col" >
+																	{L("waybill_status".$package[status])}
+																	</td>
+																	<td scope="col" >{date('y-m-d',$package[addtime])}</td>
+																	
+																</tr>
+															
+													{/loop}
+													
+			                                        </tbody>
+			                                    </table>
+			          
+			              <br>
+								 <table width="100%" id="tableAddService" cellspacing="0" class="manage_form">
+                                        <tbody>
+                                            <tr>
+                                                <th height="32" width="5">&nbsp;</th>
+                                                <th width="190">增值服务类型</th>
+                                                <th width="110" style="text-align: left;">增值服务价格</th>
+                                                <th style="text-align: left;">增值服务描述</th>
+                                            </tr>
+								</table>
+			                                       
+                  <ul class="pform-list tip-pform-list" style="padding-top:0;border: 1px solid #ddd;">
+						{loop $co_box_datas $srv}
+						{php $currencyname = $this->getcurrency($srv['currencyid']);}
+						{php $unitname = $this->getunits($srv['unit']);}
+					<li style=" margin-bottom: 0;padding: 0 10px;">
+						<input name="service_value[{$srv[aid]}][title]" type="hidden"  value="{$srv['title']}"/>
+						<input name="service_value[{$srv[aid]}][currencyname]" type="hidden"  value="{$currencyname}"/>
+						<input name="service_value[{$srv[aid]}][unitname]" type="hidden"  value="{$unitname}"/>
+						<input name="service_value[{$srv[aid]}][price]" type="hidden"  value="{$srv['price']}"/>
+						<input name="service_value[{$srv[aid]}][currencyid]" type="hidden"  value="{$srv['currencyid']}"/>
+						<input name="service_value[{$srv[aid]}][unitid]" type="hidden"  value="{$srv['unit']}"/>
+						<input name="service_value[{$srv[aid]}][servicetype]" type="hidden"  value="{$srv[type]}"/>
+							<table width="100%" id="tableAddService" cellspacing="0" class="manage_form">
+								<tbody>
+								  <tr>
+									<td width="200" height="28" vertical-align="top";>
+									<input  name="service_value[{$srv[aid]}][servicetypeid]"  value="{$srv[aid]}" type="checkbox" style=" margin-right: 1px;" >
+									<label for="service{$srv[aid]}" style="float:none;width:auto;">{$srv[title]}<em class="color-red"></em></label>
+									</td>
+									<td width="110">
+									{if $srv[title]=="合箱"}
+									<font color="#FF953F">{$currencyname} 0～200</font>/{$unitname}
+								{else}
+									<font color="#FF953F">{$currencyname} {$srv['price']}</font>/{$unitname}
+								{/if}
+									</td>
+									<td width="600">{$srv['remark']}</td>
+								</tr>
+								</tbody>
+							</table>
+						
+						
+						{/loop}	 
+					</li>					
+
+				<br/>
+				
+				<li style=" BORDER-TOP: #ccc 1px solid; PADDING-TOP: 15px;">
+                    <label for="remark" style="width:auto;margin-left:20px; color:red;">合箱说明：</label>
+					<span>
+					
+					如果您在不同的店家购买了多个包裹，为了给您节约费用，我们为您提供合箱业务。2个以内包裹，我们为您提供免费合箱业务。<br />
+					（仅限使用包裹自身的纸箱且每个包裹长宽高之和都小于100cm）。如果合箱后，需要新纸箱则需要另外收取包装材料费。<br />
+					<font style="margin-left:100px">将收取每个包裹500日元的包装材料费。 如果包裹数量超过3个时，自第4个起收取每个200日元的操作费，每个超尺寸包裹</font><br />
+					<font style="margin-left:100px">（长宽高之和大于100cm）也各另收200日元操作费。 需注意合箱后的最大长度不得超过1.8米（EMS以外的运送方式不得超过1.5米）</font><br /><br />
+					<a href="/" target=_blank><font color="blue"  style="margin-left:100px; display:none;">点击查看材料明细及费用</font></a><br>
+					
+
+					</span>
+                                                                  
+                </li>
+
+				<li>
+                    <label for="remark" style="width:auto;margin-left:20px;">备注信息：</label>
+					<textarea id="remark" name="remark"  class="inp w468" style="height:60px;"></textarea> 
+					<br>
+					<span style="padding-left: 90px; color: red;">如对合箱有特殊要求，在备注中填写详细要求备注</span>
+                                                                  
+                </li>
+													   
+                  </ul>
+
+									<p style="padding-top:20px;margin:0 auto;">
+									<table border=0><tr><td>
+<button type="submit" class="btn-login radius-three fl" tabindex="18" onclick="document.mainForm.action='?m=package&c=index&a=unionbox';return confirm('确认提交？提交合箱后仅能更换发货线路、收件人!')">提交合箱发货</button>&nbsp;&nbsp;</td></tr></table>
+									</p>
+
+									<input type="hidden" name="dosubmit" value="1"/>
+									   </form>                                                                
+									              <div class="function-page fr">
+									               
+	<div class="page">
+		
+	 
+		<!--<span class="page-total">共<em>&nbsp;0&nbsp;</em>条记录&nbsp;&nbsp;1/1 页</span>-->
+		{$pages}
+		</div> <!-- End page -->   
+		  
+									              </div><!--E .function-page--> 
+			                                      <div class="message-none hidden">暂无最新消息</div>
+									<div class="tips" style="margin-top: 20px; font-size:14px;">	
+														<span>
+														操作提示：仓库工作人员将按照您提交的要求对包裹进行合箱打包处理，运单将在“待处理件”中;<br>
+														注意：务必请确认所有货物已经到齐，提交合箱后包裹将无法再更改！(可更换发货线路、收件人信息)
+														</span>
+									</div>
+			                                </div><!--E .pcont-date-mod-->                          
+			                          </div><!--E #tab-cont-v01-->
+							        
+			                        </div><!--E #tab-cont-->                      
+			                    </div><!--E .bag-mod-->  
+                                <!--E 右边内容结束-->
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     {template 'member', 'left'}
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   <script type="text/javascript">
+   function allchk(obj){
+     $("input[name='aid[]']").attr("checked",obj.checked);
+   }
+
+   function batch_pay(){
+	 var str="";
+	 $("input[name='aid[]']:checked").each(function(){
+		if(str=="")
+		{str=$(this).val();}else{
+			str+=","+$(this).val();
+		}
+	 });
+
+	 if(str==""){
+		alert("请选择所需要扣款订单");
+		return false;
+	 }else{
+		$("#mainForm").attr("action","/index.php?m=waybill&c=index&a=waybill_batch_pay&hid={php echo $this->hid;}");
+		$("#mainForm").submit();
+	 }
+   }
+   </script>
+</div>
+</div>
+  {template 'member', 'footer'}

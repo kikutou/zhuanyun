@@ -1,0 +1,148 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+		 
+           <link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/jscal2.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/border-radius.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/win2k.css"/>
+			<script type="text/javascript" src="{JS_PATH}calendar/calendar.js"></script>
+			<script type="text/javascript" src="{JS_PATH}calendar/lang/en.js"></script>
+			
+			
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的账户">我的账户</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">批量付款</span>
+            </div>
+             <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod"  style="width:865px">
+                        	<div class="pcont-mod-hd">
+                            	<h3>批量付款</h3>
+								<div class="plink-mod">
+                               
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+							
+						
+                            <div class="pcont-mod-bd">
+							
+                            	<!--S 右边内容开始-->
+			                	<div class="bag-mod">
+							    
+							        <div id="tab-cont">
+							          <div id="tab-cont-v01"> 
+			                           		<div class="pcont-date-mod">
+				                                <form action="" method="post" name="mainForm" id="mainForm">
+
+		
+			                                	<table class="table-date">
+			                                    	<caption>在库包裹列表</caption>
+			                                        <thead>
+			                                        	<tr>
+                                                          	
+			                                        
+														<th scope="col" >运单号</th>
+														<th scope="col" >发货渠道</th>
+														<th scope="col" >发货重量</th>
+														<th scope="col" >预估运费</th>
+														<th scope="col" >增值费用</th>
+														<th scope="col" >总费用(RMB) </th>
+														<th scope="col" >总费用(JPY) </th>
+														
+														
+			                                        		
+			                                        	</tr>
+			                                        </thead>
+			                                        <tbody>
+			                                        
+			                                        {loop $datas  $package}
+													
+															<tr>
+																	
+																	<td scope="col" ><input type="hidden" name="aid[]" value="{$package[aid]}">{$package[waybillid]}</td>
+																
+																
+																	<td scope="col" >{$package[shippingname]}</td>
+																	<td scope="col" >{$package[totalweight]}</td>
+																	<td scope="col" >{$package[totalship]}</td>
+																	<td scope="col" >{$package[allvaluedfee]}</td>
+																	<td scope="col" >{$package[payfeeusd]}</td>
+																	<td scope="col" >{$package[payedfee]}</td>
+																	
+																	
+																	
+																
+																</tr>
+
+																
+													{/loop}
+			                                        </tbody>
+			                                    </table>
+			          
+			                                           <br>
+									<p>
+									<table border=0><tr><td>
+									{if $datas }
+<button type="button" class="btn-login btn-cancel radius-three fl" tabindex="18" onclick="batch_pay()">确定扣款</button>&nbsp;&nbsp;{/if}</td></tr></table>
+									</p>
+									   </form>                                                                
+									              <div class="function-page fr">
+									               
+	<div class="page">
+		
+	 
+		<!--<span class="page-total">共<em>&nbsp;0&nbsp;</em>条记录&nbsp;&nbsp;1/1 页</span>-->
+		{$pages}
+		</div> <!-- End page -->   
+		  
+									              </div><!--E .function-page--> 
+			                                      <div class="message-none hidden">暂无最新消息</div>
+			                                </div><!--E .pcont-date-mod-->                          
+			                          </div><!--E #tab-cont-v01-->
+							        
+			                        </div><!--E #tab-cont-->                      
+			                    </div><!--E .bag-mod-->  
+                                <!--E 右边内容结束-->
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     {template 'member', 'left'}
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   <script type="text/javascript">
+   function allchk(obj){
+     $("input[name='aid[]']").attr("checked",obj.checked);
+   }
+
+   function batch_pay(){
+	 var str="";
+	 $("input[name='aid[]']").each(function(){
+		if(str=="")
+		{str=$(this).val();}else{
+			str+=","+$(this).val();
+		}
+	 });
+
+	
+		$("#mainForm").attr("action","/index.php?m=waybill&c=index&a=waybill_batch_pay&hid={php echo $this->hid;}");
+		
+		$("#mainForm").submit();
+	 
+   }
+   </script>
+ 
+  {template 'member', 'footer'}

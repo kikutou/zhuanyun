@@ -1,0 +1,62 @@
+{template "content","header_page"}
+<link href="http://127.0.0.1/pc/statics/css/kuaidi.css" rel="stylesheet" type="text/css" />
+<script language="javascript">
+document.onkeydown = keyDown;
+$(document).ready(function(){
+	$("#expressno").focus(function(){if($("#expressno").val()=="请输入您要查询的单号"){$("#expressno").val("");};$(this).css("font-size","24px");});
+	$("#btnSnap").click(function(){getResult();});
+});
+function keyDown(evt){
+  evt = (evt) ? evt : ((window.event) ? window.event : "");
+  var e=evt.keyCode?evt.keyCode:evt.which; 
+  var obj =evt.srcElement ? evt.srcElement : evt.target;
+  if(evt.keyCode==13){
+	if(obj.name == "expressno"){
+		getResult();
+	}
+  }
+}
+function getResult(){
+	var expressid = "{$code}";
+	var expressno = $("#expressno").val();
+	var re = new RegExp("^[0-9a-zA-Z\@\#\$\-\]+$");
+	if (!re.test(expressno)){alert("单号仅能由数字和字母组合，请您查证。");return;}
+	$("#retData").html('<p align="center"><img src="{IMG_PATH}loading.gif" /> 正在查询...</p>');
+	$.ajax({
+		type: "GET",
+		url: "{APP_PATH}api.php?op=express",
+		data: {com:expressid,nu:expressno,temp:Math.random()},
+		success: function(data){
+			if($.trim(data)==""){$("#retData").html('<p align="center">查询失败，请重新查询！</p>');}else{$("#retData").html(data+'<p>查询数据由：<a href="http://kuaidi100.com" target="_blank">KuaiDi100.Com （快递100）</a> 网站提供</p>');}
+		},
+		error: function(){}
+	}); 
+}
+</script>
+<div class="subnav"><a href="{siteurl($siteid)}">首页</a>><a href="{siteurl($siteid)}/index.php?m=kuaidi&c=index">快递公司大全</a>><a href="javascript:;">{$name}单号查询</a></div>
+<div id="content">
+	<div class="container">
+    	<div class="content-mis mt">
+        <div class="queryborder">
+			<div class="query-way"><img src="{$logo}" height="48" width="148"><em id="comtitle">{$name}</em><a href="{$url}" target="_blank" class="blue f14" rel="nofollow">{$url}</a>查询电话：{$tel}</div>
+			<div class="search">            	
+<div class="search-t"></div>
+                <div class="search-m">
+                	<div style="padding: 6px 9px 4px;float: left;">
+					<span class="odd"><input type="text" id="expressno" name="expressno" class="input"  maxlength="26"/><a id="btnSnap" class="query" href="javascript:void(0)"></a></span>
+                	</div>
+                
+                </div>
+                <div class="search-b"></div>
+</div>
+        </div>
+        </div>
+        <div id="retData" class="mt"></div>
+        <div class="introduce mt">
+			<h5>公司简介</h5>
+			<div class="c">{$introduce}</div>
+		</div>
+	</div>
+</div>
+
+{template "content","footer"}

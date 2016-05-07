@@ -1,0 +1,174 @@
+ {template 'member', 'header'}
+ <style>
+ .col0{background:#fff;}
+ </style>
+        <!--E 导航-->   
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/jscal2.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/border-radius.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/win2k.css"/>
+			<script type="text/javascript" src="{JS_PATH}calendar/calendar.js"></script>
+			<script type="text/javascript" src="{JS_PATH}calendar/lang/en.js"></script>
+
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">运单付款确认</span>
+            </div>
+             <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>运单付款确认</h3>
+								<div class="plink-mod">
+                                <a  class="p-btn radius-five" >总单号：{$info[sysbillid]}</a>
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd">
+                            	<!--S 右边内容开始-->
+			                	<div class="bag-mod">
+							      
+							        <div id="tab-cont">
+							          <div id="tab-cont-v01"> 
+			                           		<div class="pcont-date-mod" style="padding-top:0;">
+												{php $sendplace="";}
+												{php $takeplace="";}
+											 
+												{php $sendplace=$info[sendname];}
+												{php $takeplace=$info[takename];}
+												{php $shippingname=$info[shippingname];}
+												 
+												
+												<div class="search-mod" style="width:98%; border:none;margin-top:0;padding-top:0;background:#EBF4FB;width:97%;">
+											
+                           				
+										 <ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                <li>
+							                    <label style="width:40%">发 货 地：{$sendplace}   </label> 
+							                    <label style="width:40%">收 货 地：{$takeplace}    </label> 
+												<label style="width:40%">快递公司：{$storagename}   </label> 
+							                    <label style="width:40%">运单类型：{$shippingname}   </label>
+												<label style="width:40%">用 户 名：{$info[username]}   </label> 
+							                    <label style="width:40%">电    话：{$mobile}   </label> 
+																                   
+							                </li>
+							                
+							                
+							            </ul>
+										
+											                                          
+				                                </div><!--E .search-mod-->
+													<br/>
+											
+													{php $takeaddress=str_replace("|","&nbsp;&nbsp;",$info['takeaddressname']);}
+													{php $sendaddress=str_replace("|","&nbsp;&nbsp;",$info['sendaddressname']);}
+													
+
+			                                	<table class="table-date">
+			                                    	<thead>
+													<tr><th colspan=5>包裹单 {$info[waybillid]} 跟踪信息</th></tr>
+			                                        </thead>
+			                                        
+			                                        
+			                                        <tbody>
+			                                       
+													<tr>	
+			                                            <td scope="col" >序号</td>
+														<td scope="col" >邮单号</td>
+														<td scope="col" >物品名称</td>
+														<td scope="col" >数量</td>
+														<td scope="col" >价值（$）</td>
+			                                        </tr>
+													{php $allwaybill_goods= $this->getwaybill_goods($info[waybillid]);}
+			                                        {loop $allwaybill_goods $k $goods}
+													{php $num=$k+1;}	
+														<tr>
+															<td class="col0" >{$num}</td>
+															<td class="col0" >
+															{$goods[expressname]}
+															
+															&nbsp;{$goods[expressno]}</td>
+															<td class="col0" >{$goods[goodsname]}</td>
+															<td class="col0" >{$goods[amount]}</td>
+															<td class="col0" >{$goods[price]}</td>
+														</tr>
+
+														{if $goods[addvalues]}
+														<tr>
+														<td colspan="5">
+
+									{php $addvalues = string2array($goods[addvalues]);}		
+									{loop $addvalues $val}
+									{php $val_array = explode("|",$val);}
+										 {$val_array[1]}</span>&nbsp;&nbsp;<font color="#FF953F">{$val_array[7]}{$val_array[6]}</font>/{$val_array[4]}&nbsp;&nbsp;
+									{/loop}
+														</td>
+														</tr>
+														{/if}
+
+													{/loop}
+													<!--
+													 <tr >
+													<td colspan=5 bgcolor="#ffffff" align=right >
+													<div align=right>
+													包裹小计：{$info[totalprice]}
+													</div>
+													</td>
+													</tr>-->
+			                                        </tbody>
+			                                    </table>
+												<table class="table-date">
+			                                    <thead>
+													<tr><th >增值服务明细</th></tr>
+			                                    </thead>
+			                                        <tbody>
+													<tr>	
+			                                            <td scope="col" >
+						{php $waybillallvalues=string2array($info[addvalues]);}
+						
+							{php $sel="";}
+							{loop $waybillallvalues $bill}
+						
+							{$bill[title]} <font color="#FF953F"><?php  echo $bill[currencyname]; ?>{$bill['price']}</font>/<?php    echo $bill[unitname]; ?>
+
+							{/loop}
+							 
+														
+														</td>
+			                                        </tr>
+												</table>
+																																							<div style="margin:0 auto;" >
+													
+												<center><a href="/index.php?m=pay&c=deposit&a=pay&oid={$info[aid]}" class="p-btn radius-five" style="color:#fff;float:none;height:52px;line-height:50px;padding:5px 10px;">去付款</a>
+												</center>	
+
+												</div>	
+									            
+			                                      <div class="message-none hidden">暂无最新消息</div>
+			                                </div><!--E .pcont-date-mod-->                          
+			                          </div><!--E #tab-cont-v01-->
+							        
+			                        </div><!--E #tab-cont-->                      
+			                    </div><!--E .bag-mod-->  
+                                <!--E 右边内容结束-->
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     {template 'member', 'left'}
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   
+ 
+  {template 'member', 'footer'}

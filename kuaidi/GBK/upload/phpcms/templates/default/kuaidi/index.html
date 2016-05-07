@@ -1,0 +1,92 @@
+{template "content","header_page"}
+<link href="{CSS_PATH}kuaidi.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#retData{ padding:10px 20px;text-align:center}
+#retData table{ width:520px;}
+</style>
+<script language="javascript">
+document.onkeydown = keyDown;
+$(document).ready(function(){
+	$("#expressno").focus(function(){if($("#expressno").val()=="请输入您要查询的单号"){$("#expressno").val("");};$(this).css("font-size","24px");});
+	$("#btnSnap").click(function(){getResult();});
+	$("input[name='posttype']").click(function(){
+		$("#expressid").val($(this).val());$("#retData").html("");
+		var tips = $(this).attr("tips").split(":;");
+		$("#companyname").html('<a href="?m=kuaidi&c=index&a=show&id='+tips[0]+'"><font color="#fe8d1d">'+tips[2]+'</font></a>');
+		$("#tel").html("查询电话："+tips[1]);
+		if($(document).scrollTop()>100){$(document).scrollTop(80);}
+	});
+	$("input[name='posttype']:first").click();
+});
+function keyDown(evt){
+  evt = (evt) ? evt : ((window.event) ? window.event : "");
+  var e=evt.keyCode?evt.keyCode:evt.which; 
+  var obj =evt.srcElement ? evt.srcElement : evt.target;
+  if(evt.keyCode==13){
+	if(obj.name == "expressno"){
+		getResult();
+	}
+  }
+}
+function getResult(){
+	var posttype = $("input:checked").length;
+	if(posttype==0){alert("请您在左侧列表中选择一家快递公司。");return;}
+	var expressno = $("#expressno").val();
+	var re = new RegExp("^[0-9a-zA-Z\@\#\$\-\]+$");
+	if (!re.test(expressno)){alert("单号仅能由数字和字母组合，请您查证。");return;}
+	$("#retData").html('<p align="center"><img src="{IMG_PATH}loading.gif" /> 正在查询...</p>');
+	var expressid = $("#expressid").val();
+	$.ajax({
+		type: "GET",
+		url: "{APP_PATH}api.php?op=express",
+		data: {com:expressid,nu:expressno,temp:Math.random()},
+		success: function(data){
+			if($.trim(data)==""){$("#retData").html('<p align="center">查询失败，请重新查询！</p>');}else{$("#retData").html(data+'<p>查询数据由：<a href="http://kuaidi100.com" target="_blank">KuaiDi100.Com （快递100）</a> 网站提供</p>');}
+		},
+		error: function(){}
+	}); 
+}
+</script>
+<div class="main">
+	<div class="col-left grid">
+		<h2 class="l-title"></h2>
+		<dl>
+		<dt class="stock">常用</dt>
+		<dd class="dd1">
+		{loop $KUAIDI $r}
+			{if $r['common']}
+			<h3><input type="radio" value="{$r['code']}" tips="{$r['kdid']}:;{$r['tel']}:;{$r['fullname']}" id="com_{$r['kdid']}" name="posttype"/><label for="com_{$r['kdid']}">{$r['name']}</label></h3>
+			{/if}
+		{/loop}
+		</dd></dl>
+		{php $c;$num=0;}
+		{loop $KUAIDI $r}
+			{php $temp = substr($r['letter'],0,1);}
+			{if $c == $temp}
+				{$num++}
+			{/if}
+			{if $c != $temp}
+				{if $num>0}</dd></dl>{/if}
+				{php $c = $temp;$num = 1;}
+				<dl><dt class="letter">{strtoupper($c)}</dt><dd class="dd2">
+			{/if}
+			<h3><input type="radio" value="{$r['code']}" tips="{$r['kdid']}:;{$r['tel']}:;{$r['fullname']}" id="kd_{$r['kdid']}" name="posttype"/><label for="kd_{$r['kdid']}">{$r['name']}</label></h3>
+			{if $n==count($KUAIDI)}</dd></dl>{/if}
+		{/loop}
+	</div>
+	<div class="col-auto">
+		<h2 class="r-title"></h2>
+		<p class="info" id="companyinfo"><em id="companyname"></em><span id="tel"></span></p>
+		<div class="search">            	
+			<div class="search-t"></div>
+			<div class="search-m">
+				<div style="padding: 6px 9px 4px; float: left;">
+					<span class="odd"><input type="hidden" id="expressid" name="expressid" value="shunfeng"/><input type="text" class="input" name="expressno" id="expressno" maxlength="26" value="请输入您要查询的单号"/><a href="javascript:void(0)" class="query" id="btnSnap"></a></span>
+				</div>
+			</div>
+			<div class="search-b"></div>
+		</div>
+		<div id="retData"></div>
+	</div>
+</div>
+{template "content","footer"}

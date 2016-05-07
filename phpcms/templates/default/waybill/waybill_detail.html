@@ -1,0 +1,325 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/jscal2.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/border-radius.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/win2k.css"/>
+			<script type="text/javascript" src="{JS_PATH}calendar/calendar.js"></script>
+			<script type="text/javascript" src="{JS_PATH}calendar/lang/en.js"></script>
+       <!--S 内容-->
+		<div id="ht-main" class="clearfixed" style="MIN-HEIGHT: 820px; MAX-HEIGHT: 1500px">	
+        <article class="content" style="">
+        	
+         	<!--S 内容-->
+        	<div class="layout pro-mod" style="border-top:none;">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>运单详细</h3>
+								<div class="plink-mod">
+                                <span class="danhao">运单号：{$info[waybillid]}</span>
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd">
+                            	<!--S 右边内容开始-->
+			                	<div class="bag-mod">
+							      
+							        <div id="tab-cont">
+							          <div id="tab-cont-v01"> 
+			                           		<div class="pcont-date-mod" style="padding-top:0;">
+
+												{php $sendplace=$info[sendname];}
+												{php $takeplace=$info[takename];}
+												{php $storagename=$info[storagename];}
+												{php $shippingname=$info[shippingname];}
+												
+												{php $takeaddr=explode('|',$info['takeaddressname']);}
+
+												{php $takeaddress=str_replace('|','&nbsp;&nbsp;',$info['takeaddressname']);}
+											    {php $sendaddress=str_replace('|','&nbsp;&nbsp;',$info['sendaddressname']);}
+
+												
+		<div class="search-mod" style="border:none;margin-top:0;padding-top:0;background: #B2DAF4;">
+										<table border=0 width="100%" class="pform-list clearfix" style="height:25px;line-height:25px;">
+										<tr>
+										<td>所在仓库：{$storagename}  </td>
+										<td>发货线路：{$shippingname}   </td>
+										</tr>
+										<tr>
+										<td>用 户 名：{$info[username]} </td>
+										<td>电    话：{$takeaddr[1]} </td>
+										</tr>
+										<tr>
+										<td>用户标识：<?php echo $info['takeflag'];?> </td>
+										<td>下单时间：{date('Y-m-d H:i:s',$info[addtime])} </td>
+										</tr>
+										<tr>			
+										<td colspan="2">收货地址：{$takeaddress}</td>		
+										</tr>
+										</table>
+											                                          
+		</div><!--E .search-mod-->
+													<br/>
+
+											{php $valuedfee=0;}
+										<div class="table-border" style="padding-bottom: 0;">
+												<table width="100%" class="table-date">
+												<tr>
+												<td height="30" style="line-height:25px;font-weight:bold;border-bottom:none;  word-break: break-all;  padding-right: 8px;" colspan="9" align=right> 
+													发货商家：		{$info[expressname]}
+															
+													<span style="padding-left: 10px;font-weight:bold;">邮单号： {$info[expressno]}</span></td>
+												</tr>
+													<tr>	
+														<th scope="col" >物品名称</th>
+														<th scope="col" >物品数量</th>
+														<!---<th scope="col" style="display:none;">重量(G)</th>-->
+														<th scope="col" >物品单价(日元)</th>
+			                                        </tr>
+			                                   
+													{php $num=$k+1;}	
+													{php $goodsdatas=string2array($info[goodsdatas]);}
+													{loop $goodsdatas $goods}
+														<tr idd="{$goods[id]}">
+															
+															
+															<td class="col0" style="max-width: 150px;overflow: hidden;">{$goods[goodsname]}</td>
+															<td class="col0" >{$goods[amount]}</td>
+															<!---<td class="col0"  style="display:none;">{$goods[weight]}</td>-->
+															<td class="col0" >{$goods[price]}</td>
+														</tr>
+													{/loop}
+												
+
+			<tr>
+			<td height="30" style="line-height:25px;font-weight:bold;border-bottom:none;" colspan="9" align=right> 
+			重量合计(g)：{$info['totalweight']}<span style="padding-left: 10px;font-weight:bold;display:none;"> 价值合计：{$info['totalprice']}&nbsp;日元</span></td>
+			</tr>
+			
+			
+
+													</table>
+									</div>				
+												
+												
+												{if $info['returnedstatus']!=0}	
+													<br/>
+													<table class="table-date">
+			                                    <thead>
+													<tr><th colspan=2>退货信息</th></tr>
+			                                    </thead>
+			                                        <tbody>
+													<tr>	
+			                                            <td bgcolor="#ffffff" width=100>退货费用</td>
+														<td bgcolor="#ffffff">{$allwaybill_goods[0][returnfee]}</td>
+													</tr>
+													<tr>	
+			                                            <td bgcolor="#ffffff">操作时间</td>
+														<td  bgcolor="#ffffff">{date('Y-m-d H:i:s',$allwaybill_goods[0][returntime])}</td>
+													</tr>
+													<tr>	
+			                                            <td bgcolor="#ffffff">操作者</td>
+														<td bgcolor="#ffffff">{$allwaybill_goods[0][returnname]}</td>
+													</tr>
+													<tr>	
+			                                            <td  bgcolor="#ffffff">收货地址</td>
+														<td  bgcolor="#ffffff">{$allwaybill_goods[0][return_address]}</td>
+													</tr>
+													<tr>	
+			                                            <td bgcolor="#ffffff">联系人</td>
+														<td bgcolor="#ffffff">{$allwaybill_goods[0][return_person]}</td>
+													</tr>
+													<tr>	
+			                                            <td   bgcolor="#ffffff">手机号码</td>
+														<td bgcolor="#ffffff">{$allwaybill_goods[0][return_mobile]}</td>
+													</tr>
+													<tr>	
+			                                            <td bgcolor="#ffffff">会员退货备注</td>
+														<td bgcolor="#ffffff">{$allwaybill_goods[0][returnremarkf]}</td>
+													</tr>
+													<tr>	
+			                                            <td bgcolor="#ffffff">管理员退货备注</td>
+														<td bgcolor="#ffffff">{$allwaybill_goods[0][returnremark]}</td>
+													</tr>
+													</tbody>
+													</table>
+													{/if}
+													<br/>
+					{if $info[status]==7 || $info[status]==8 || $info[status]==14}
+							<div class="chargetd">	
+							
+									<table class="table-date">
+			                            <thead>
+											<tr>
+													<th style="width: 7em">收费名称</th>
+													<th style="width: 7em">金额</th>
+													<th>单位 / 说明</th>
+											</tr>
+			                            </thead>
+											
+											  <tr>
+												<td>运费:</td>
+												<td><input type="text" name="totalship" value="{$info[totalship]}" class="chargeinp" size=8 readonly /></td>
+												<td>日元</td>
+											  </tr>
+											  <tr>
+												<td>总增值费:</td>
+												<td><input type="text" name="valuedadd" value="{$info[allvaluedfee]}" class="chargeinp" size=5 readonly /></td>
+												<td>日元 / 服务增值费&材料费合计</td>
+											  </tr>
+											  <tr>
+												<td>保险费:</td>
+												<td><input type="text" name="otherfee" value="{$info[otherfee]}" class="chargeinp" size=5 readonly /></td>
+												<td>日元</td>
+											  </tr>
+											  <tr>
+												<td>小计：</td>
+												<td><input type="text" name="payedfee" value="{$info['payfeeusd']}" class="chargeinp" size=8 readonly /></td>
+												<td>日元</td>
+											  </tr>
+											  <tr>
+												<td>汇率：</td>
+												<td><input type="text" name="wayrate" value="{$info[wayrate]}" class="chargeinp" size=6 readonly /></td>
+												<td>日元兑换人民币汇率</td>
+											  </tr>
+											  <tr>
+												<td>操作费：</td>
+												<td><input type="text" name="memberdiscount" value="{$info[taxfee]}" class="chargeinp" size=6 readonly /></td>
+												<td>日元</td>
+											  </tr>
+											  <tr>
+												<td style="border:none;">费用合计:</td>
+												<td style="border:none;"><input type="text" name="payedfee1" value="{$info['payedfee']}" class="chargeinp" size=6 readonly /></td>
+												<td style="border:none;">人民币</td>
+											  </tr>
+											</table>	
+										</div>
+		{/if} 			
+					<div class="table-border" style="padding-bottom: 0;">
+													<table class="table-date">
+			                                    <thead>
+													<tr><th >增值服务明细</th></tr>
+			                                    </thead>
+			                                        <tbody>
+													<tr>	
+			                                            <td scope="col" style="border:none;" >
+						{php $waybillallvalues=string2array($info[addvalues]);}
+					
+							{php $sel="";}
+							{loop $waybillallvalues $bill}
+						
+							{$bill[title]} <font color="#FF953F"><?php  echo $bill[currencyname]; ?>{if $bill[servicetypeid]==13}{$bill[price]}(保价金额/日元)  &nbsp;&nbsp;保险费用：{$info[otherfee]}{else}{$bill['price']}{/if}</font>/<?php echo $bill[unitname]; ?>
+
+							{/loop}
+							 
+														
+														</td>
+			                                        </tr>
+												</table>
+					</div>
+						
+
+<div class="table-border" style="padding-bottom: 0;">
+							 <table class="table-date">
+			                                        <tbody>
+
+									<tr>	
+			                                            <th scope="col" >处理时间</th>
+													
+														<th scope="col" colspan=2>处理信息</th>
+														<th scope="col" >操作者</th>
+			                                        </tr>
+													{if $sinfo[wbinfocustom]==0}
+			                                        {loop $handledata  $bill}
+													   {if $bill[isshow]=='0'}
+														<tr>
+															<td scope="col" style="width: 130px;" >{date('Y-m-d H:i:s',$bill[addtime])}</td>
+														
+															<td scope="col" colspan=2 style="max-width:300px;">{$bill[remark]}</td>
+															<td scope="col" >{$bill[username]}</td>
+														</tr>
+														{/if}
+													{/loop}
+
+													{else}
+														{loop $handle_datas  $hbill}
+															{loop $handledata  $bill}
+															   {if $bill[status]==$hbill[value]}
+																<tr>
+																	<td scope="col" >{date('Y-m-d H:i:s',$bill[addtime])}</td>
+																
+																	<td scope="col" colspan=2>{$hbill[remark]} {if $bill[status]==9}{$info[huodanno]}{/if}{if $bill[status]==14}{$info[excompany]},单号:<a href="{str_replace('#',$info[expressnumber],$info[expressurl])}" target=_blank>{$info[expressnumber]}</a>{/if}</td>
+																	<td scope="col" >{$bill[username]}</td>
+																</tr>
+																{/if}
+															{/loop}
+														{/loop}
+
+													{/if}
+
+												<table width="100%" class="table-date">
+													<tr>	
+			                                            
+														<th scope="col" >备注</th>
+			                                        </tr>
+													<tr>
+													<td style="border:none">{$info[remark]}    {$info[otherremark]}</td>
+													</tr>
+													</table>
+												
+													<br>
+
+			{if isset($info[picture])}
+					<table class="table-date" style="padding-bottom:20px;">
+						<thead>
+								<tr><th >验货照片</th></tr>
+						</thead>
+						<tbody>
+								<tr>	
+			                       <td style="border:none" scope="col" >
+										<?php
+											if($info['imagesurl']!=""){
+											$k=1;
+											$imagearr = string2array($info['imagesurl']);
+											foreach($imagearr as $img){
+												echo '<li style="list-style-type:none;display:inline;padding-right:10px;"><a href="'.$img.'" target=_blank> <img style="width:200px; height:150px;"  src="'.$img.'" border=0 /></a></li>';
+												if($k%4==0){
+													echo '<br/><br/>';
+															}
+												$k++;
+																		}
+																		}
+										?>
+									</td>
+			                    </tr>
+					</table>
+			{/if}
+
+						</tbody>
+</table>
+			          
+</div>																																						 
+	 <span class="blank22"></span>								            
+			                                      <div class="message-none hidden">暂无最新消息</div>
+			                                </div><!--E .pcont-date-mod-->                          
+			                          </div><!--E #tab-cont-v01-->
+							        
+			                        </div><!--E #tab-cont-->                      
+			                    </div><!--E .bag-mod-->  
+                                <!--E 右边内容结束-->
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     {template 'member', 'left'}
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+       </div>  
+       </div>
+  {template 'member', 'footer'}

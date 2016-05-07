@@ -1,0 +1,99 @@
+ {template 'member', 'header'}
+<link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+<link href="{CSS_PATH}reset.css" rel="stylesheet" type="text/css" />
+
+        <!--E 导航-->   
+  
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+				
+                <span>&gt;</span>
+                <span class="curmbs-active">{L('modify').L('avatar')}</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>{L('modify').L('avatar')}</h3>
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd">
+			               <table border=0>
+						   <tr>
+						   <td>
+							<script language="javascript" type="text/javascript" src="{$phpsso_api_url}/resource/js/swfobject.js"></script>
+				<script type="text/javascript">
+					var flashvars = {
+						'upurl':"{$upurl}&callback=return_avatar&"
+					}; 
+					var params = {
+						'align':'middle',
+						'play':'true',
+						'loop':'false',
+						'scale':'showall',
+						'wmode':'window',
+						'devicefont':'true',
+						'id':'Main',
+						'bgcolor':'#ffffff',
+						'name':'Main',
+						'allowscriptaccess':'always'
+					}; 
+					var attributes = {
+						
+					}; 
+					swfobject.embedSWF("{$phpsso_api_url}/resource/images/main.swf", "myContent", "490", "434", "9.0.0","{$phpsso_api_url}/resource/images/expressInstall.swf", flashvars, params, attributes);
+
+					function return_avatar(data) {
+						if(data == 1) {
+							window.location.reload();
+						} else {
+							alert('failure');
+						}
+					}
+				</script> 
+				<ul class="col-right col-avatar" id="avatarlist">
+				  {loop $avatar $k $v}
+					<li>
+						<img src="{$v}" height="{$k}" width="{$k}" onerror="this.src='{$phpsso_api_url}/resource/images/member/nophoto.gif'"><br />
+						{L('avatar')}{$k} x {$k}
+					</li>
+				  {/loop}
+				</ul>
+				<div class="col-auto">
+					<div id="myContent"> 
+					  <p>Alternative content</p> 
+					</div>
+				</div>
+			</div>
+			<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+						   </td>
+						   </tr>
+						   </table>
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			      
+				  
+				  
+				  
+				  {template 'member', 'left'}
+
+
+
+
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+
+  {template 'member', 'footer'}

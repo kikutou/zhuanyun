@@ -1,0 +1,68 @@
+ {template 'member', 'header'}
+<link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+
+        <!--E 导航-->   
+  
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+				
+                <span>&gt;</span>
+                <span class="curmbs-active">我的账户地址</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>我的账户地址</h3>
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd">
+			                <form action="" method="post" name="mainForm" id="mainForm">
+
+			                	<ul class="pform-list">
+								{loop $this->get_warehouse__lists() $vrow}
+								{if $vrow[xunistorage]==0}
+			                    	<li>
+			                        	<label for="pwd">我的{$vrow[title]}</label>
+			                            <input id="myaddress{$vrow[aid]}" class="inp "  type="checkbox" name="info[myaddress{$vrow[aid]}]" <?php if (strpos(','.$memberinfo['myaddress'].',',','.$vrow[aid].',')!==false){echo 'checked';} ?> value="{$vrow[aid]}">
+			                        </li>
+								{/if}
+								{/loop}
+			                    	
+			                        <li>
+			                        	<label for="">&nbsp;</label>
+			                            <button type="submit" class="btn-login radius-three" tabindex="4" >提交保存</button>
+			                        </li>
+			                    </ul>
+								<input type="hidden" name="dosubmit" value="1"/>
+								
+			                </form>                            
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			      
+				  
+				  
+				  
+				  {template 'member', 'left'}
+
+
+
+
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+       
+ 
+  {template 'member', 'footer'}

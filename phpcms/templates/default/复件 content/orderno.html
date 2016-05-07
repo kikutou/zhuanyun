@@ -1,0 +1,131 @@
+{template "content","header"}  
+<link rel="stylesheet" type="text/css" href="{CSS_PATH}w-index.css"/> 
+ {php $sinfo=siteinfo(1);}
+        <!--S 内容-->
+ 	        <div id="ht-main" class="clearfixed">	
+        <article class="content">
+
+        	<div class="content-mod">
+            	<div class="layout sub-layout radius-five grid-s15m0">
+			      <div class="col-main">
+			       	 <div class="main-wrap" style="margin: 0;">
+					  	<div class="mod c-mod">
+	                    	<div class="mod-bd s-mod-bd">
+								<!--<div class="s-search-mod">
+				                  	<h2 class="home-h2"><label for="desc">请输入运单号</label></h2>
+				                    <form action="api.php" name="mainForm" id="mainForm" method="get">
+									<input type="hidden" name="op" value="orderno"/>
+				                    <div class="textarea-mod">
+				                    	<textarea class="inp-tarea" id="ord" name="ord" style="ime-mode:disabled;" onblur="if (value ==''){value='最多输入20个单号同时查询，以回车隔开。'}" onfocus="if (value =='最多输入20个单号同时查询，以回车隔开。'){value =''}">{$ord}</textarea>
+				                    </div>
+				                     <button type="button" onclick="submitF2();" class="h-btn btn-hSubmit" title="查询"></button>
+				                    </form>  
+									<script>
+									
+									function submitF2(){
+  var f=document.getElementById("mainForm");
+  if(($("#ord").val()=="") || $("#ord").val()=='最多输入20个单号同时查询，以回车隔开。'){
+    alert("请输入快运单号！");
+    return;
+  }
+
+   f.submit();
+  
+ 
+}
+									
+									</script>
+
+                                </div>E .s-search-mod-->
+                               
+                                <div class="s-search-table">
+
+									<?php
+									$cdb = pc_base::load_model('enum_model');
+									$handle_datas  = $cdb->select("groupid=52 ","*",1000,"listorder asc");	
+									
+									?>
+
+                                  {loop $ord_array  $v}
+								  <?php
+								  $v=trim($v);
+								  $datas = $wdb->select(" siteid='1' and waybillid='$v' ",'*',1000,'addtime ASC');
+								  
+
+								  $_rs = $_wdb->get_one(array('waybillid'=>$v));
+								  ?>
+                                	<div class="table-cont">
+                                    	<div class="table-cont-hd">运单号 {$v}--以下为包裹转运跟踪信息</div>
+                                        <table>
+                                        	<thead>  
+                                            	<tr>
+                                            		
+													<th width="29%">操作时间</th>
+													<th width="48%">包裹跟踪信息</th>
+                                            		
+                                            		<th width="20%">操作人</th>
+                                            	</tr>
+                                              
+                                            </thead>
+                                            <tbody>
+											{if $datas}
+
+												{if $sinfo[wbinfocustom]==0}
+                                            	{loop $datas  $row}
+                                             	<tr>
+                                            		
+													<td >{date('Y-m-d H:i:s',$row[addtime])}</td>
+													<td >{$row[remark]}</td>
+                                            		<td >{$row[username]}</td>
+                                            	</tr>
+                                             	{/loop}
+												{else}
+												{loop $handle_datas  $hbill}
+												{loop $datas  $row}
+												{if $row[status]==$hbill[value]}
+                                             	<tr>
+                                            	
+													<td >{date('Y-m-d H:i:s',$row[addtime])}</td>
+													<td >{$hbill[remark]}{if $row[status]==9}{$_rs[huodanno]}{/if}{if $row[status]==14}<font color=blue >{$_rs[excompany]}</font>,单号:<a href="{str_replace('#',$_rs[expressnumber],$_rs[expressurl])}" target=_blank style="font-size:20px;color:blue">{$_rs[expressnumber]}</a>{/if}</td>
+                                            		
+                                            		<td >{$row[username]}</td>
+                                            	</tr>
+												{/if}
+                                             	{/loop}
+
+												{/loop}
+												{/if}
+
+                                               {else}
+											   <tr>
+                                             	 <td colspan="3" style="line-height: 50px;">查询暂无订单数据！</td>
+                                             	</tr>
+											   {/if}			
+                                            </tbody>
+                                        </table>
+
+										
+
+                                    </div><!--E .table-cont-->
+									
+									{/loop}
+                                    
+                                </div><!--E .s-search-table-->
+                                 
+	                        </div><!--E .mod-bd-->
+	                    </div><!--E .mod-->
+                     </div>
+			      </div><!--E .col-main-->
+
+                </div><!--E .grid-s19m0-->           
+            </div>
+            <!--E 内容模块-->     
+        </article>
+        <!--E 内容-->
+		</div>
+		</div>
+ 
+{template "content","footer"} 
+</body>
+</html>
+

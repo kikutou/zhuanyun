@@ -1,0 +1,65 @@
+{template "content","header"}   
+ 
+        <!--S 内容-->
+ 		<article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em><a href="{siteurl($siteid)}">首页</a><span> &gt; </span>
+                <span class="curmbs-active">{$title}</span>
+            </div>
+            <!--E 面包屑-->                    	
+        	<!--S 内容模块-->
+        	<!--S 内容模块-->
+        	<div class="content-mod">
+            	<div class="layout sub-layout radius-five grid-s15m0">
+			      <div class="col-main">
+			       	 <div class="main-wrap">
+					  	<div class="mod c-mod">
+                        	<div class="c-mod-hd">
+                            
+                            </div>
+	                    	<div class="mod-bd">
+								
+					        <div class="mod-bd">
+	
+									 {$content}
+							</div>
+<!--E .mod-bd--><!--E .mod-->                        
+	                        </div><!--E .mod-bd-->
+	                    </div><!--E .mod-->
+                     </div>
+			      </div><!--E .col-main-->
+			      <div class="col-sub">
+                  	<div class="sub-nav-mod">
+                    	<ul>
+							{pc:content action="category" catid="0" num="1000"  siteid="$siteid" order="listorder ASC"}
+							{loop $data $r}
+							{if $r[catid]!=14}
+                        	
+							{pc:content action="lists" catid="$r[catid]" num="100"  siteid="$siteid" order="listorder ASC" return="contentdata"}
+							
+							<li><a href="{$r[url]}" title="{$r[catname]}" {if $contentdata || $catid==2 || $catid==6}class="current"{/if}>{$r[catname]}</a></li>
+							
+							{if $r[catid]!=10}
+							{loop $contentdata $row}
+							<li ><a href="{$row[url]}" title="{$row[title]}"  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$row[title]}</a></li>
+							{/loop}
+							{/if}
+							{/pc}
+
+							{/if}
+                        	{/loop}
+							{/pc}
+                        </ul>
+                    </div><!--E .sub-nav-mod-->
+					
+ 
+                   
+                  </div><!--E .col-sub-->
+                </div><!--E .grid-s19m0-->           
+            </div>
+            <!--E 内容模块-->     
+            <!--E 内容模块-->     
+        </article>
+        <!--E 内容-->
+{template "content","footer"}

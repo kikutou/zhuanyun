@@ -1,0 +1,84 @@
+ {template 'member', 'header'}
+<link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+
+        <!--E 导航-->   
+  
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+				
+                <span>&gt;</span>
+                <span class="curmbs-active">推荐奖励</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>推荐奖励</h3>
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd"  style="padding:10px;">
+							 <div class="promotion-info">
+                                      <div class="crash-info">
+                                        <h4>如何获得推广注册返利？</h4>
+                                        <p>用户通过您的注册链接注册成为安心会员，您的账户及用户注册即可获得 <em class="color-red">5</em> 积分的推广返利。</p>
+                                 
+                                       <div class="crash-other">
+                                         <strong class="color-blue">注册推广代码：</strong>
+                                         <input type="text" id="promotion_url" class="inp w328" style="height:22px; line-height:22px;"  size="60" value="{siteurl(1)}/?m=member&c=index&a=register&code={$memberinfo[userid]}">
+                                         <input type="button" class="btn-copy" value="复制链接" onclick="copyToClipBoard('{siteurl(1)}/?m=member&c=index&a=register&code={$memberinfo[userid]}');" name="button">                       
+                                       </div>                      
+                                     </div><!--E .crash-info-->                                  
+                                    </div>
+
+			                <form action="" method="post" name="mainForm" id="mainForm">
+									<table class="table-date">
+                                    	<caption>新消息列表</caption>
+                                        <thead>
+                                        	<tr>
+                                        		<th scope="col" width="15%">用户名</th>
+                                                <th scope="col" width="15%">注册时间</th>
+                                        		<th scope="col" width="15%">获得积分</th>
+                                        	</tr>
+                                        </thead>
+                                        <tbody>
+										{loop $infos $v}
+                                           <tr>
+                                        		<td >{$v[username]}</td>
+                                                <td >{date('Y-m-d H:i:s',$v[regdate])}</td>
+                                        		<td >{$v[intropoint]}</td>
+                                        	</tr>
+										{/loop}
+                                        </tbody>
+                                    </table>
+									<br>
+									<center>{php $this->db->pages}</center>
+			                </form>                            
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			      
+				  
+				  
+				  
+				  {template 'member', 'left'}
+
+
+
+
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+       
+ 
+  {template 'member', 'footer'}

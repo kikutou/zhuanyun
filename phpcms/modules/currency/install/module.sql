@@ -1,0 +1,1 @@
+INSERT INTO `phpcms_module` (`module`, `name`, `url`, `iscore`, `version`, `description`, `setting`, `listorder`, `disabled`, `installdate`, `updatedate`) VALUES ('currency', '货币', 'currency/', 0, '1.0', '货币', '', 0, 0, '2013-10-15', '2013-10-15');

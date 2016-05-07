@@ -1,0 +1,17 @@
+﻿#wx_calendar,#js_clickNode{position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.3); z-index:1;}
+#js_clickNode{background:rgba(0,0,0,0); z-index:2;}
+#wx_calendarArea{width:96%; padding-bottom:10px; position:absolute; left:2%; top:150px; z-index:999; background:#f9f9f9; border:1px solid #ccc; box-shadow:0 0 0.5em #999;}
+#calendarTitle{font-size:24px; text-align:center; background:#659ae1; padding:5px 0; color:#fff; margin-bottom:7px; box-shadow:0 1px 0.1em #555;}
+#js_prev,#js_next{border-style:solid; display:inline-block; width:0; height:0; text-indent:-9999px; overflow:hidden; position:relative; top:7px;}
+#js_prev{border-width:8px 10px 8px 0; border-color:transparent #fff transparent transparent; float:left; left:10px;}
+#js_next{border-width:8px 0 8px 10px; border-color:transparent transparent transparent #fff; float:right; right:10px;}
+.calendarDay,.calenderDate{width:98%; margin:0 auto;}
+.calendarDay span,.calenderDate span{float:left; width:14%; text-align:center; margin:-1px 0 0 -1px; border:1px solid #ccc;}
+
+#calendarTable{width:98%; border-collapse:collapse; margin:0 auto;}
+#calendarTable th,#calendarTable td{font-weight:normal; text-align:center; padding:10px 0; font-size:20px; border:1px solid #ccc;}
+#calendarTable td{font-size:20px;}
+td.disable{background:#f1f1f1; color:#ccc;}
+#js_calendarBody tr:empty{border:1px solid #fff; border-top:1px solid #ccc;}
+.nowSelect{background:url("../images/timeSelect.png") center center no-repeat; background-size:contain;}
+

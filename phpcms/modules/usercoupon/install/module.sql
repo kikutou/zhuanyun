@@ -1,0 +1,1 @@
+INSERT INTO `phpcms_module` (`module`, `name`, `url`, `iscore`, `version`, `description`, `setting`, `listorder`, `disabled`, `installdate`, `updatedate`) VALUES ('usercoupon', '用户优惠券', 'usercoupon/', 0, '1.0', '用户优惠券', '', 0, 0, '2013-10-15', '2013-10-15');

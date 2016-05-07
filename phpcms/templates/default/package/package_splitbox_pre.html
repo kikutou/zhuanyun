@@ -1,0 +1,257 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+		 
+           <link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/jscal2.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/border-radius.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/win2k.css"/>
+			<script type="text/javascript" src="{JS_PATH}calendar/calendar.js"></script>
+			<script type="text/javascript" src="{JS_PATH}calendar/lang/en.js"></script>
+			
+			
+        <!--S 内容-->
+        <div id="ht-main" class="clearfixed">	
+        <article class="content">
+        	
+         	<!--S 内容-->
+        	<div class="layout pro-mod" style="border-top:none;">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod"  style="width:865px">
+                        	<div class="pcont-mod-hd">
+                            	<h3>分箱发货</h3>
+								<div class="plink-mod">
+                               
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+							
+							{php $allpackagestatus = $this->getpackagestatus();}
+                            <div class="pcont-mod-bd">
+							
+						
+                            	<!--S 右边内容开始-->
+			                	<div class="bag-mod">
+							    
+							        <div id="tab-cont">
+							          <div id="tab-cont-v01"> 
+			                           		<div class="pcont-date-mod" style="padding:0; width:850px">
+				                                <form action="/index.php?m=package&c=index&a=splitbox&hid={php echo $this->hid;}" method="post" name="mainForm" id="mainForm">
+									
+		
+			                                	<table class="table-date">
+			                                   
+			                                        <thead>
+			                                        	<tr>
+                                                          	
+			                                            <th scope="col" style="display:none;"><input type="checkbox" name="chk_all"  onclick="allchk(this)"></th>
+														<!---<th scope="col" >编号</th>-->
+														<th scope="col" >运单号</th>
+														<!---<th scope="col" >发货公司</th>-->
+														<th scope="col" >邮单号</th>
+														<!---<th scope="col" >数量</th>-->
+														
+														<!---<th scope="col" >价值</th>-->
+														<th scope="col" >物品名称</th>
+														<th scope="col" >重量(g)</th>
+														<!---<th scope="col" >长x宽x高 </th>-->
+														<!---<th scope="col" >运费</th>-->
+														<th scope="col" >状态</th>
+														<th scope="col" >添加时间</th>
+													
+			                                        		
+			                                        	</tr>
+			                                        </thead>
+			                                        <tbody>
+			                                        
+			                                        {loop $datas  $package}
+													
+															<tr>
+																	<td scope="col" style="display:none;">
+															
+																	<input type="checkbox" name="aid[]" value="{$package[aid]}" checked>
+															
+																	</td>
+																	
+																	<!---<td scope="col" >{$package[aid]}</td>-->
+											<td scope="col" ><a href="/index.php?m=waybill&c=index&a=waybill_detail&bid={$package[aid]}" target=_blank>{$package[waybillid]}</a></td>
+																	<!---<td scope="col" >{$package[expressname]}</td>-->
+																	<td scope="col" >{$package[expressno]}</td>
+																	<!---<td scope="col" >{$package[totalamount]}</td>-->
+																	
+																	<!---<td scope="col" >{$package[totalprice]}</td>-->
+																	<td scope="col" >{$package[goodsname]}</td>
+																	<td scope="col" >{$package[totalweight]}</td>
+																	<!---<td scope="col" >{$package[bill_long]}x{$package[bill_width]}x{$package[bill_height]}</td>-->
+																	
+																	<!---<td scope="col" >{$package[payedfee]}</td>-->
+																	<td scope="col" >
+																	{L("waybill_status".$package[status])}
+																	</td>
+																	<td scope="col" >{date('y-m-d',$package[addtime])}</td>
+																	
+																</tr>
+													{/loop}
+			                                        </tbody>
+			                                    </table>
+			          
+			                                           <br>
+<p>
+											<table class="table-date">
+			                                   
+			                                        <thead>
+			                                        	<tr>
+														<th scope="col" >分箱数量</th>
+			                                        	</tr>
+			                                        </thead>
+			                                        <tbody>
+													<tr>
+													<td>
+														分 <font color=red>{$split_number}</font> 	箱
+														<input type="hidden" name="split_number" value="{$split_number}"/>
+
+													</td></tr>
+													</tbody>
+													</table>
+
+</p>
+<br>
+													   <p>
+													   
+
+											<table class="table-date">
+			                                   
+			                                        <thead>
+			                                        	<tr>
+														<th scope="col" >分箱增值服务</th>
+			                                        	</tr>
+			                                        </thead>
+			                                        <tbody>
+													<tr>
+													<td>
+													
+
+
+													{loop $binning_datas $srv}
+						
+						{php $currencyname = $this->getcurrency($srv['currencyid']);}
+						{php $unitname = $this->getunits($srv['unit']);}
+
+						
+
+						<input name="service_value[{$srv[aid]}][title]" type="hidden"  value="{$srv['title']}"/>
+						<input name="service_value[{$srv[aid]}][currencyname]" type="hidden"  value="{$currencyname}"/>
+						<input name="service_value[{$srv[aid]}][unitname]" type="hidden"  value="{$unitname}"/>
+
+						<input name="service_value[{$srv[aid]}][price]" type="hidden"  value="{$srv['price']}"/>
+						<input name="service_value[{$srv[aid]}][currencyid]" type="hidden"  value="{$srv['currencyid']}"/>
+						<input name="service_value[{$srv[aid]}][unitid]" type="hidden"  value="{$srv['unit']}"/>
+						<input name="service_value[{$srv[aid]}][servicetype]" type="hidden"  value="{$srv[type]}"/>
+						<input  name="service_value[{$srv[aid]}][servicetypeid]"  value="{$srv[aid]}" type="checkbox" > <label for="service{$srv[aid]}" style="float:none;width:auto;" title="{$srv['remark']}" alt="{$srv['remark']}">{$srv[title]}<em class="color-red"></em></label>&nbsp;&nbsp;
+						{if $srv[title]=="分箱"}
+									<font color="#FF953F">{$currencyname} 0～200</font>/{$unitname}&nbsp;&nbsp;&nbsp;&nbsp;
+								{else}
+									<font color="#FF953F">{$currencyname} {$srv['price']}</font>/{$unitname}&nbsp;&nbsp;&nbsp;&nbsp;
+								{/if}
+						
+						
+					{/loop}	  
+                      
+
+													</td>
+													</tr>
+													<tr><td><font color="#F40">
+													说明：如对分箱有特殊要求（按货品种类、数量精确分箱），请勾选收费项目并在备注中填写详细要求
+													</font></td></tr>
+													</tbody>
+													</table>
+
+													   </p>
+													   <br/>
+
+													   <p>
+													   
+
+											<table class="table-date">
+			                                   
+			                                        <thead>
+			                                        	<tr>
+														<th scope="col" >备注</th>
+			                                        	</tr>
+			                                        </thead>
+			                                        <tbody>
+													<tr>
+													<td>
+													
+<textarea id="remark" name="remark"  class="inp " style="height:60px;width:90%;"></textarea> 
+
+                      
+
+													</td>
+													</tr>
+													</tbody>
+													</table>
+
+													   </p>
+													   <br/>
+									<p>
+									<table border=0><tr><td>
+<button type="submit" class="btn-login btn-cancel radius-three fl" tabindex="18" >提交分箱发货</button>&nbsp;&nbsp;</td></tr></table>
+									</p>
+
+									<input type="hidden" name="dosubmit" value="1"/>
+									   </form>                                                                
+									              <div class="function-page fr">
+									               
+	<div class="page">
+		
+	 
+		<!--<span class="page-total">共<em>&nbsp;0&nbsp;</em>条记录&nbsp;&nbsp;1/1 页</span>-->
+		{$pages}
+		</div> <!-- End page -->   
+		  
+									              </div><!--E .function-page--> 
+			                                      <div class="message-none hidden">暂无最新消息</div>
+			                                </div><!--E .pcont-date-mod-->                          
+			                          </div><!--E #tab-cont-v01-->
+							        
+			                        </div><!--E #tab-cont-->                      
+			                    </div><!--E .bag-mod-->  
+                                <!--E 右边内容结束-->
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     {template 'member', 'left'}
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   <script type="text/javascript">
+   function allchk(obj){
+     $("input[name='aid[]']").attr("checked",obj.checked);
+   }
+
+   function batch_pay(){
+	 var str="";
+	 $("input[name='aid[]']:checked").each(function(){
+		if(str=="")
+		{str=$(this).val();}else{
+			str+=","+$(this).val();
+		}
+	 });
+
+	 if(str==""){
+		alert("请选择所需要扣款订单");
+		return false;
+	 }else{
+		$("#mainForm").attr("action","/index.php?m=waybill&c=index&a=waybill_batch_pay&hid={php echo $this->hid;}");
+		$("#mainForm").submit();
+	 }
+   }
+   </script>
+ </div>
+ </div>
+  {template 'member', 'footer'}

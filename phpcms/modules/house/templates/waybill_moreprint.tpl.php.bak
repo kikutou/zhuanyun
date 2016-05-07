@@ -1,0 +1,356 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="robots" content="noarchive">
+    <meta name="robots" content="nofollow">
+    <title>批量打印快递单</title>
+	<script language="javascript" type="text/javascript" src="/resource/js/jquery.min.js"></script>
+	<?php
+	if(intval($_GET['pflag'])!=3){
+	?>
+ <style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;	
+	
+}
+td{font-size:14px;}
+.border{border:solid 1px #ccc;}
+
+.sborder_line{border-bottom:solid 1px #333;}
+.sborder_line2{border-bottom:dashed 1px #333;}
+.sborder_lineL{border-left:solid 1px #333;}
+
+.height25{height:30px;line-height:30px;}
+.height40{height:40px;line-height:40px;}
+    -->
+</style>
+<?php
+}else{		
+	?>
+ <style type="text/css">
+
+.imgtable {
+	font-family: "微软雅黑";
+	font-size: 9px;
+}
+.imgtable2 {
+	font-size: 12px;
+	font-family: "微软雅黑";
+}
+.table-c table{border-right:2px solid #000;border-bottom:2px solid #000} 
+.table-c table td{border-left:2px solid #000;border-top:2px solid #000} 
+.table-d table{font-size: 12px;border-right:0px;border-bottom:0px} 
+.table-d table td{font-size: 12px;border-left:0px;border-top:0px }
+.table-e table{border-right:0px;border-bottom:0px;} 
+.table-e table td{border-left:0px;border-top:0px;font-size:10px;font-family: "微软雅黑";} 
+.td-c{border-bottom:2px solid #000} 
+.td-d{border-right:2px solid #000;border-bottom:2px solid #000}
+</style>
+<?php
+	}	
+?>
+</head>
+<body>
+
+<?php
+
+$pflag = isset($_GET['pflag']) ? ($_GET['pflag']) : 0;
+$current_url =  'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."&checkhash=".$_SESSION['checkhash'];
+
+
+?>
+
+<br/>
+
+
+<center <?php if($pflag==0){echo 'style="display:block;"';}else{echo 'style="display:none;"';}?>>
+
+<form id="from001" action="<?php echo $current_url;?>" method="post" target=_blank>
+<?php
+
+foreach($_POST['aid'] as $v){
+	echo '<input type="hidden" name="aid[]" value="'.$v.'"/>';
+}
+
+?>
+
+</form>
+
+
+<p align=center ><h1>
+<a href="javascript:void(0);" onclick="document.getElementById('from001').action='<?php echo $current_url."&pflag=1";?>';document.getElementById('from001').submit();">Print Template EMS</a>  | <a href="javascript:void(0);" onclick="document.getElementById('from001').action='<?php echo $current_url."&pflag=3";?>';document.getElementById('from001').submit();">Print Template SAL</a></h1></p>
+</center>
+
+
+<div align=center>
+
+   
+   <?php
+   if($pflag==1){
+	?>
+	
+	<?php
+   }
+   
+   ?>
+
+<?php
+
+$udb = pc_base::load_model('address_model');
+
+	$sinfos= siteinfo(1);
+$ii=0;
+foreach($datas as $info){
+$ii++;
+	
+				$takeaddr=explode('|',$info['takeaddressname']);
+				$sendaddr=explode('|',$info['sendaddressname']);
+				$addr=explode("|",$info['sendaddressname']);//发件
+				$send_truename=$addr[0];
+				$send_country=$addr[2];
+				$send_province=$addr[3];
+				$send_city=$addr[4];
+				$send_address=$addr[5];
+				//$send_postcode=$addr[6];
+				$send_mobile=$addr[1];
+				$sendaddress=str_replace("|","&nbsp;&nbsp;",$info['sendaddressname']);
+				//$send_company=$addr['company'];
+
+				$addr=explode("|",$info['takeaddressname']);///收件
+				$take_truename=$addr[0];
+				$take_country=$addr[2];
+				$take_province=$addr[3];
+				$take_city=$addr[4];
+				$take_address=$addr[5];
+				$take_postcode=$addr[6];
+				$take_mobile=$addr[1];
+				$takeaddress=str_replace("|","&nbsp;&nbsp;",$info['takeaddressname']);
+				//$take_company=$addr['company'];
+
+
+
+
+if($pflag==1){
+
+?>
+
+
+
+
+<div style="width:296mm;height:152mm;position: relative;top:0;right:0; font-size: 5.5mm;font-family: monospace;">
+	<div style="width:90mm;">
+		<div style="position:absolute;top:40mm;left:110mm;"><?php echo $take_truename;?></div> <!----收件人姓名---->
+		<div style="position:absolute;top:40mm;left:173mm;"><?php echo $takeaddr[6];?></div>	<!----邮编---->
+	</div>
+	<div style="position:absolute;top:50mm;left:110mm;word-break:break-all;width:90mm;  text-align: left;">
+	<?php echo $takeaddr[3];?><!----省---->
+	<?php echo $takeaddr[4];?><!----市---->
+	<?php echo $takeaddr[5];?><!----地址---->
+	</div>
+	<div style="position:absolute;top:75mm;left:130mm;"><?php echo $takeaddr[2] ;?></div><!----国家---->
+	<div style="position:absolute;top:75mm;left:170mm;"><?php echo $takeaddr[1];?></div><!----电话---->
+	<div style="position:absolute;top:85mm;left:170mm;"><span style="font-family: -webkit-body;font-size: 4mm;">
+	<?php echo $info['aid'];?><!----编号---->
+						- <!---连接符--->
+	<?php echo $info['takeflag'];?><!----用户标识---->
+	</span>
+	</div>
+</div>
+
+
+<table class="tab" width="754" height="395" border="0" cellspacing="0" cellpadding="0" style=" background:url();display:none;">
+  <tr>
+    <td width="200" height="55">&nbsp;</td>
+    <td width="230">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="middle" style="padding-left:146px;height:25px;padding-top:30px"><?php echo date('Ymd');?></td>
+    <td width="230">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="200" height="15">&nbsp;</td>
+    <td width="230">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="200"  height="95" valign="top" style="padding-top:10px; padding-left:50px"><?php echo $send_truename;?>
+    <br />
+    <?php 
+	
+
+
+$results = getcache('get__storage__lists', 'commons');
+
+foreach($results as $kk=>$row){
+
+	echo $row[title] . $row[address];
+	
+
+}
+?>
+    </td>
+    <td width="230" style="padding-left:10px; padding-top:25px"><?php echo $take_truename;?><!---收货人姓名--->
+    <br />
+    <?php echo $takeaddr[3].$takeaddr[4].$takeaddr[5];?><!---收货人地址--->
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="20" style=" padding-left:140px"><?php echo $sendaddr[7];?></td>
+    <td style="padding-left:20px">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><?php echo $takeaddr[3];?></td>
+        <td style="text-align: left"><?php echo $takeaddr[6];?></td>
+      </tr>
+    </table>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+    <tr>
+    <td width="200" height="15">&nbsp;</td>
+    <td width="230">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="20" style=" padding-left:110px"><?php echo $sendaddr[1];?></td>
+    <td style="padding-left:20px">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><?php echo $takeaddr[2];?> </td>
+        <td style="text-align: right"><?php echo $takeaddr[1];?></td>
+      </tr>
+    </table>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+
+<?
+
+}
+
+if($pflag==3){?>
+
+<div style="width:296mm;height:152mm;position: relative;top:0;right:0; font-size: 5.5mm;font-family: monospace;">
+	<div style="width:90mm;">
+	<div style="position:absolute;top:19mm;left:110mm;"><?php echo $take_truename;?>
+	<span style="padding-left:20px;font-size:3mm;">
+	<?php echo $info['aid'];?><!----编号---->
+						- <!---连接符--->
+	<?php echo $info['takeflag'];?><!----用户标识---->
+	</span>
+	</div> <!----收件人姓名---->
+	
+	<div style="position:absolute;top:19mm;left:178mm;"><?php echo $takeaddr[6];?></div>	<!----邮编---->
+	
+	<div style="position:absolute;top:26mm;left:110mm;word-break:break-all;width:90mm;  text-align: left;">
+	<?php echo $takeaddr[3];?><!----省---->
+	<?php echo $takeaddr[4];?><!----市---->
+	<?php echo $takeaddr[5];?><!----地址---->
+	</div>
+	<div style="position:absolute;top:44mm;left:110mm;"><?php echo $takeaddr[1];?></div><!----电话---->
+	<div style="position:absolute;top:44mm;left:170mm;"><?php echo $takeaddr[2] ;?></div><!----国家---->
+
+</div>
+
+<table class="tab" width="754" height="395" border="0" cellspacing="0" cellpadding="0" style=" background:url();display:none;">
+  <tr>
+    <td width="210" height="50">&nbsp;</td>
+    <td width="230">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="middle" style="padding-left:196px;height:22px;">&nbsp;</td>
+    <td width="230">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="210"  height="63" valign="top" style=" padding-left:100px"><?php echo $sendaddr[0];?>
+    <br />
+     <?php 
+	
+
+
+$results = getcache('get__storage__lists', 'commons');
+
+foreach($results as $kk=>$row){
+
+	echo $row[title] . $row[address];
+	
+
+}
+?>
+    </td>
+    <td width="230" valign="top" style="padding-left:20px;"><?php echo $takeaddr[0];?>
+    <br />
+    <?php echo $takeaddr[2].$takeaddr[3].$takeaddr[4].$takeaddr[5].$takeaddr[6];?>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="20" style=" padding-left:110px">
+     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><?php echo $sendaddr[7];?></td>
+        <td style="text-align: right"><?php echo $sendaddr[1];?></td>
+      </tr>
+    </table>
+    </td>
+    <td style="padding-left:20px">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><?php echo $takeaddr[1];?></td>
+        <td style="text-align: left"><?php echo $takeaddr[2];?> </td>
+      </tr>
+    </table>
+       </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="20" style=" padding-left:110px">&nbsp;</td>
+    <td style="padding-left:20px">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<?php
+
+
+}
+
+
+}										
+	?></div>
+
+	
+
+   
+</body>
+</html>

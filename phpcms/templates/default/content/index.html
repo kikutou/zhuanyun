@@ -1,0 +1,275 @@
+{template "content","header"}  
+
+ <style>
+/* index */
+#slide-index{width:1078px; height:320px; overflow:hidden; position:relative;}
+#slide-index .slides{width:1078px; width:auto; height:320px; }
+#slide-index .slide{ width:1078px; height:320px; float:left; position:relative; }
+#slide-index .image{ z-index:1;position:absolute; }
+#slide-index .text, #slide-index .button { z-index:2;position:absolute; top:-500px; }
+#slide-index .button{ display:none !important; width:138px;}
+#slide-index .control{ position:absolute; bottom:0px; width:100%; text-align:center; height:19px; cursor:pointer; z-index:40;}
+#slide-index .control a{ width:11px; height:11px; cursor:pointer; display:inline-block; background-repeat:no-repeat; background-image:url({IMG_PATH}hw_000505.gif); margin-right:6px; opacity:0.6; filter:alpha(opacity=60);}
+#slide-index .control a:hover, #slide-index .control a.active{ background-image:url({IMG_PATH}hw_000506.gif); opacity:1; filter:alpha(opacity=100);}
+ </style>
+
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 内容第一栏-->
+        	<div class="layout content-img-mod">
+            	<div class="layout grid-s19m0">
+					<div  style="float:right; width:1078px; height:320px;">
+			       	 <div class="main-wrap">
+                     	
+						
+                        	{pc:get sql="SELECT * from t_poster where spaceid=1 and disabled=0 order by listorder " num="5"  return="addata" }
+	<div id="slide-index" style="height:320px;"> 
+		<div class="slides">
+
+		
+			{loop $addata $rs}
+			{php $settings=string2array($rs[setting])}
+	
+			<div class="slide autoMaxWidth" links=[{left:'30px',top:'81px'},{left:'30px',top:'244px'},{direction:'tb'}]>	  		
+			<div class="image" id='bi_0'><a target="_blank" href="{$settings[1][linkurl]}"><img width="1078" height="320" src="{$settings[1][imageurl]}" /></a></div>			
+			<div class="text" id='bt_0'></div>
+			<div class="button" id='bb_0' style="display:none;"></div>
+		</div>
+			{/loop}
+		</div>
+		<div class="control">
+		{loop $addata $rs}
+		<a href=""></a>
+		{/loop}
+		</div>
+	</div>
+	{/pc}
+	<!--end slide-index-->
+
+                       
+
+                     </div><!--E main-wrap-->
+			       </div><!--E col-main-->
+
+				</div><!--E .grid-s19m0-->
+				<!-- right begin-->
+				<div class="col-sub" style="margin-left:0;">
+					<div class="col-sub" style="margin-left:0; border:1px solid #CACACA; width:302px; height:203px; border-radius:3px; margin: 12px 0 0 0;">
+						<div style="height:35px; background:rgb(203, 218, 105); line-height: 35px; font-size: 16px; padding-left:10px;">
+						<label for="desc">会员登录</label><br>
+						</div>
+						<div style="  padding:5px 10px 0 15px;">
+						<script type="text/javascript">document.write('<iframe src="{APP_PATH}index.php?m=member&c=index&a=mini&flag=1&forward='+encodeURIComponent(location.href)+'&siteid={get_siteid()}" allowTransparency="true"  width="275" height="153" frameborder="0" scrolling="no"></iframe>')</script>
+						</div>
+					</div>
+                  	   <div class="mod radius-three box-shadow-v01" style="border: 1px solid rgb(202, 202, 202); border-image: none; width: 302px; height: 225px; margin: 230px 0 0 0;">
+                            <div class="mod-hd radius-three-tr">
+                              <h3>公告</h3>
+							   <a href="/index.php?m=content&c=index&a=lists&catid=29" class="more-link">更多...</a> 
+                            </div><!--E .mod-hd-->
+                            <div class="mod-bd mod-shadow">
+                                <ul class="learning-list">
+                                     {pc:content action="lists" catid="29" num="6"  siteid="$siteid" order="inputtime desc"}
+									{loop $data $r}
+                                    	<li style="height:29px;border-bottom:1px dashed #ccc"><a href="{$r[url]}" title="{$r[title]}">{str_cut($r[title],50)}</a>
+										<span style="float:right;">{date('Y-m-d',$r[inputtime])}</span>
+										</li>
+                                		 {/loop}
+									 {/pc}
+                                    
+                                </ul>
+                                                             
+                            </div><!--E .mod-bd-->
+                        </div><!--E .mod-->                
+                  </div>
+					<div  style="width:758px;float:right; padding-top:12px;">
+					<div class="mod radius-three box-shadow-v01">
+                            	<div class="mod-hd radius-three-tr" style="margin-bottom:0;">
+                                  <h3>日淘晒单</h3>
+                                   <a href="/index.php?m=content&c=index&a=lists&catid=25" class="more-link">更多...</a> 
+                                </div><!--E .mod-hd-->
+
+								<style type="text/css">
+								a.n{color:#787878;}
+								a:hover.n{color:red;}
+								</style>
+
+								<div id="scrollDiv_keleyi_com" class="scrollDiv">
+									<ul>
+									{pc:content action="lists" catid="25" num="10"  siteid="$siteid" order="inputtime DESC"}
+									{loop $data $r}
+                                    	<li style="background: none; padding-left:0; height: 130px; line-height:normal;">
+                                    		<img src="{thumb($r[thumb])}" width="150" height="105" alt="{$r[title]}" style="float:left; padding-right:15px; padding-top:10px">
+                                        	<a href="{$r[url]}" title="{$r[title]}" style="float:none;"><font style=" line-height:28px; font-size:16px; ">{str_cut($r[title],60)}</font></a>
+                                            <br><a class="n"  href="{$r[url]}" title="{$r[title]}" style="float:none;"><font style=" line-height:18px;">{str_cut($r[description],300)}...</font></a>
+											<br><br>  <span>{date('Y-m-d',$r[inputtime])}</span>
+                                        </li>
+                     				 {/loop}
+									 {/pc}
+									</ul>
+								</div>
+									<script type="text/javascript">
+										function AutoScroll(obj) {
+											$(obj).find("ul:first").animate({
+												marginTop: "-130px"
+											}, 500, function () {
+												$(this).css({ marginTop: "0px" }).find("li:first").appendTo(this);
+											});
+										}
+										$(document).ready(function () {
+											setInterval('AutoScroll("#scrollDiv_keleyi_com")', 3000);
+										});
+									</script>
+								
+
+                                <div class="mod-bd mod-shadow" style="display:none;">
+                                	<ul class="news-list">
+                                	 {pc:content action="lists" catid="25" num="10"  siteid="$siteid" order="inputtime DESC"}
+									{loop $data $r}
+                                    	<li style="background: none; padding-left:0; height: 120px; line-height:normal;">
+                                    		<img src="{thumb($r[thumb])}" width="150" height="100" alt="{$r[title]}" style="float:left; padding-right:15px; padding-top:10px">
+                                        	<a href="{$r[url]}" title="{$r[title]}" style="float:none;"><font style=" line-height:28px; font-size:16px; ">{str_cut($r[title],60)}</font></a>
+                                            <br><a class="n"  href="{$r[url]}" title="{$r[title]}" style="float:none;"><font style=" line-height:18px;">{str_cut($r[description],300)}...</font></a>
+                                        </li>
+                     				 {/loop}
+									 {/pc}
+                                    	
+                     				  
+                                    </ul>
+                                </div><!--E .mod-bd-->
+                            </div><!--E .mod-->
+				
+				</div>
+					<!--right end--->
+            </div>
+            <!--E 内容第一栏-->
+			
+			
+
+        	<!--S 内容第二栏-->
+        	<div class="content-mod" style="padding:10px 0;">
+	
+				<div class="layout grid-s19m0e15" >
+					<div class="col-main">
+						<div class="main-wrap">
+                        	<div class="mod radius-three box-shadow-v01" style="height:245px;">
+                            	<div class="mod-hd radius-three-tr">
+                                  <h3>日淘资讯</h3>
+                                   <a href="/index.php?m=content&c=index&a=lists&catid=13" class="more-link">更多...</a> 
+                                </div><!--E .mod-hd-->
+                                <div class="mod-bd mod-shadow">
+                                	<ul class="news-list">
+                                	 {pc:content action="lists" catid="13" num="7"  siteid="$siteid" order="inputtime desc"}
+									{loop $data $r}
+                                    	<li>
+                                    	
+                                        	<a href="{$r[url]}" title="{$r[title]}">{$r[title]}</a>
+                                            <span style="display:none;">{date('Y-m-d',$r[inputtime])}</span>
+                                        </li>
+                     				 {/loop}
+									 {/pc}
+                                    	
+                     				  
+                                    </ul>
+                                </div><!--E .mod-bd-->
+                            </div><!--E .mod-->
+                        </div><!--E .main-wrap-->
+					</div><!--E .col-main-->
+					<div class="col-sub" style="padding: 5px 10px 10px; border-radius: 3px; border: 1px solid #cacaca; border-image: none;">
+						<h2 class="home-h2"><label for="desc" style="margin-bottom:0;">快件查询</label></h2>
+						<form action="api.php" name="mainForm" id="mainForm" method="get">
+
+					   <input type="hidden" name="op" value="orderno"/>
+						<div class="textarea-mod">
+							<textarea class="inp-tarea" id="ord" style="ime-mode:disabled; height:105px;" name="ord" value="请输入日本邮政快递单号" onFocus="this.value=''" onKeyUp="this.value=this.value.replace(/[^0-9a-z]/gi,'')">请输入日本邮政快递单号</textarea>
+						</div>
+						<!--update 2013-3-18--> 
+						<div class="btn-search-mod clearfix">
+							<button type="button" onclick="submitF();" class="h-btn-search h-btn-search-dblue radius-three fr" title="查询日本国内快递">查询日本邮政快递</button>        
+						</div><!--E .btn-search-mod-->
+						<div style="text-align:right; margin-top:9px; ">
+							<a href="/api.php?op=orderno&ord=." style="color:#667503; font-size: 14px;">其他快递请点击这里>></a>
+							        
+						</div>
+						<!--update 2013-3-18-->
+						</form> 
+					</div><!--E .col-sub-->
+		      <div class="col-extra">
+                      <div class="mod radius-three box-shadow-v01" style="height:245px;">
+                            <div class="mod-hd radius-three-tr">
+                              <h3>日淘教程</h3>
+                              <a href="/index.php?m=content&c=index&a=lists&catid=12" class="more-link">更多...</a> 
+                            </div><!--E .mod-hd-->
+                            <div class="mod-bd mod-shadow">
+							<ul class="news-list">
+                                	 {pc:content action="lists" catid="19" num="7"  siteid="$siteid" order="inputtime desc"}
+									{loop $data $r}
+                                    	<li>
+                                    	
+                                        	<a href="{$r[url]}" title="{$r[title]}">{$r[title]}</a>
+                                            
+                                        </li>
+                     				 {/loop}
+									 {/pc}
+                                    	
+                     				  
+                                    </ul>
+                           
+                            </div><!--E .mod-bd-->
+                        </div><!--E .mod-->   
+              </div><!--E .col-extra-->
+		 </div><!--E .grid-s19m0e15-->
+
+				
+                
+                <!--广告组开始  2013/4/18-->
+                
+                 <div class="adver-group layout" style="display:none;">
+                  <ul class="clearfix">
+   {pc:get sql="SELECT * from t_poster where spaceid=3 and disabled=0 order by listorder " num="4"  return="datad" }
+
+			{loop $datad $rs}
+			{php $settings=string2array($rs[setting])}
+                            	<li>
+                            	<a href="{$settings[1][linkurl]}"  target="_blank">
+                            	<img src="{$settings[1][imageurl]}" width="250" height="60" >
+                            	</a></li>
+                            
+              {/loop}
+			{/pc}       
+                            	
+                  </ul>
+                </div>        
+                       
+               
+                    <span class="blank16" style="padding-top:35px; border-bottom:1px solid rgb(185, 165, 10); margin:0px auto; width:1078px; font-size:18px; font-weight: bold; height:25px; color:rgb(107, 9, 121);">日淘推荐 </span> 
+                <!--当没有广告时开始-->
+           		<div class="layout" style="padding:30px 0;">
+              	 <div class="box2">
+					<div class="picbox" style="padding-left:5px;">
+						<ul class="piclist mainlist">
+							
+							 {pc:link  action="type_list" siteid="$siteid" linktype="1" order="listorder DESC" num="20" return="pic_link"}
+								{loop $pic_link $v}
+									<li><a href="{$v['url']}" title="{$v['name']}" target="_blank"><img src="{$v[logo]}"  width="190" height="85" ></a></li>
+								{/loop}
+							 {/pc}
+							
+						</ul>
+						<ul class="piclist swaplist"></ul>
+					</div>
+					<div class="og_prev"></div>
+					<div class="og_next"></div>
+				</div>
+                </div><!--E .layout-->  
+				
+				
+                <!--当没有广告时结束-->  
+				
+            </div>
+            <!--E 内容第二栏-->            
+        </article>
+        <!--E 内容-->
+        <script type="text/javascript" src="{JS_PATH}global_cn.index.js"></script>
+{template "content","footer"}	
+		

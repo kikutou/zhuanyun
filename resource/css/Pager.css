@@ -1,0 +1,8 @@
+﻿.paginator { font-family: arial, sans-serif;padding:0px 0px 20px 0px; margin: 0px auto; width:620px;font-size:15px;}
+.paginator .paginator {width:620px;margin-top:0px}
+.paginator .custom{width:50px;padding:4px 0px 15px 0px;}
+.paginator a {padding: 6px 10px; border: solid 1px #ddd; background: #fff; text-decoration: none;margin-right:0px;font-size:14px;font-family: arial, sans-serif;}
+.paginator a:visited {padding: 6px 10px; border: solid 1px #ddd; background: #fff; text-decoration: none;font-size:15px}
+.paginator .cpb {padding: 6px 10px;font-weight: bold; font-size: 16px;border:none; width:auto}
+.paginator a:hover {color: #fff; background: #0078D4;border-color:#ddd;text-decoration: none;}
+.paginator select{ height:24px; line-height:24px; margin-left:3px; margin-right:3px}

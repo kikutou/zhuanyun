@@ -1,0 +1,27 @@
+DROP TABLE IF EXISTS `phpcms_ownaddress`;
+CREATE TABLE IF NOT EXISTS `t_ownaddress` (
+  `aid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `siteid` int(10) unsigned NOT NULL DEFAULT '0',
+  `username` varchar(40) NOT NULL,
+  `userid` int(10) unsigned NOT NULL DEFAULT '0',
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `addressusefee` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
+  `firstname` char(80) NOT NULL,
+  `lastname` char(80) NOT NULL,
+  `province` varchar(200) NOT NULL,
+  `city` varchar(200) NOT NULL,
+  `address` varchar(250) NOT NULL,
+  `postcode` varchar(30) NOT NULL,
+  `mobile` varchar(30) NOT NULL,
+  `storageid` int(10) unsigned NOT NULL DEFAULT '0',
+  `expressno` varchar(150) NOT NULL,
+  `expressid` int(10) unsigned NOT NULL DEFAULT '0',
+  `goodsname` varchar(200) NOT NULL,
+  `price` decimal(10,2) unsigned NOT NULL DEFAULT '0.00',
+  `amount` int(10) unsigned NOT NULL DEFAULT '0',
+  `weight` varchar(100) NOT NULL,
+  `packageid` int(10) unsigned NOT NULL DEFAULT '0',
+  `remark` varchar(250) NOT NULL,
+  PRIMARY KEY (`aid`),
+  KEY `siteid` (`siteid`)
+) TYPE=MyISAM ;

@@ -1,0 +1,147 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+  		  <script type="text/javascript">
+<!--
+	var charset = 'utf-8';
+	var uploadurl = '/uploadfile/';
+//-->
+</script>
+<link href="/resource/css/dialog.css" rel="stylesheet" type="text/css" />
+<script  type="text/javascript" src="/resource/js/dialog.js"></script>
+<link href="/resource/css/table_form.css" rel="stylesheet" type="text/css" />
+
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">上传身份证</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>上传身份证</h3>
+                                <div class="plink-mod">
+                                	
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd pro-info">
+                               <style>
+							   .customs-info{padding:20px 10px 10px;margin-bottom:25px;border:1px dashed #c5deea;background-color:#d9edf7}.customs-info p{padding-bottom:10px !important;text-indent:18px;text-align:left !important;font-size:14px;color:#737373 !important}.customs-info p a,.customs-info p a:hover{color:#d9534f;text-decoration:underline}
+							   </style>
+
+					<div class="customs-info">
+                         <p>根据中国海关规定，为防止变相走私，证明包裹内物品确实为个人自用，个人包裹办理海关入境清关手续需要提交收件人身份证明。海关相关规定请参考 <a href="http://www.customs.gov.cn/publish/portal0/tab517/info265077.htm" target="_blank">《中华人民共和国海关对进出境快件监管办法》</a>第二十二条，或致电海关咨询：12360</p>
+                          <p>超速快运承诺所有信息均为用户保密，直接提交给海关清关时进行查验，绝不用做其它途径，其他任何人均无法查看。</p>
+                     </div>  
+
+                                <span class="blank"></span>
+                                     <form action="/index.php?m=waybill&c=index&a=waybill_uploadsfz" id="mainForm" name="mainForm" method="post"  enctype="multipart/form-data" onsubmit="return submitcheck();">
+								<div class="pro-info-v02">
+                                  
+                     <ul class="pform-list tip-pform-list">
+                
+                <li>
+                    <label for="a5">运单号码<em class="color-red">*</em></label>
+                    <input id="waybillid" name="waybillid"  value="" datatype="m" nullmsg="请输入运单号码!" errormsg="运单号码格式不对!" style="ime-mode:disabled;" maxlength="30"  class="inp w268" type="text" tabindex="6">     
+                                                                  
+                </li>
+
+                <li>
+                    <label for="idcard">身份证号码<em class="color-red">*</em></label>
+                    <input id="idcard" name="waybill[idcard]" style="ime-mode:disabled;" datatype="idcard" ignore="ignore" errormsg="您填写的身份证号码不对!" value="" maxlength="20" class="inp w268" type="text" tabindex="7">  
+                                                             
+                </li>
+
+				<li style="clear:both;">
+                      <label for="idcardbefore">身份证正面<em class="color-red"></em>:</label>
+					  {php echo form::upfiles('waybill[idcardbefore]','idcardbefore','','address', '0',50,'', '','gif|jpg|jpeg|png');}
+                                                                         
+               </li>
+				<li style="clear:both;">
+                      <label for="idcardafter">身份证反面<em class="color-red"></em>:</label>
+                      {php echo form::upfiles('waybill[idcardafter]','idcardafter','','address', '0',50,'', '','gif|jpg|jpeg|png');}
+					 
+					<script>$("#idcardbefore").addClass("inp w268");$("#idcardafter").addClass("inp w268");</script>    
+				                           
+				</li>
+               
+			
+               
+ 
+                 <li style="clear:both;">
+					<label for="">&nbsp;</label>
+					 <input type="hidden" name="dosubmit" id="dosubmit" value="1"/>
+                    
+					<button type="submit" class="btn-login radius-three fl" tabindex="17" title="保存">保&nbsp;存</button>
+					<button type="button" onclick="window.location.href='/index.php?m=address&c=index&a=init'" class="btn-login btn-cancel radius-three fl" tabindex="18" title="取消">取&nbsp;消</button>
+				</li>
+                </ul>
+                                </div><!--E .pro-info-v01-->
+                               </form><br><br>
+							   <p>&nbsp;</p>
+							   <div class="customs-info" style="clear:both;background:#fff;">
+                         <p>下面显示：<br>
+1、请使用二代身份证。<br>
+4、照片支持jpg、jpeg、bmp格式，大小限制2M以内。<br>
+5、照片需原始图片未经任何软件编辑修改。<br>
+</p>
+                          
+                     </div>
+                             <span class="blank22"></span>
+                          </div><!--E .pcont-mod-bd-->
+
+
+
+  
+
+
+
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     
+				  
+				 {template 'member', 'left'}
+
+
+
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   
+  <script  type="text/javascript">
+
+
+
+  function submitcheck(){
+
+	if($("#waybillid").val()==''){
+		
+		dialog_alert("请输入运单号码!！");
+		$("#waybillid").focus();
+		return false;
+	}
+	
+
+	if($("#idcard").val()=='' || $("#idcard").val().length<15 || $("#idcard").val().length>18){
+		
+		dialog_alert("请输入15位~18位身份证号码 ！");
+		
+		return false;
+	}
+	return true;
+ }
+	</script>
+  {template 'member', 'footer'}

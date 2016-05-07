@@ -1,0 +1,134 @@
+ {template 'member', 'header'}
+<link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+<link charset="utf-8" rel="stylesheet" href="{CSS_PATH}cashier.main-2.22.css" media="all" />
+<style>
+.bank-name{display:none;}
+.ui-list-icons .healthy, .ui-list-icons .healthy-normal {
+  display: block !important;
+  right: auto;
+  top: -18px;
+  left: -1px;
+  margin: 0;
+  width: auto;
+  color: #fff;
+  padding: 1px 2px 0;
+  line-height: 14px;
+}
+.ui-list-icons .healthy-normal {
+  position: absolute;
+  background: #46b900;
+  width: 28px;
+  height: 18px;
+  color: #fff;
+  text-align: center;
+}
+.ui-list-icons .healthy .icon,
+.ui-list-icons .healthy-normal .icon {
+  display: none;
+}
+.ui-list-icons .busy {
+  background: #ff9900;
+}
+.ui-list-icons .repair2 {
+  background: #ff3333;
+}
+.ui-list-icons .repair2 {
+  background: #999999;
+}
+.ui-list-icons .healthy-ok {
+  background: #46b900;
+}
+
+.long-logo .ui-list-icons .icon-gray {
+    filter: none;
+}
+.long-logo .ui-list-icons .icon-gray  span.icon {
+    filter: url("https://cashier.alipay.com:443/filters.svg#grayscale");
+    filter:gray\9;
+}
+</style>
+
+        <!--E 导航-->   
+  
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+				
+                <span>&gt;</span>
+                <span class="curmbs-active">{if $oid}付款{else}充值{/if}确认</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>{if $oid}付款{else}充值{/if}确认</h3>
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd">
+			              
+			                	<ul class="pform-list">
+			                    	
+									
+									<li>
+			                        	<label for="allprice">确认金额：</label>
+			                           <font style="color:#F00; font-size:22px;font-family:Georgia,Arial; font-weight:700">{$factory_info['price']}</font>  元                                     
+			                        </li>
+									<li>
+			                        	<label for="payment">支付方式：</label>
+										{loop $pay_types $key $pay}
+										{if $pay[pay_id]==$factory_info[pay_id]}
+										<img src="{IMG_PATH}logo-{$pay[pay_code]}.gif" alt="zhifubao">
+										{/if}
+										{/loop}
+			                                                        
+			                        </li>
+									<li style="display:none">
+			                        	<label for="allprice">所选银行：</label>
+
+									   <label class="icon-box limited-coupon  current" for="J-b2c_ebank-icbc105-1" style="background:none;border:none;" >
+									 <span class="icon-box-sparkling" bbd="false"></span>
+									 <span class="false icon {$order_info['bank_code']}" ></span>
+									
+									</label>
+			                                               
+			                        </li>
+									
+			                    </ul>
+								                           
+                            </div><!--E .pcont-mod-bd-->
+
+							<!-- 网银开始 -->
+							<div id="container" class="xbox ui-form" style="clear:both;" align="center">
+     
+   	 
+    		<p class="ui-btn ui-btn-ok" style="padding-top:0;">
+			{$code}
+
+    			
+    		</p>
+
+			<p align=left style="color:red;margin-left:50px;"><BR><BR>注意：支付完成后，请等待界面自动跳转以确认充值成功，不要急于手动关闭界面避免充值不成功没有转成金币的现象。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;建议使用IE8、FireFox、Chrome 浏览器主流浏览器支付</p>
+        
+    </div>
+							<!-- 网银结束 -->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+				  
+				  {template 'member', 'left'}
+
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   
+ 
+  {template 'member', 'footer'}

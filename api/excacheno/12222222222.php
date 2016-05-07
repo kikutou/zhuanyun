@@ -1,0 +1,1 @@
+<?php  defined("IN_PHPCMS") or exit("No permission resources.");  $no = trim($_GET["no"]); $result = postGets("http://www.kuaidi100.com/all/sf.shtml?mscomnu=12222222222",$no); echo $result; exit;?>

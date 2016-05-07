@@ -1,0 +1,77 @@
+{template "content","header"}   
+
+ 
+    <div class="nav_bottom" style="height: auto">
+        <div class="main">
+            <div class="n_banner">
+                <img id="bannerp" width="1050" height="184" src="{IMG_PATH}banner_1.jpg" />
+            </div>
+
+<!-------------------------左侧栏--------------------------->
+
+          {template "content","left"}   
+
+  <!--------------------------右侧代码------------------------------->
+            <div class="n_r">
+                <div class="n_title">
+                    <span id="n_t_ico">公司介绍</span> <span class="n_weizhi">您现在的位置:首页 >> 公司简介 >> {$catname}
+                    </span>
+                </div>
+                <div class="clear10">
+                </div>
+                <div class="n_content" id="content" style="background: #fff">
+                    <div style="width: 710px; font-size: 14px; margin: 0px auto; margin-bottom: 10px; line-height: 30px; padding: 20px; border: 0px solid #dedede">
+                        <p>
+                            {$content}
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear10">
+    </div>
+
+            
+            {template "content","footer"} 
+    
+	<!--
+    <div class="go">
+    </div>
+    <div style="display: none; height: 0px; width: 0px; overflow: hidden" id="cnzztongji">
+    </div>
+	-->
+    <div style="display: none; height: 0px; width: 0px; overflow: hidden" id="Div1">
+        <script type="text/javascript">
+            var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3af5ea94f799b364959cddb4ef1a6229' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+    </div>
+    <script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="{JS_PATH}jquery.cookie.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{JS_PATH}jquery.bigautocomplete.js"
+        charset="UTF-8"></script>
+    <script type="text/javascript" src="{JS_PATH}jquery.Tpbox.min.js"></script>
+    <script type="text/javascript" src="{JS_PATH}base.js?v20130816" charset="UTF-8"></script>
+
+    <script type="text/javascript">
+        function checkdata() {
+            if (checkForm2("")) {
+                document.formbill.submit();
+            }
+            else {
+                return false;
+            }
+        }
+        if ($.cookie('txtbill') != null) {
+            if ($("#txtbill").size() > 0) {
+                $("#txtbill").val($.cookie('txtbill'));
+            }
+        }
+        fun("8:30", "17:30");
+    </script>
+</body>
+</html>
+
+

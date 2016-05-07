@@ -1,0 +1,98 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+  
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">我的预约记录</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>我的预约记录</h3>
+                                <div class="plink-mod">
+                                <a href="/index.php?m=yuyue&c=index&a=add" class="p-btn radius-five" title="预约取件">预约取件</a>
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd">
+                           		<form action="" method="post" name="mainForm" id="mainForm">
+                           		  <input type="hidden" name="dosubmit" id="dosubmit" value="1"/>
+                           		<div class="pcont-date-mod">
+                                	<table class="table-date">
+                                    	<caption>预约列表</caption>
+                                        <thead>
+                                        	<tr>
+											    <th scope="col" ><input type="checkbox" name="selectid" ></th>
+                                        		<th scope="col" >转运类别</th>
+                                                <th scope="col" >收货仓库</th>
+                                                <th scope="col" >取货件数</th>
+												<th scope="col" >联系人</th>
+												<th scope="col" >联系人电话</th>
+												<th scope="col" >联系人邮箱</th>
+												<th scope="col" >状态</th>
+												<th scope="col" >预约时间</th>
+                                        		<th scope="col" >操作</th>
+                                        	</tr>
+                                        </thead>
+                                        <tbody>
+								{loop $datas  $yuyue}
+								{php $row = $this->getshippingtypename($yuyue['shippingtype']);}
+										<tr>
+												<td scope="col"><input type="checkbox" name="aid[]" value="{$yuyue[aid]}"></td>
+                                        		<td scope="col" >{$row[storagename]}</td>
+                                                <td scope="col" >{$row[title]}</td>
+                                                <td scope="col" >{$yuyue[number]}</td>
+												<td scope="col" >{$yuyue[lianxiren]}</td>
+												<td scope="col" >{$yuyue[mobile]}</td>
+												<td scope="col" >{$yuyue[email]}</td>
+												<td scope="col" >&nbsp;</td>
+												<td scope="col" >{$yuyue[yuyuetime]}</td>
+                                        		<td scope="col" ><a href="?m=yuyue&c=index&a=edit&aid={$yuyue[aid]}">修改</a></td>
+                                        	</tr>
+								{/loop}
+                                        </tbody>
+                                    </table>
+									<br>
+									<p>
+									<button type="submit" onclick="document.mainForm.action='?m=yuyue&c=index&a=delete';return confirm('确定要删除所选记录？')" class="btn-login btn-cancel radius-three fl" tabindex="18" title="删除所选">删除所选</button>
+									</p>
+                  <div class="function-page fr">
+			             
+				<div class="page">
+					<!--
+					<span class="page-total">共<em>&nbsp;0&nbsp;</em>条记录&nbsp;&nbsp;1/1 页</span>
+					-->
+					{$pages}
+				</div> <!-- End page -->   
+		  
+			                  </div><!--E .function-page-->   
+                                </div><!--E .pcont-date-mod-->
+                                </form>
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     
+				   {template 'member', 'left'}
+
+
+
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   
+ 
+  {template 'member', 'footer'}

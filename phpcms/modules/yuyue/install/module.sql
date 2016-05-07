@@ -1,0 +1,1 @@
+INSERT INTO `phpcms_module` (`module`, `name`, `url`, `iscore`, `version`, `description`, `setting`, `listorder`, `disabled`, `installdate`, `updatedate`) VALUES ('yuyue', '预约取件', 'yuyue/', 0, '1.0', '预约取件', '', 0, 0, '2013-10-15', '2013-10-15');

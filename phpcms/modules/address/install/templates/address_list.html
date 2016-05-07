@@ -1,0 +1,93 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+  
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">地址簿</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>地址簿</h3>
+                                <div class="plink-mod">
+                                <a href="/index.php?m=address&c=index&a=add" class="p-btn radius-five" title="新增地址">新增地址</a>
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd">
+                           		<form action="" method="post" name="mainForm" id="mainForm">
+                           		  <input type="hidden" name="dosubmit" id="dosubmit" value="1"/>
+                           		<div class="pcont-date-mod">
+                                	<table class="table-date">
+                                    	<caption>地址列表</caption>
+                                        <thead>
+                                        	<tr>
+											    <th scope="col" ><input type="checkbox" name="selectid" ></th>
+                                        		<th scope="col" >姓名</th>
+                                                <th scope="col" >所在地区</th>
+                                                <th scope="col" >街道地址</th>
+												<th scope="col" >邮编</th>
+												<th scope="col" >类别</th>
+												<th scope="col" >电话/手机</th>
+                                        		<th scope="col" >操作</th>
+                                        	</tr>
+                                        </thead>
+                                        <tbody>
+								{loop $datas  $address}
+										<tr>
+												<td scope="col"><input type="checkbox" name="aid[]" value="{$address[aid]}"></td>
+                                        		<td scope="col" >{$address[truename]}</td>
+                                                <td scope="col" >{$address[province]}&nbsp;&nbsp;{$address[city]}</td>
+                                                <td scope="col" >{$address[address]}</td>
+												<td scope="col" >{$address[postcode]}</td>
+												<td scope="col" >{if $address[addresstype]==0}默认地址{elseif $address[addresstype]==1}收货人地址{elseif $address[addresstype]==2}发货人地址{/if}</td>
+												<td scope="col" >{$address[mobile]}</td>
+                                        		<td scope="col" ><a href="?m=address&c=index&a=edit&aid={$address[aid]}">修改</a></td>
+                                        	</tr>
+								{/loop}
+                                        </tbody>
+                                    </table>
+									<br>
+									<p>
+									<button type="submit" onclick="document.mainForm.action='?m=address&c=index&a=delete';return confirm('确定要删除所选记录？')" class="btn-login btn-cancel radius-three fl" tabindex="18" title="删除所选">删除所选</button>
+									</p>
+                  <div class="function-page fr">
+			             
+				<div class="page">
+					<!--
+					<span class="page-total">共<em>&nbsp;0&nbsp;</em>条记录&nbsp;&nbsp;1/1 页</span>
+					-->
+					{$pages}
+				</div> <!-- End page -->   
+		  
+			                  </div><!--E .function-page-->   
+                                </div><!--E .pcont-date-mod-->
+                                </form>
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     
+				   {template 'member', 'left'}
+
+
+
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   
+ 
+  {template 'member', 'footer'}

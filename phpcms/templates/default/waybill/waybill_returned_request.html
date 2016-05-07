@@ -1,0 +1,203 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/jscal2.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/border-radius.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/win2k.css"/>
+			<script type="text/javascript" src="{JS_PATH}calendar/calendar.js"></script>
+			<script type="text/javascript" src="{JS_PATH}calendar/lang/en.js"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+ <link href="/resource/css/table_form.css" rel="stylesheet" type="text/css" />
+
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">申请退货</span>
+            </div>
+             <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>申请退货</h3>
+								<div class="plink-mod">
+                               
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd">
+                            	<!--S 右边内容开始-->
+			                	<div class="bag-mod">
+							      
+							        <div id="tab-cont">
+							          <div id="tab-cont-v01"> 
+			                           		<div class="pcont-date-mod" style="padding-top:0;">
+												
+
+												<form action="index.php?m=waybill&c=index&a=waybill_returned_request&hid={$info[storageid]}&bid={$bid}" id="qmainForm" name="qmainForm" method="post" onsubmit="return submitchk();">
+												<input type="hidden" name="typeid" value="{$info[aid]}"/>
+												<input type="hidden" name="waybillid" value="{$info[waybillid]}"/>
+
+												<input type="hidden" name="waybill_goods_count" value="<?php echo count($allwaybill_goods);?>"/>
+											
+										<table border=1 width="99%" align="center"  cellpadding=3 cellspacing=3>
+					<tr >
+					<td align=center >&nbsp;</td>
+					<td align=center height="25px" >邮单号</td>
+					<td align=center ><?php echo L('goodsname')?></td>
+					<td align=center>重量</td>
+					<td align=center >数量</td>
+					<td align=center >价值</td>
+					
+					<td align=center ><?php echo L('remark')?></td>
+					</tr>
+					<?php
+					
+					foreach($allwaybill_goods as  $k=>$goods ){
+						echo '<tr class="goods__row">
+						<td align=center><input type="hidden" name="waybill_goods['.$goods['id'].'][id]" value="'.$goods['id'].'" ><input type="hidden" name="waybill_goods['.$goods['id'].'][weight]" value="'.$goods['weight'].'" ><input type="hidden" name="waybill_goods['.$goods['id'].'][amount]" value="'.$goods['amount'].'" ><input type="hidden" name="waybill_goods['.$goods['id'].'][price]" value="'.$goods['price'].'" ><input type="checkbox" name="waybill_goods_packageid[]" value="'.$goods['id'].'" ><input type="hidden" name="waybill_goods['.$goods['id'].'][packageid]" value="'.$goods['packageid'].'" ><input type="hidden" name="waybill_goods['.$goods['id'].'][goodsname]" value="'.$goods['goodsname'].'" ><input type="hidden" name="waybill_goods['.$goods['id'].'][returncode]" value="'.$goods['returncode'].'" ></td>
+			<td align="center" height=22>';
+			
+			echo $goods['expressname'].'/';
+			echo $goods['expressno'];
+			echo '<input id="expressno'.$goods['id'].'" name="waybill_goods['.$goods['id'].'][expressno]" type="hidden"  value="'.$goods['expressno'].'"/><input id="expressid'.$goods['id'].'" name="waybill_goods['.$goods['id'].'][expressid]" type="hidden"  value="'.$goods['expressid'].'"/><input id="expressname'.$goods['id'].'" name="waybill_goods['.$goods['id'].'][expressname]" type="hidden"  value="'.$goods['expressname'].'"/></td>
+			<td align="center">'.$goods['goodsname'].'</td>
+			<td align="center">'.$goods['weight'].'</td>
+			<td align="center">'.$goods['amount'].'</td>
+			<td align="center">'.$goods['price'].'</td>
+			<td align="center"><textarea id="returnremark'.$goods['id'].'" name="waybill_goods['.$goods['id'].'][returnremarkf]"   style="width:90%">'.$goods['returnremarkf'].'</textarea></td>
+            </tr>';
+					
+					}
+					
+					?>
+					</table><br/>
+
+												<div class="search-mod" style="width:98%; border:none;margin-top:0;padding-top:0;background:#EBF4FB;width:97%;font-size:14px;">
+											
+                           				
+										 <ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                <li>
+							                    运单号码：{$info[waybillid]}   				                    
+							                </li>
+										</ul>
+										<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                  <li>
+							                   备注：{$info[remark]}   	  				                   
+							                </li>
+							                
+							            </ul>
+
+										<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+											 <li>
+							                   收货地址：<input type="text" name="address" id="address" class="inp" size="70" value=" "/>   			                   
+							                </li></ul>
+										
+										
+										<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                  <li>
+							                   收货姓名：<input type="text" name="contactname" id="contactname" class="inp" size="30" value=""/>   	   				                   
+							                </li>
+							                
+							            </ul>
+										<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                  <li>
+							                   手机号码：<input type="text" name="mobile" id="mobile" class="inp" size="30" value=""/>    				                   
+							                </li>
+							                
+							            </ul>
+										
+
+											<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                  <li>
+							                  <center>
+											  <button style="float:right;margin-right:10px;" type="submit"  class="btn-login btn-cancel radius-three fl add_row" >提 交</button>
+
+											  </center> 				                   
+							                </li>
+							                
+							            </ul>
+											    
+																					  
+				                                </div><!--E .search-mod-->
+												<input type="hidden" name="dosubmit" value="1"/>
+												</form>
+													<br/>
+											
+			          
+																																							 
+									            
+			                                      <div class="message-none hidden">暂无最新消息</div>
+			                                </div><!--E .pcont-date-mod-->                          
+			                          </div><!--E #tab-cont-v01-->
+							        
+			                        </div><!--E #tab-cont-->                      
+			                    </div><!--E .bag-mod-->  
+                                <!--E 右边内容结束-->
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     {template 'member', 'left'}
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   
+ <script type="text/javascript">
+
+
+/*$(document).ready(function(){
+	$.formValidator.initConfig({autotip:true,formid:"qmainForm",onerror:function(msg){}});
+	
+	$("#address").formValidator({onshow:"请正确填写收货地址",onfocus:"请正确填写收货地址"}).inputValidator({min:3,onerror:"请正确填写收货地址"});
+	$("#contactname").formValidator({onshow:"请正确填写收货姓名",onfocus:"请正确填写收货姓名"}).inputValidator({min:1,onerror:"请正确填写收货姓名"});
+	$("#mobile").formValidator({onshow:"请正确填写手机号码",onfocus:"请正确填写手机号码"}).inputValidator({min:11,max:11,onerror:"请正确填写手机号码"});
+});
+*/
+
+function submitchk(){
+		
+		var str="";
+		$(":checkbox[name^='waybill_goods'][checked]").each(function(){
+			if(str=="")
+				str+=$(this).val();
+			else
+				str+=","+$(this).val();
+		});
+		
+		if(str==""){
+			dialog_alert("请勾选需要退货的包裹!");
+			return false;
+		}
+
+		if($("#address").val()==""){
+			dialog_alert("请正确填写收货地址!");
+			return false;
+		}
+
+		if($("#contactname").val()==""){
+			dialog_alert("请正确填写收货姓名!");
+			return false;
+		}
+
+		if($("#mobile").val()=="" || $("#mobile").val().length!=11){
+			dialog_alert("请正确填写手机号码!");
+			return false;
+		}
+			
+		return true;
+}
+
+</script>
+
+  {template 'member', 'footer'}

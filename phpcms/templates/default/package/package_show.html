@@ -1,0 +1,161 @@
+ {template 'member', 'header'}
+ <link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+
+        <!--E 导航-->   
+  
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">包裹取件</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>查看包裹信息</h3>
+                                <div class="plink-mod">
+                                	<a href="/index.php?m=package&c=index&a=init&hid={$an_info[storageid]}" class="p-btn radius-five" title="返回">返&nbsp;回</a>
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+				  {php $allship = $this->getallship();}
+				  <form action="/index.php?m=package&c=index&a=edit&hid={$an_info[storageid]}&aid={$aid}" id="mainForm" name="mainForm" method="post"  enctype="multipart/form-data"> 
+
+					<div class="pcont-mod-bd pro-info" >
+                                <div class="balance-info">添加时间：{date('Y-m-d H:i:s',$an_info[addtime])}</div><!--E .balance-info-->
+                                <span class="blank"></span>
+                                    
+								<div class="pro-info-v02">
+                                  
+                <ul class="pform-list tip-pform-list">
+                  
+                  <li style="clear:both;">
+                    <label for="postno" style="line-height:100%;">商家发货快递: </label>
+                    {$an_info[expressname]}
+                                                                     
+                </li> 
+				 <li style="clear:both;">
+                    <label for="expressno" style="line-height:100%;">邮单号: </label>
+                  
+					{$an_info[expressno]}  
+                   
+                </li>  
+				<li style="clear:both;">
+                    <label for="goodsname" style="line-height:100%;">物品名称: </label>
+                    {$an_info[goodsname]}                   
+                </li>
+                <li style="clear:both;">
+                    <label for="amount" style="line-height:100%;">物品数量(样/件/个): </label>
+                    {$an_info[totalamount]} 
+                                                                     
+                </li>
+				
+				 
+                
+                <li style="clear:both;">
+                    <label for="weight" style="line-height:100%;">物品重量(磅): </label>
+					 
+                   {$an_info[totalweight]}
+					
+                                                                  
+                </li>
+
+                  <li style="clear:both;">
+                    <label for="price" style="line-height:100%;">物品价值(美金): </label>
+                    {$an_info[totalprice]}
+                                                         
+                </li>
+
+				<li style="clear:both;">
+                    <label for="boxcount" style="line-height:100%;">箱数: </label>
+                    {$an_info[boxcount]}    
+                                                                     
+                </li>
+				<li style="clear:both;">
+                    <label for="producturl" style="line-height:100%;">长x宽x高 : </label>
+                    {$an_info[bill_long]}x{$an_info[bill_width]}x{$an_info[bill_height]}                                                   
+                </li>
+				
+				<!--<li>
+                    <label for="issecure">是否保险</label>
+                    <input id="issecure" name="package[issecure]"  style="ime-mode:disabled;" value="1"  type="checkbox" class="inp" {if $an_info[issecure]==1}checked{/if}>                               
+                </li>-->
+				
+				<li style="clear:both;">
+                    <label for="remark" style="line-height:100%;">备注: </label>
+                    {$an_info[remark]}   
+                                                                  
+                </li>
+				
+                </ul>
+                                </div><!--E .pro-info-v01-->
+                              
+                             <span class="blank22"></span>
+                          </div><!--E .pcont-mod-bd-->
+					 </form>
+		
+
+
+
+
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     
+				  
+				 {template 'member', 'left'}
+
+
+
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   
+  <script>
+  function newaddress(flag){
+	if(flag==0){
+		document.getElementById('new_package_address').style.display="";
+	}else{
+		document.getElementById('new_package_address').style.display="none";
+	}
+  }
+
+
+  $(document).ready(function(){
+	$.formValidator.initConfig({autotip:true,formid:"mainForm",onerror:function(msg){}});
+	$("#expressid").formValidator({onshow:"请选择商家发货快递",onfocus:"请选择商家发货快递"}).inputValidator({min:1,onerror:"请选择商家发货快递"});
+	$("#expressno").formValidator({onshow:"邮单号必填项",onfocus:"邮单号必填项"}).inputValidator({min:2,max:50,onerror:"邮单号不能为空!"}).ajaxValidator({
+						type : "post",
+						url  : "/index.php?m=package&c=index&a=public_check_expressno&hid={$an_info[storageid]}&aid={$aid}",
+						success: function(data){
+							if(data == "0"){
+								return true;
+							}else if(data == "1"){
+								return false;
+							}
+						},
+						onerror: "该邮单号已存在！"
+	});
+
+	$("#goodsname").formValidator({onshow:"物品名称必填项",onfocus:"物品名称必填项"}).inputValidator({min:1,onerror:"物品名称不能为空"});
+	$("#amount").formValidator({onshow:"物品数量必填项",onfocus:"物品数量必填项"}).inputValidator({min:1,onerror:"物品数量不能为空"});
+	$("#weight").formValidator({onshow:"物品重量必填项",onfocus:"物品重量必填项"}).inputValidator({min:1,onerror:"物品重量不能为空"});
+	$("#price").formValidator({onshow:"物品价值必填项",onfocus:"物品价值必填项"}).inputValidator({min:1,onerror:"物品价值不能为空"});
+});
+
+  </script>
+</div>
+</div>  
+  
+  
+  {template 'member', 'footer'}

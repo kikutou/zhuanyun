@@ -1,0 +1,1 @@
+INSERT INTO `phpcms_module` (`module`, `name`, `url`, `iscore`, `version`, `description`, `setting`, `listorder`, `disabled`, `installdate`, `updatedate`) VALUES ('service', '增值服务', 'service/', 0, '1.0', '增值服务', '', 0, 0, '2013-10-15', '2013-10-15');

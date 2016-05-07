@@ -1,0 +1,174 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title><?php echo $this->__all__urls[0]['register'];?>--<?php echo $this->wap['sitename'];?></title>
+<link href="/resource/wap/css/lists.css" rel="stylesheet" type="text/css" />
+<script src="/resource/wap/js/jquery.min.js" type="text/javascript"></script>
+<style>
+</style>
+</head>
+
+<body class="mode_webapp">
+<link href="/resource/wap/css/news3_.css" rel="stylesheet" type="text/css" />
+
+<div id="ui-header">
+<div class="fixed">
+<a class="ui-title" id="popmenu">会员注册</a>
+<a class="ui-btn-left_pre" href="javascript:history.go(-1);"></a><a class="ui-btn-right_home" href="{WAP_SITEURL}"></a>
+</div>
+</div>
+
+    
+
+
+ <input type="hidden" name="forward" id="forward" value="{php echo urlencode($_GET['forward']);}" />
+ 
+
+<div class="contact-info" style=" margin-top:10px;">
+<ul>
+
+<li>
+<table style="padding: 0; margin: 0; width: 100%;">
+<tbody>
+ <tr>
+<td width="80px"><label for="username" class="ui-input-text">用户名：</label></td>
+<td>
+<div class="ui-input-text"><input type="text" id="username" name="username" value="" placeholder="如：sunyl" class="ui-input-text" onKeyUp="this.value=this.value.replace(/[^0-9a-z_.]/gi,'')"></div>
+</td>
+<td width="80px"><label for="promotion" class="ui-input-text">推荐人：</label></td>
+<td>
+<div class="ui-input-text"><input type="text" id="promotion" name="promotion" value="" placeholder="" class="ui-input-text" onKeyUp="this.value=this.value.replace(/[^0-9a-z_.]/gi,'')"></div>
+</td>
+</tr>
+
+ <tr>
+ <td width="80px"><label for="firstname" class="ui-input-text">名：</label></td>
+<td>
+<div class="ui-input-text"><input type="text" id="firstname" name="firstname" value="" placeholder="如：shang" class="ui-input-text" onKeyUp="this.value=this.value.replace(/[^0-9a-z_.]/gi,'')"></div>
+</td>
+<td width="80px"><label for="lastname" class="ui-input-text">姓：</label></td>
+<td>
+<div class="ui-input-text"><input type="text" id="lastname" name="lastname" value="" placeholder="如：li" class="ui-input-text" onKeyUp="this.value=this.value.replace(/[^0-9a-z_.]/gi,'')"></div>
+</td>
+</tr>
+ 
+
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">邮箱：</label></td>
+<td colspan=3>
+<div class="ui-input-text"><input type="text" id="email" name="email" value="" placeholder="如：1027836596@qq.com" class="ui-input-text"></div>
+</td>
+</tr>
+
+<tr>
+<td width="80px"><label for="password" class="ui-input-text">密码：</label></td>
+<td colspan=3>
+<div class="ui-input-text"><input type="password" id="password" name="password" value="" placeholder="密码应该为6-20位之间" class="ui-input-text"></div>
+</td>
+</tr>
+<tr>
+<td width="80px"><label for="pwdconfirm" class="ui-input-text">确认密码：</label></td>
+<td colspan=3>
+<div class="ui-input-text"><input type="password" id="pwdconfirm" name="pwdconfirm" value="" placeholder="密码应该为6-20位之间" class="ui-input-text"></div>
+</td>
+</tr>
+
+
+</tbody></table>					
+</li>
+</ul>
+   
+    </div>
+
+    
+    
+    <div class="footReturn" style="margin-bottom:80px;">
+ <input type="submit" id="showcard"  class="submit_b"  value="注 册" style="width:100%"> 
+<div class="window" id="windowcenter">
+<div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+<div class="content">
+<div id="txt"></div>
+</div>
+</div>
+</div>
+    
+   
+     
+
+    
+    
+<script type="text/javascript"> 
+
+
+var oLay = document.getElementById("overlay");	
+$(document).ready(function () { 
+
+
+$("#showcard").click(function () { 
+	
+	var username =  document.getElementById('username').value;
+	var promotion =  document.getElementById('promotion').value;
+	var firstname =  document.getElementById('firstname').value;
+	var lastname =  document.getElementById('lastname').value;
+	var email =  document.getElementById('email').value;
+	var password =  document.getElementById('password').value;
+	var pwdconfirm =  document.getElementById('pwdconfirm').value;
+	
+	var forward =  document.getElementById('forward').value;
+	var submitData = {
+		username: username,
+		promotion: promotion,
+		firstname: firstname,
+		lastname: lastname,
+		email: email,
+		password: password,
+		pwdconfirm: pwdconfirm,
+		forward: forward,
+		dosubmit: "register"
+	};
+
+	$.post('/index.php?m=member&c=ajax_index&a=register&t='+Math.random(), submitData,
+	function(data) {
+		if (data.status) {
+		   //window.location.href =  data.url;
+		   alert(data.msg,data.url);
+		} else{
+			$('#parssword').addClass('err');
+			alert(data.msg,'');
+		}
+	},
+	"json");
+
+ 
+oLay.style.display = "block";
+}); 
+}); 
+
+$("#windowclosebutton").click(function () { 
+$("#windowcenter").slideUp(500);
+oLay.style.display = "none";
+
+}); 
+$("#alertclose").click(function () { 
+$("#windowcenter").slideUp(500);
+oLay.style.display = "none";
+
+}); 
+
+function alert(title,url){ 
+
+$("#windowcenter").slideToggle("slow"); 
+$("#txt").html(title);
+if(url!=''){setTimeout('$("#windowcenter").slideUp(500,function(){window.location.href ="'+url+'";})',4000);}else{
+	setTimeout('$("#windowcenter").slideUp(500)',4000);
+}
+} 
+</script>
+
+
+</body>
+</html>

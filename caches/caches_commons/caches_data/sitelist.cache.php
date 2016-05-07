@@ -1,0 +1,41 @@
+<?php
+return array (
+  1 => 
+  array (
+    'siteid' => '1',
+    'name' => '日本转运公司',
+    'dirname' => '',
+    'domain' => 'http://192.168.1.3/',
+    'site_title' => '日本转运_日本亚马逊_乐天_日本海淘首选日本转运公司_日本转运',
+    'keywords' => '日本转运,日淘转运公司,日亚海淘,日淘网站,日淘推荐,日本亚马逊,日本海淘,日本转运',
+    'description' => '日本转运  日本海淘转运服务，快速响应的客服团队，便利的使用流程, 安全高效的转运服务,公平合理的收费，六星级海淘转运体验！',
+    'release_point' => '',
+    'default_style' => 'default',
+    'template' => 'default',
+    'setting' => 'array (
+  \'upload_maxsize\' => \'2048\',
+  \'upload_allowext\' => \'jpg|jpeg|gif|bmp|png|doc|docx|xls|xlsx|ppt|pptx|pdf|txt|rar|zip|swf\',
+  \'watermark_enable\' => \'0\',
+  \'watermark_minwidth\' => \'300\',
+  \'watermark_minheight\' => \'300\',
+  \'watermark_img\' => \'statics/images/water//mark.png\',
+  \'watermark_pct\' => \'85\',
+  \'watermark_quality\' => \'80\',
+  \'watermark_pos\' => \'9\',
+)',
+    'uuid' => 'f3bde7a4-7fa5-1031-b4d0-33cd69a6062b',
+    'billprefix' => 'JP',
+    'package_overday' => '0160',
+    'qqno' => '81179403|在线客服,81179403| 在线客服',
+    'introducer' => '5',
+    'regperson' => '5',
+    'autofinsh' => '14',
+    'package_overdayfee' => '1.00',
+    'public_tel' => '日本：+81-888888888 中国：0755-88888888',
+    'wbinfocustom' => '1',
+    'copyright' => '© 2014日本转运公司 All rights reserved.',
+    'logo' => '/uploadfile/2015/0731/20150731035943734.png',
+    'url' => 'http://192.168.1.3/',
+  ),
+);
+?>

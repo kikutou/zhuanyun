@@ -1,0 +1,112 @@
+﻿.route-pic{position: relative; margin-bottom: 15px; min-height:50px;}
+.route-pic img{display: block; width: 100%;}
+.route-pic a{position: absolute; bottom: 0; right: 0; background: rgba(0,0,0,0.5); font-size: 1.8rem; color: #fff; padding: 3px 20px;}
+
+.route-info{margin: 0 15px 15px; position: relative; background: #fff; border: 1px solid #e4e4e5;}
+.route-day{position: absolute; top:-5px; right: 10px; display: block; width: 100px; height:40px; line-height:40px; background: url("../images/route/disc-bg.png") center center no-repeat; background-size:contain; font-size: 20px; color: #fff; text-align: center;}
+.route-info h2{font-size:30px; font-weight: normal; color: #333; padding:10px 115px 15px 20px; margin-bottom:15px; border-bottom:1px solid #e5e5e5;}
+.route-lijian{color:#fff; font-size:20px; background:#99cc01; display:inline-block; position:relative; top:-2px; left:8px; padding:0 10px;}
+
+.route-intro{padding: 0 20px 12px;}
+.route-style{background:url("../images/route/style.png") 0 3px no-repeat;}
+.route-date{background:url("../images/route/time.png") 0 3px no-repeat;}
+.route-xingcheng,.route-loc{background:url("../images/route/xingcheng.png") 0 3px no-repeat;}
+.route-intro li{color:#777; font-size:22px; margin-bottom:5px; padding: 0 10px 0 35px; background-size:auto 24px;}
+
+.other-info,.route-youhui{margin:0 15px;}
+.other-info a{margin-bottom:15px; font-size:22px; color:#555;}
+.other-info p{border:1px solid #e3e3e3;  background-size:auto 22px;}
+.other-info a p:first-of-type{box-flex:1; -moz-box-flex:1; -webkit-box-flex:1; border-right:none; padding:15px 15px 15px 48px;}
+.other-info a p:last-of-type{padding:15px 40px 15px 15px; background:#fff url("../images/route/turn-m.png") 117px 21px no-repeat; background-size:auto 20px;}
+.route-tel{background:#fff url("../images/route/phone.png") 20px 17px no-repeat;}
+.route-geo{background:#fff url("../images/route/bus.png")  20px 20px no-repeat;}
+.route-tuanqi{background:#fff url("../images/route/tuanqi.png")  20px 19px no-repeat;}
+
+.route-loc{background-position: 20px 19px;background-color:#fff;}
+
+.route-youhui{border:1px solid #e3e3e3; background:#fff; padding:20px; margin-bottom:15px;}
+.route-youhui h2{font-size:24px; font-weight:normal; color:#00b9ff; background: url("../images/route/youhui.png") 0px 3px no-repeat; padding:0px 0 15px 56px; margin-bottom:5px;}
+.route-youhui article{border-bottom:1px dashed #ccc; padding:20px 10px 20px 20px; background:url("../images/route/turn-s.png") 0 25px no-repeat;}
+.route-youhui article:first-of-type{border-top:1px dashed #ccc;}
+.route-youhui p{font-size:22px;}
+.route-youhui p:nth-child(odd){box-flex:1; -moz-box-flex:1; -webkit-box-flex:1;}
+.route-youhui p:nth-child(even){width:80px; color:#f60;}
+
+.title-box{font-size:30px; font-weight:normal; margin-bottom:15px; border-left:1px solid #c0cedc;}
+.title-box span{display:block; color:#008ae1; padding: 10px 50px; border:1px solid #c0cedc;}
+.title-box span:first-of-type{background:#fff; border-right:none; border-left:none; border-bottom:4px solid #008ae1; position:relative;}
+.title-box span:last-of-type{box-flex:1; -moz-box-flex:1; -webkit-box-flex:1; box-shadow:0 1px 0.5em #ddd; background:#f5f7fa;}
+
+.day-line{margin:0 20px; /*border-left:6px solid #c0cedc;*/}
+.day-line div{/*border-left:1px solid #fff; padding:15px 0 15px 15px;*/ font-size:22px!important; text-align:justify!important; line-height:1.8!important;}
+.day-line p{font-size:22px!important; text-align:justify!important; line-height:1.8!important; margin-bottom:5px;}
+.day-line img{display:block; width:100%; padding:5px 0;}
+p.the-day{background:#00b9ff; display:inline-block; position:relative; left:-15px; color:#fff; padding:2px 20px; margin-bottom:0;}
+.the-day span{display:block; height:31px; width:19px; background:url("../images/route/xingcheng-bg.png") center center no-repeat; background-size:contain; position:absolute; right:-17px; top:0;}
+.day-line:last-of-type{margin-bottom:25px;}
+.day-line:last-of-type div{padding-bottom:0;}
+
+.cont-box{padding:20px; padding-top:0;font-size:22px!important; text-align:justify!important; line-height:1.8!important;}
+.cont-box p{font-size:22px!important; text-align:justify!important; line-height:1.8!important;}
+
+.comment-list article{padding:20px 25px; border-bottom: 1px solid #c4cfdc; border-top: 1px solid #fff;}
+.comment-list article:first-of-type{border-top: none;}
+.comment-pic{display: block;  width: 100px;}
+.comment-pic img{display: block; width: 100px; height:100px; border-radius: 50px;}
+.comment-info{box-flex:1; -moz-box-flex:1; -webkit-box-flex:1; padding-left:20px;}
+.comment-info h4{font-size:26px; color: #008ae1; font-weight: normal; margin-bottom: 5px;}
+.comment-info time{color: #999; overflow: hidden; margin-left: 10px; font-size:26px;}
+.comment-info p{font-size:26px; text-align: justify;}
+.comments{border-bottom: 1px solid #fff; margin-bottom: 15px;}
+.more-comment{background:-webkit-gradient(linear,left top,left bottom,from(#f5f7fa),to(#dfe5ed)); background:-moz-linear-gradient(top,#f5f7fa,#dfe5ed); display: block; width: 100%; text-align: center; font-size:30px; color: #33a1e7; border-top: 1px solid #fff; border-bottom: 1px solid #c4cfdc; padding: 10px 0; margin-bottom:30px;}
+
+.route-buy{position: fixed; z-index:990; width: 100%; left: 0px; bottom: 0px; background: #f9f9f9; padding:12px 10px; box-shadow: 0 -1px 0.5em #ccc;}
+.buy-now{position: absolute; right:0; bottom:4px; color: #fff; padding:15px 15px 15px 30px; font-size:30px; background:#f60 url("../images/route/buy-btn.gif") left center no-repeat; background-size:auto 72px;}
+.buy-over{background:#999 url("../images/tuan/trigger-over.gif") left center no-repeat; background-size:contain; color:#ddd;}
+.route-price{padding:10px 20px;}
+.route-price span{margin-right: 20px;}
+.route-price span:first-of-type{font-size:40px; color:#f60; position:relative; top:5px;}
+/*.route-price span:last-of-type{color:#999;  font-size:24px;}*/
+
+.lvxingshe-intro{display:block; margin:0 10px 75px; padding:20px; background:#fff; border:1px solid #e3e3e3;}
+.lvxingshe-intro figure{width:145px; height:125px; padding-right:20px;}
+.lvxingshe-intro img{width:125px; height:125px; border:1px solid #ccc;}
+.lvxingshe-info{box-flex:1; -moz-box-flex:1; -webkit-box-flex:1;}
+.lvxingshe-info h2{font-size:30px; font-weight:normal; text-align:justify; color:#00b9ff; background:url("../images/route/lvxingshe.gif") 0 5px no-repeat; background-size:auto 30px; padding-left:38px; margin-bottom:20px;}
+.lvxingshe-info p,.jianjie-box{font-size:22px; line-height:1.8; color:#777; text-align:justify;}
+.jianjie-box{padding-top:20px;}
+
+/*浮动框*/
+.float-box{position:absolute; top:80px; left:0; width:100%; height:100%; z-index:998; background:#ebf0f6; padding-top:15px;}
+.city-box,.tuanqi-box,.freeTrip-box{position:absolute; top:80px; left:0; width:100%;}
+@media screen and (max-width:700px) and (min-width:640px)
+{
+    .float-box{top:72px;}
+}
+@media screen and (max-width:640px)
+{
+    .float-box{top:64px;}
+}
+.box-title{font-size:24px; background:#c5cfdb; margin-bottom:15px; padding:5px 25px;}
+.begin-city{margin-bottom:15px;}
+.begin-city li{font-size:18px; padding:10px 35px; border-bottom:1px solid #ddd;}
+.begin-city li:last-of-type{border-bottom:none;}
+
+/*团期选择*/
+.tuanqi-box span{display:block; float:left; padding:10px;}
+.tuan-time span{padding:24px 10px;}
+.list-top span:nth-of-type(1),.tuan-time span:nth-of-type(1),.list-top span:nth-of-type(2),.tuan-time span:nth-of-type(2){display:none;}
+.list-top span:nth-of-type(3),.tuan-time span:nth-of-type(3){width:30%; padding-left:25px;}
+.list-top span:nth-of-type(4),.tuan-time span:nth-of-type(4){width:40%;}
+.list-top span:nth-of-type(5),.tuan-time span:nth-of-type(5){width:30%; padding-right:25px;}
+.list-top{background:#c4cfdc; font-size:20px;}
+.tuan-time{font-size:20px; color:#555;}
+.tuan-time span:nth-child(3){color:#f60;}
+.tuan-time{display:block; width:100%; border-top:1px solid #fff; border-bottom:1px solid #c4cfdc;}
+
+/*自由行团期选择*/
+.freeTrip-box .box-title span{font-size:18px; color:#999;}
+.time-title{padding:5px; font-size:22px; margin:0 20px 10px; border-bottom:1px dashed #ccc;}
+.day-box{margin:0 20px 15px; padding:10px; background:#fff;}
+.day-box a{font-size:18px; float:left; display:block; width:14%; padding:8px 0; text-align:center; color:#555;}
+

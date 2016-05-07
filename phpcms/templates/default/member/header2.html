@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta http-equiv="pragma" content="no-cache"> 
+ <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+ <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+ <meta http-equiv="expires" content="0">
+
+ <title>{L('member','','member').L('manage_center')}</title>
+ <meta name="keywords" content="{$SEO['keyword']}">
+ <meta name="description" content="{$SEO['description']}">
+<link type="text/css" rel="stylesheet" href="{CSS_PATH}global.css" media="screen" />
+<link type="text/css" rel="stylesheet" href="{CSS_PATH}profile.css" media="screen" />
+<link rel="stylesheet" href="{CSS_PATH}style.css" type="text/css" media="all" />
+  
+  <!--[if lt IE 9]>
+  <script type="text/javascript" src="{JS_PATH}html5.js"></script>
+  <![endif]-->
+  <!--[if IE 6]>
+    <script type="text/javascript" src="{JS_PATH}CC_belatedPNG.js" ></script>
+    <script type="text/javascript">CC_belatedPNG.fix('img,.h-btn,.nav');</script>
+  <![endif]-->  
+  <script type="text/javascript" src="{JS_PATH}jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" src="{JS_PATH}common.js"></script>
+  <script type="text/javascript" src="{JS_PATH}util.js"></script>
+  <!--
+  <script type="text/javascript" src="{JS_PATH}Validform_v5.2.1_min.js"></script>
+-->
+{if isset($show_validator)}
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+{/if}
+   <link href="/favicon.ico" rel="shortcut icon">
+ 
+ 
+<script language="javascript"> 
+function copyToClipBoard(clipBoardContent){ 
+ try {    
+	window.clipboardData.setData("Text",clipBoardContent); 
+	success("复制成功!"); 
+     } catch (e) {    
+    dialog_alert("你的浏器览不支持剪贴板操作，请自行复制！");
+   }
+} 
+</script> 
+</head>
+<body id="channel1">
+	<div class="wrap">
+    	<!--S 头部-->
+    	
+ 
+ 
+   <script language="javascript"> 
+function setHomePage1(o){ 
+ try {    
+	o.style.behavior='url(#default#homepage)';
+	o.setHomePage('{siteurl($siteid)}/');
+     } catch (e) {    
+    dialog_alert("你的浏器览不支持设为首页操作，请自行设置!");
+   }
+} 
+ 
+function addFavorite(){ 
+ try {    
+	window.external.AddFavorite("{siteurl($siteid)}/","讯立快运  - 您的私人快运公司");
+     } catch (e) {    
+    dialog_alert("你的浏器览不支持收藏操作，请收藏!");
+   }
+} 
+</script> 
+ {php $sinfo=siteinfo(1);}
+ 
+	<!--S 头部-->
+    	<header class="header">
+        	<div class="layout header-mod clearfix">
+            	<!--S 头部栏目-->
+            	<div class="top-nav">
+                	<ul class="top-nList clearfix">
+                       <li>
+						<script type="text/javascript">document.write('<iframe src="{APP_PATH}index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid={get_siteid()}" allowTransparency="true"  width="180" height="24" frameborder="0" scrolling="no"></iframe>')</script>
+						</li>
+						
+                        <li><a href="/web/profile/message" class="h-nMessage radius-three">消息<em>0</em></a></li>
+                        
+                        <li class="h-nLine">|</li>
+                        <li><a href="javascript:void(0)" onclick="setHomePage1(this)">设为首页</a></li>
+                        <li class="h-nLine">|</li>
+                        <li><a href="javascript:void(0)" onclick="addFavorite()">添加收藏</a></li>
+                    </ul>
+                </div>
+                <!--E 头部栏目-->
+            	<h1 class="fl logo"><img src="{$sinfo[logo]}" border=0/></h1>
+                	
+					<div style="float:right;padding-top:58px; font-size:14px;">热线电话:{$sinfo[public_tel]}</div>
+          	
+            </div><!--E .header-mod-->
+        </header>
+        <!--E 头部-->
+        <!--S 导航-->
+        <div class="nav">
+        	<div class="nav-mod radius-three">
+            	<div class="nav-main">
+                	<ul class="nav-mList clearfix" id="J_NavList">
+                    	<li data-id="0">
+                        	<a href="{siteurl($siteid)}" title="首页"  >首页</a>
+                        </li>
+						{pc:content action="category" catid="0" num="10"  siteid="$siteid" order="listorder ASC"}
+				{loop $data $r}
+				{if $r[catid]!=8}
+                    	<li data-id="{$r[catid]}"  {if $r[catid]==14}class="p-current"{else}onmouseover="this.className='p-current'" onmouseout="this.className=''"{/if}>
+                        	<a href="{$r[url]}" title="{$r[catname]}">{$r[catname]}</a>
+                                                  
+                        </li>
+                 {/if}
+                {/loop}
+				{/pc}   	
+                    </ul>
+                </div><!--E .main-nav-->
+            </div><!--E .nav-mod-->
+        </div>
+        <!--E 导航-->  
+		 

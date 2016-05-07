@@ -1,0 +1,110 @@
+{template "content","header"}   
+ 
+        <!--S 内容-->
+ 		<article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em><a href="{siteurl($siteid)}">首页</a><span> &gt; </span>
+                {catpos($catid)} 列表
+            </div>
+            <!--E 面包屑-->                    	
+        	<!--S 内容模块-->
+        	<!--S 内容模块-->
+        	<div class="content-mod">
+            	<div class="layout sub-layout radius-five grid-s15m0">
+			      <div class="col-main">
+			       	 <div class="main-wrap" {if $catid!=12 && $catid!=13 && $catid!=25}style="margin-left:0;"{else}style="margin-left:0;"{/if}>
+					  	<div class="mod c-mod">
+                        	
+                            <form action="http://www.jiuhe3000.com:80/web/news" name="mainForm" id="mainForm">
+                            	 <input type="hidden" name="pageNo" id="pageNo"  value="1" />
+      							 <input type="hidden" name="pageSize" id="pageSize"  value="10" />
+								 <style type="text/css">
+								a.n{color:#787878;}
+								a:hover.n{color:red;}
+								</style>
+	                    	<div class="mod-bd" style="padding-top:0px;">
+								<ul class="s-news-list">
+								  {pc:content action="lists" catid="$catid" num="20" order="inputtime desC" page="$page"}
+								  {loop $data $r}
+                                	<li style="background: none; padding-left:0; padding-top:8px; height: 130px; line-height:normal;">
+                                    	<img src="{thumb($r[thumb],150,105)}" width="150" height="105" alt="{$r[title]}" style="float:left; padding-right:15px; padding-top:8px">
+                                        	<a href="{$r[url]}" title="{$r[title]}" style="float:none;"><font style="font-weight:bold; line-height:28px; font-size:16px; ">{str_cut($r[title],60)}</font></a>
+                                            <br><a class="n"  href="{$r[url]}" title="{$r[title]}" style="float:none;"><font style=" line-height:18px;">{str_cut($r[description],300)}...</font></a>
+											<br><br>  <span>{date('Y-m-d',$r[inputtime])}</span>
+                                    </li>
+								
+                                	{/loop}
+								
+                                </ul>
+					              <div class="function-page fr">
+					              
+	<script type="text/javascript">
+	function goUrl(pageNo,pageSize){
+    	document.getElementById("pageNo").value=pageNo;
+    	document.getElementById("pageSize").value=pageSize;
+    	document.getElementById("mainForm").submit();
+	}
+	</script>
+ 
+ 
+ 
+ 
+	<div class="page">
+      <!--
+	  <strong class="page-cur">1</strong>
+	  <a href="javascript:goUrl('2','10')">2</a>
+	  <a href="javascript:goUrl('2','10');" title="下一页" >下一页</a> 
+	  <a href="javascript:goUrl('2','10');"  title="尾页"  >尾页</a>
+		<span class="page-total">共<em>&nbsp;14&nbsp;</em>条记录&nbsp;&nbsp;1/2 页</span>
+		-->
+		{$pages}
+		</div> <!-- End page -->   
+		  
+					              
+					         
+					              </div><!--E .function-page-->                                 
+	                        </div><!--E .mod-bd-->
+	                        </form>
+	                    </div><!--E .mod-->
+                     </div>
+			      </div><!--E .col-main->
+
+				{if $catid==12 || $catid==13 || $catid==25}
+			      <div class="col-sub" >
+				  
+                  	<div class="sub-nav-mod">
+                    	<ul>
+						
+							{pc:content action="category" catid="0" num="100"  siteid="$siteid" order="listorder ASC"}
+							{loop $data $r}
+							{if $r[catid]==12 || $r[catid]==13 || $r[catid]==25}
+                        	{if $r[catid]!=$catid}
+							{pc:content action="lists" catid="$r[catid]" num="100"  siteid="$siteid" order="listorder ASC" return="contentdata"}
+							
+							<li><a href="{$r[url]}" title="{$r[catname]}" {if $contentdata}class="current"{/if}>{$r[catname]}</a></li>
+							
+							{if $r[catid]!=10}
+							{loop $contentdata $row}
+							<li><a href="{$row[url]}" title="{$row[title]}"  style="padding-left:0;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$row[title]}</a></li>
+							{/loop}
+							{/if}
+							{/pc}
+
+							{/if}{/if}
+                        	{/loop}
+							{/pc}
+                        </ul>
+                    </div><!--E .sub-nav-mod->
+					
+ 
+                   
+                  </div><!--E .col-sub->
+				  {/if}
+                </div><!--E .grid-s19m0-->           
+            </div>
+            <!--E 内容模块-->     
+            <!--E 内容模块-->     
+        </article>
+        <!--E 内容-->
+{template "content","footer"}

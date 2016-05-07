@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>print</title>
+<style type="text/css">
+.divw
+{
+	width:800px;
+}
+.lefttop
+{
+	float:left;
+	height:120px;
+}
+.left1
+{
+	float:left;
+	width:350px;
+}
+.left2
+{
+	float:left;
+	width:50px;
+}
+.left3
+{
+	float:left;
+	width:400px;
+}
+.tab
+{
+	border-left:#000 1px solid;
+	border-top:#000 1px solid;
+}
+.tab td
+{
+	border-bottom:#000 1px solid;
+	border-right:#000 1px solid;
+	padding-left:8px;
+	font:"微软雅黑";
+	font-size:12px;
+	height:50px;
+	line-height:15px;
+}
+.tab2
+{
+	border-left:#000 1px solid;
+	
+}
+.tab2 td
+{
+	border-bottom:#000 1px solid;
+	border-right:#000 1px solid;
+	padding-left:8px;
+	font:"微软雅黑";
+	font-size:12px;
+	height:30px;
+
+}
+</style>
+</head>
+
+<body>
+<?php 
+
+		$sinfos= siteinfo(1);
+					
+		$takeaddress=str_replace('|','&nbsp;&nbsp;',$info['takeaddressname']);
+	
+		$sendaddress=str_replace('|','&nbsp;&nbsp;',$info['sendaddressname']);
+				
+						
+		$takeaddr=explode('|',$info['takeaddressname']);
+		$sendaddr=explode('|',$info['sendaddressname']);
+					
+	?>
+<div class="divw" style="height:120px">
+<div class="lefttop" style="width:250px; line-height:120px;" >
+<img src="/resource/images/logo.png"/>
+</div>
+<div class="lefttop" style="width:150px;"><br/><br/>
++1(626)691-8885
+<br/><br/>
+www.cs-ex.com
+</div>
+<div class="lefttop"  style="width:400px; line-height:120px; text-align:center;">
+<img src="?m=barcode&c=admin_barcode&a=init&hid=<?php echo $info['storageid'];?>?&data=<?php echo $info['waybillid'];?>" width="220"/>
+</div>
+</div>
+
+<div class="divw">
+  <table class="tab" width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td style="width:395px">Sender/寄件人姓名：<?php echo $sendaddr[0];?></td>
+      <td rowspan="3"  style="width:15px">&nbsp;</td>
+      <td>Receiver/收件人姓名：<?php echo $takeaddr[0];?></td>
+    </tr>
+    <tr>
+      <td style="">Address/地址：<?php echo $sendaddr[2].$sendaddr[3].$sendaddr[4].$sendaddr[5].$sendaddr[6];?>&nbsp;<?php echo $sendaddr[6];?></td>
+      <td>Address/收件人地址：<?php echo $takeaddr[2].$takeaddr[3].$takeaddr[4].$takeaddr[5].$takeaddr[6];?>&nbsp;<?php echo $takeaddr[6];?></td>
+    </tr>
+    <tr>
+      <td style="width:390px">Phone/电话：<?php echo $sendaddr[1];?></td>
+      <td>Phone/电话：<?php echo $takeaddr[1];?></td>
+    </tr>
+  </table>
+</div>
+<div class="divw">
+<table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="width:200px;">Qty/件数：<?php echo $info['totalamount'];?></td>
+    <td colspan="3" rowspan="3" style="vertical-align:top"><br />
+Detailed list items/物品详细清单：<?php echo $info['goodsname'];?></td>
+    </tr>
+  <tr>
+    <td style="width:200px;">Weight /重量：<?php echo $info['totalweight'];?></td>
+    </tr>
+  <tr>
+    <td style="width:200px;">declaration price/申报价格：<?php echo $info['totalprice'];?></td>
+    </tr>
+  <tr>
+    <td style="width:200px;">Freight/运费:</td>
+    <td style="width:200px;">insurance/保险费：</td>
+    <td style="width:190px;">Other/其他费用：</td>
+    <td style="width:180px;">Total freight/总运费：</td>
+
+  </tr>
+</table>
+</div>
+
+<div class="divw">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td style="text-align:center; vertical-align:middle; width:500px; height:120px; border-left:#000 1px solid; border-bottom:#000 1px solid"><img src="?m=barcode&c=admin_barcode&a=init&hid=<?php echo $info['storageid'];?>?&data=<?php echo $info['waybillid'];?>" width="90%" height="90" /></td>
+      <td style=" vertical-align: top;; width:300px; border-left:#000 1px solid; border-bottom:#000 1px solid; border-right:#000 1px solid;font-size:12px;">&nbsp;&nbsp;Receiver signature/收件人签名:</td>
+    </tr>
+  </table>
+</div>
+
+
+<div class="divw" style="border-bottom:#000 1px solid">
+&nbsp;<br/><br/><br/><br/>
+</div>
+<div class="divw" style="line-height:30px;">
+  <br/>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="5"><span class="divw" style="line-height:25px; font-weight:bold">总单号: <?php echo $info['waybillid'];?></span></td>
+  </tr>
+  <tr>
+    <td colspan="5"><span class="divw" style="line-height:25px;">发 货 地：<?php echo $info['sendname'];?>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收 货 地：<?php echo $info['takename'];?> </span></td>
+  </tr>
+  <tr>
+    <td colspan="5"><span class="divw" style="line-height:25px;">所在仓库：<?php echo $info['storagename'];?>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;转运方式： <?php echo $info['shippingname'];?></span></td>
+  </tr>
+  <tr>
+    <td colspan="5"><span class="divw" style="line-height:25px;">用 户 名：<?php echo $info['username'];?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;五子母标识： <?php echo $info['takeflag'];?></span></td>
+  </tr>
+  <tr>
+    <td colspan="5"><span class="divw" style="line-height:25px;">备注：<?php echo $info['remark'];?></span></td>
+  </tr>
+  <tr>
+    <td style="width:170px;">快递邮单号</td>
+    <td style="width:300px;">名称</td>
+    <td style="width:110px;">数量</td>
+    <td style="width:110px;">价值</td>
+    <td style="width:110px;">重量</td>
+  </tr>
+  <tr>
+    <td><?php echo $info['expressname'];?>/<?php echo $info['expressno'];?></td>
+    <td><?php echo $info['goodsname'];?></td>
+    <td><?php echo $info['totalamount'];?></td>
+    <td><?php echo $info['totalprice'];?></td>
+    <td><?php echo $info['totalweight'];?></td>
+  </tr>
+  <tr>
+    <td colspan="5">物品总数量：<?php echo $info['totalamount'];?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;物品总价值：<?php echo $info['totalprice'];?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;物品总重量：<?php echo $info['totalweight'];?></td>
+  </tr>
+  <tr>
+    <td colspan="5">增值服务明细： </td>
+  </tr>
+  <tr>
+    <td colspan="5">
+
+<?php
+
+$allsrv=string2array($info['addvalues']);
+						foreach($allsrv as  $srv){
+						
+							echo $srv['title'];
+
+							if ($srv[servicetypeid]==13){
+								$srv['price'] = $info['otherfee'];
+							}
+							
+							echo '<font color="#FF953F">'.$srv['currencyname'].$srv['price'].'</font>/';
+								
+							echo $srv['unitname']; 
+
+						}
+
+?>
+</td>
+  </tr>
+  <tr>
+    <td colspan="5">分箱或合箱显示要求，是否是特殊服务，特殊服务客户填写的备注在这里显示。 </td>
+  </tr>
+  <tr>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+ 
+  </table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title><?php echo $this->__all__urls[0]['package'];?>--<?php echo $this->wap['sitename'];?></title>
+
+<link href="/resource/wap/css/lists.css" rel="stylesheet" type="text/css" />
+
+<script src="/resource/wap/js/jquery.min.js" type="text/javascript"></script>
+<style>
+</style>
+</head>
+
+<body class="mode_webapp">
+
+{template "wap","header_min"}
+
+
+
+<link href="/resource/wap/css/news3_.css" rel="stylesheet" type="text/css" />
+
+<div id="ui-header">
+<div class="fixed">
+<a class="ui-title" id="popmenu"><?php echo $this->__all__urls[0]['packageinfo'];?></a>
+<a class="ui-btn-left_pre" href="javascript:history.go(-1);"></a><a class="ui-btn-right_home" href="{WAP_SITEURL}"></a>
+</div>
+</div>
+
+    
+{if !$__is__userinfo__full[value]}
+
+
+ <input type="hidden" name="forward" id="forward" value="{php echo urlencode($_GET['forward']);}" />
+ 
+
+<div class="contact-info" style=" margin-top:10px;">
+<ul>
+
+<li>
+<table style="padding: 0; margin: 0; width: 100%;">
+<tbody>
+
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">发货仓库：</label></td>
+<td >
+{php $all___warehouse__lists = $this->get_warehouse__lists();}
+
+
+<section class="container">
+  <div class="dropdown" style="margin:0;">
+    <select  id="storageid" name="info[storageid]"  class="dropdown-select">
+      <option value="0">请选择仓库</option>
+      {loop $all___warehouse__lists $row}
+		<option value="{$row[aid]}" {if $an_info['storageid']==$row[aid]}selected{/if}>{$row[title]}</option>
+		{/loop}
+    </select>
+  </div>
+</section>
+
+
+</td>
+</tr>
+
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">发货快递：</label></td>
+<td >{php $allship = $this->getallship();}
+
+<section class="container">
+  <div class="dropdown" style="margin:0;">
+    <select  name="package[expressid]"  id="expressid"  class="dropdown-select" onchange="javascript:document.getElementById('expressname').value=document.getElementById('expressid').options[document.getElementById('expressid').selectedIndex].text;">
+      <option value="0">请选择快递</option>
+     {loop $allship $v}
+		<option value="{$v[aid]}">{$v[title]}</option>	
+		{/loop}
+    </select>
+  </div>
+</section>
+     
+    <input id="expressname" name="package[expressname]"   type="hidden">
+</td>
+</tr>
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">邮单号：</label></td>
+<td >
+<div class="ui-input-text"><input type="text"  id="expressno" name="package[expressno]"  value="" placeholder="如 2039480045" class="ui-input-text" onKeyUp="this.value=this.value.replace(/[^0-9a-z]/gi,'')"></div>
+</td>
+</tr>
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">物品名称：</label></td>
+<td >
+<div class="ui-input-text"><input type="text" id="goodsname" name="package[goodsname]"  value="" placeholder="如 手机" class="ui-input-text"></div>
+</td>
+</tr>
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">物品数量：</label></td>
+<td >
+<div class="ui-input-text"><input type="text" id="amount" name="package[amount]"  value="" placeholder="样/件/个" class="ui-input-text" onKeyUp="this.value=this.value.replace(/[^0-9]/gi,'')" ></div>
+</td>
+</tr>
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">物品重量：</label></td>
+<td >
+<div class="ui-input-text"><input type="text" id="weight" name="package[weight]"  value=""  placeholder="磅" class="ui-input-text" onKeyUp="this.value=this.value.replace(/[^0-9.]/gi,'')"></div>
+</td>
+</tr>
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">物品价值：</label></td>
+<td >
+<div class="ui-input-text"><input type="text" id="price" name="package[price]"  value="" placeholder="美金" class="ui-input-text" onKeyUp="this.value=this.value.replace(/[^0-9.]/gi,'')" ></div>
+</td>
+</tr>
+
+
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">箱数：</label></td>
+<td >
+<div class="ui-input-text"><input type="text" id="boxcount" name="package[boxcount]"  value="" placeholder="箱数" class="ui-input-text" onKeyUp="this.value=this.value.replace(/[^0-9]/gi,'')" ></div>
+</td>
+</tr>
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">商品URL：</label></td>
+<td >
+<div class="ui-input-text"><input type="text" id="producturl" name="package[producturl]"  value="" placeholder="商品URL" class="ui-input-text"  ></div>
+</td>
+</tr>
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">商家名称：</label></td>
+<td >
+<div class="ui-input-text"><input type="text" id="sellername" name="package[sellername]"  value="" placeholder="商家名称" class="ui-input-text"  ></div>
+</td>
+</tr>
+
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">备注：</label></td>
+<td >
+ <textarea id="remark" name="package[remark]"   class="ui-input-text"></textarea>  
+</td>
+</tr>
+
+</tbody></table>					
+</li>
+</ul>
+   
+    </div>
+
+    
+    
+    <div class="footReturn" style="margin-bottom:80px;">
+	
+	 <input type="submit" id="showcard"  class="submit_b"  value="保 存" style="width:100%"> 
+	 
+<div class="window" id="windowcenter">
+<div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+<div class="content">
+<div id="txt"></div>
+</div>
+</div>
+</div>
+    
+<script type="text/javascript"> 
+
+
+var oLay = document.getElementById("overlay");	
+$(document).ready(function () { 
+
+
+$("#showcard").click(function () { 
+	
+	var storageid =  $('#storageid').val();
+	var expressid =  $('#expressid').val();
+	var expressname =  document.getElementById('expressname').value;
+	var expressno =  document.getElementById('expressno').value;
+	var goodsname =  document.getElementById('goodsname').value;
+	var amount =  document.getElementById('amount').value;
+	var weight =  document.getElementById('weight').value;
+	var price =  document.getElementById('price').value;
+
+	var boxcount =  document.getElementById('boxcount').value;
+	var producturl =  document.getElementById('producturl').value;
+	var sellername =  document.getElementById('sellername').value;
+
+
+	var remark =  document.getElementById('remark').value;
+	
+	var forward =  document.getElementById('forward').value;
+	var submitData = {
+		expressid: expressid,
+		expressname: expressname,
+		expressno: expressno,
+		goodsname: goodsname,
+		amount: amount,
+		price: price,
+		weight: weight,
+		
+		boxcount: boxcount,
+		producturl: producturl,
+		sellername: sellername,
+
+		remark: remark,
+		forward: forward,
+		dosubmit: "register"
+	};
+
+	$.post('/index.php?m=wap&c=package&a=add&hid='+storageid+'&t='+Math.random(), submitData,
+	function(data) {
+		if (data.status) {
+		   alert(data.msg,data.url);
+		} else{
+			$('#parssword').addClass('err');
+			alert(data.msg,'');
+		}
+	},
+	"json");
+
+ 
+oLay.style.display = "block";
+}); 
+}); 
+
+$("#windowclosebutton").click(function () { 
+$("#windowcenter").slideUp(500);
+oLay.style.display = "none";
+
+}); 
+$("#alertclose").click(function () { 
+$("#windowcenter").slideUp(500);
+oLay.style.display = "none";
+
+}); 
+
+function alert(title,url){ 
+
+$("#windowcenter").slideToggle("slow"); 
+$("#txt").html(title);
+if(url!=''){setTimeout('$("#windowcenter").slideUp(500,function(){window.location.href ="'+url+'";})',4000);}else{
+	setTimeout('$("#windowcenter").slideUp(500)',4000);
+}
+} 
+
+</script>
+{/if}
+{template "wap","footer"}
+</body>
+</html>

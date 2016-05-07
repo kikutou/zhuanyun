@@ -1,0 +1,194 @@
+ 
+ 
+		{php $_sinfo=siteinfo(1);}
+        <footer class="footer" style="background-color:#222">
+        	<div class="layout footer-mod">
+        	<center> 
+	            <div class="footer-link tc">
+	               
+	            </div></center> 
+	            <p class="tc">Copyright &copy; 2013 {$_sinfo[name]}  All Rights Reserved. </p>
+				<p>&nbsp;</p>
+            </div>
+         </footer>   
+       
+		
+ 
+ 
+<link rel="stylesheet" href="{CSS_PATH}core.css" type="text/css" media="all" />
+<script type="text/javascript" src="{JS_PATH}XYTipsWindow-3.0.js"></script>
+<script type="text/javascript"> 
+ 
+ 
+function dialog_iframe(boxId,title,url){
+ 		Util.Dialog({
+ 		boxID: boxId,
+ 		fixed: true,
+		title : title,
+		content : "iframe:"+url,
+		showbg: true,
+		border: {opacity: "0", radius: "3"}
+	});
+}
+function dialog_confirm(title,content,url){
+    Util.Dialog({
+		fixed: true,showbg: true,title : title,
+		content: "text:<center style='line-height:25px;padding:15px 60px 15px 60px'>"+content+"</center>",
+		button: ["确定","取消"],
+		callback: function(){
+		   f.action=url;
+		   f.submit();
+		}
+	});
+ 
+}
+function dialog_alert(content){
+  Util.Dialog({
+        boxID: "dialog-callback-value",
+		title: "对话框",
+		fixed: true,
+		content: "text:<center style='line-height:25px;padding:15px 60px 15px 60px'>"+content+"</center>",
+		button: ["确定"],
+		callback: function(){
+			closeDialog = true; //是否关闭窗口
+		}
+		
+	});
+  
+}
+function loading(){
+  Util.Dialog({
+			title : "无标题，3秒后关闭",
+			boxID : "notitle",
+			fixed : true,
+			height: 30,
+			content : "text:<div style='padding:8px 15px'>载入中……</div>",
+			showtitle : "remove",
+			time : 10000,
+			border : {opacity:"0"},
+			bordercolor : "#666"
+		});
+}
+function success(msg){
+ 	Util.Dialog({
+			title : "无标题，3秒后关闭",
+			boxID : "notitle",
+			fixed: true,
+			content : "text:<div style=\"background:url({IMG_PATH}tick_48.png) #c3e4fd no-repeat 20px 50%;height:60px;line-height:51px;padding-left:80px;padding-right:60px; \"><b>"+msg+"</b></d",
+			showtitle : "remove",
+			time : 2000,
+			border : {opacity:"-2"}
+		});
+		
+}
+ 
+</script>
+ 
+  
+ 
+        <!--E 底部-->        
+    </div><!--E .wrap-->  
+    <!--S 快捷菜单-->
+    
+<div class="quick-mod" style="display:none">
+      <div class="quick-cont clearfix">
+        <h3 class="fl">快捷菜单：</h3>
+        <ul class="fl">
+          <li><a href="packs" title="我的包裹">我的包裹</a></li>
+          <li><a href="order_packs" title="提交订单">提交订单</a></li>
+          <li><a href="support_packs" title="提交增值服务">提交增值服务</a></li>
+          <li><a href="/index.php?m=pay&c=deposit&a=pay" title="充值">充值</a></li>
+          <li><a href="/index.php?m=address&c=index&a=init" title="地址簿">地址簿</a></li>
+          <li><a href="/index.php?m=yuyue&c=index&a=add" title="预约取件">预约取件</a></li>
+		  <li><a href="/index.php?m=yuyue&c=index&a=init" title="我的预约记录">我的预约记录</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--E 快捷菜单-->
+
+{php $sinfo=siteinfo(1);}
+{if $sinfo}
+{php $allqq=explode(',',trim($sinfo[qqno]));}
+<link rel="stylesheet" type="text/css" href="/resource/kefu/css/service.css"/>
+<script type="text/javascript" src="/resource/kefu/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="/resource/kefu/js/jquery.fixed.1.5.1.js"></script>
+<script language="javascript">
+//must window loading,don't use the document loading
+$(window).load(function(){
+	
+	
+	//悬浮客服
+	$("#fixedBox").fix({
+		position 		: "left",	//悬浮位置 - left或right
+		horizontal  	: 0,		//水平方向的位置 - 默认为数字
+		vertical    	: 10,      //垂直方向的位置 - 默认为null
+		halfTop     	: true,	    //是否垂直居中位置
+		minStatue 		: false,		//是否最小化，true则默认最小化
+		hideCloseBtn 	: false,	//是否隐藏关闭按钮
+		skin 			: "blue",	//皮肤
+		showBtnWidth 	: 28,       //show_btn_width
+		contentBoxWidth : 154, 		//side_content_width
+		durationTime 	: 1000		//完成时间
+	});
+	
+});
+</script>
+    <!-- S 客服 -->
+<div class="fixed_box" id="fixedBox">
+    <div class="content_box">
+        <div class="content_inner">
+        	<div class="close_btn"><a title="关闭"><span>关闭</span></a></div>
+            <div class="content_title"><span>客服中心</span></div>
+            <div class="content_list">            	
+                <div class="qqserver">
+                    {loop $allqq $q}
+					{php $arrq=explode('|',$q);}
+					<p>                              
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin={$arrq[0]}&amp;site=qq&amp;menu=yes">
+                          <img border="0" src="http://wpa.qq.com/pa?p=2:{$arrq[0]}:41" alt="{$arrq[1]}" title="{$arrq[1]}">
+                          <span>{$arrq[1]}</span>
+                    	</a>
+                    </p>
+                    {/loop}          
+                </div>               
+                <hr>
+                <div class="phoneserver">
+				<p align=center style="font-size:16px;margin-bottom:5px;">服务热线</p>
+                    <h5 style="color:#ff6600">{$sinfo[public_tel]}</h5>
+                   <p>&nbsp;</p>
+                </div>
+               
+            </div>
+            <div class="content_bottom"></div>
+        </div>
+    </div>
+    <div class="show_btn"><span>展开客服</span></div>
+</div>
+<!-- E 客服 -->
+{/if}
+
+</body>
+</html>
+<script> 
+   function show_tips(id) {
+		Util.Dialog({
+			type: "tips",
+			boxID: "Tip_tips_t",
+			referID: id,
+			width: 250,
+			height: 135,
+			border: { opacity: "0", radius: "3"},
+			closestyle: "orange",
+			arrow: "bottom",
+			fixed: false,
+			arrowset: {val: "10px"},
+			content: "text:<p style='color:#C72015;line-height:22px'>&nbsp;&nbsp;&nbsp;&nbsp;地址后面出现的#A38850是客户识别码的一种，当您没有正确填写5位英文字母识别码时，我们同样可以根据地址上的#A38850进行入库（该识别码是每个客户唯一的），如果在网站下单的时候会因为填写#A38850导致地址错误，那么请把#A38850去掉。</p>",
+			position: { 
+				left: "0", 
+				bottom: "0",
+				lin: true,
+				bin: false
+			}
+		});
+	};
+</script>

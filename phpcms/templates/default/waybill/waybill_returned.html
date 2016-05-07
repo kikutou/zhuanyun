@@ -1,0 +1,172 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/jscal2.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/border-radius.css"/>
+			<link rel="stylesheet" type="text/css" href="{JS_PATH}calendar/win2k.css"/>
+			<script type="text/javascript" src="{JS_PATH}calendar/calendar.js"></script>
+			<script type="text/javascript" src="{JS_PATH}calendar/lang/en.js"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+ <link href="/resource/css/table_form.css" rel="stylesheet" type="text/css" />
+
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">付款退货</span>
+            </div>
+             <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>付款退货</h3>
+								<div class="plink-mod">
+                               
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd">
+                            	<!--S 右边内容开始-->
+			                	<div class="bag-mod">
+							      
+							        <div id="tab-cont">
+							          <div id="tab-cont-v01"> 
+			                           		<div class="pcont-date-mod" style="padding-top:0;">
+												
+
+												<form action="index.php?m=waybill&c=index&a=waybill_returned&hid={$info[storageid]}&bid={$bid}" id="qmainForm" name="qmainForm" method="post" onsubmit="return submitchk();">
+												<input type="hidden" name="typeid" value="{$info[aid]}"/>
+												<input type="hidden" name="waybillid" value="{$info[waybillid]}"/>
+												<div class="search-mod" style="width:98%; border:none;margin-top:0;padding-top:0;background:#EBF4FB;width:97%;font-size:14px;">
+											
+                           				
+										 <ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                <li>
+							                    运单号码：{$info[waybillid]}   				                    
+							                </li>
+										</ul>
+										<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                <li>
+											
+							                    账户余额：<font color=red>{$curruser[amount]}</font>   				                    
+							                </li>
+										</ul>
+										<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                <li>
+							                    退货费用：<font color=red>{$allwaybill_goods[0][returnfee]}/<p>{$info[remark]}</p></font>   				                    
+							                </li>
+										</ul>
+										<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                <li>
+							                    退货备注：<font color=blue>{$allwaybill_goods[0][returnremark]}</font>   				                    
+							                </li>
+										</ul>
+										<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;display:none;">
+											 <li>
+							                   退货城市：<input type="text" name="returnedcity" id="returnedcity" class="inp" size="30" value="{$sendcity}"/>   			                   
+							                </li></ul>
+										<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+											 <li>
+							                   收货地址：<input type="text" name="address" id="address" class="inp" size="70" value="{$allwaybill_goods[0][return_address]} "/>   			                   
+							                </li></ul>
+										
+										
+										<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                  <li>
+							                   收货姓名：<input type="text" name="contactname" id="contactname" class="inp" size="30" value="{$allwaybill_goods[0][return_person]}"/>   	   				                   
+							                </li>
+							                
+							            </ul>
+										<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                  <li>
+							                   手机号码：<input type="text" name="mobile" id="mobile" class="inp" size="30" value="{$allwaybill_goods[0][return_mobile]}"/>    				                   
+							                </li>
+							                
+							            </ul>
+											<ul class="pform-list clearfix" style="padding-top:0;margin-top:0;padding-bottom:0;margin-bottom:0;">
+							                  <li>
+							                  <center>
+											  <button style="float:right;margin-right:10px;" type="submit"  class="btn-login btn-cancel radius-three fl add_row" >提 交</button>
+
+											  </center> 				                   
+							                </li>
+							                
+							            </ul>
+											    
+																					  
+				                                </div><!--E .search-mod-->
+												<input type="hidden" name="dosubmit" value="1"/>
+												</form>
+													<br/>
+											
+			          
+																																							 
+									            
+			                                      <div class="message-none hidden">暂无最新消息</div>
+			                                </div><!--E .pcont-date-mod-->                          
+			                          </div><!--E #tab-cont-v01-->
+							        
+			                        </div><!--E #tab-cont-->                      
+			                    </div><!--E .bag-mod-->  
+                                <!--E 右边内容结束-->
+                            </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     {template 'member', 'left'}
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+   
+ <script type="text/javascript">
+
+
+/*$(document).ready(function(){
+	$.formValidator.initConfig({autotip:true,formid:"qmainForm",onerror:function(msg){}});
+	
+	$("#address").formValidator({onshow:"请正确填写收货地址",onfocus:"请正确填写收货地址"}).inputValidator({min:3,onerror:"请正确填写收货地址"});
+	$("#contactname").formValidator({onshow:"请正确填写收货姓名",onfocus:"请正确填写收货姓名"}).inputValidator({min:1,onerror:"请正确填写收货姓名"});
+	$("#mobile").formValidator({onshow:"请正确填写手机号码",onfocus:"请正确填写手机号码"}).inputValidator({min:11,max:11,onerror:"请正确填写手机号码"});
+});
+*/
+
+function submitchk(){
+		var money = parseFloat("{$curruser[amount]}");
+		var fee = parseFloat("{$allwaybill_goods[0][returnfee]}");
+
+		if(fee>money){
+			dialog_alert("抱歉无法完成付款 此账户余额不足!");
+			return false;
+		}
+
+		if($("#address").val()==""){
+			dialog_alert("请正确填写收货地址!");
+			return false;
+		}
+
+		if($("#contactname").val()==""){
+			dialog_alert("请正确填写收货姓名!");
+			return false;
+		}
+
+		if($("#mobile").val()=="" || $("#mobile").val().length!=11){
+			dialog_alert("请正确填写手机号码!");
+			return false;
+		}
+
+		return true;
+}
+
+</script>
+
+  {template 'member', 'footer'}

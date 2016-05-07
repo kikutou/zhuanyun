@@ -1,0 +1,228 @@
+<!--S 底部-->
+		
+ 
+ </div>
+  <div class="footer">
+        <div class="footer_m">
+            <div class="footer_logo">
+            </div>
+            <div class="footer_text">
+                {php $sinfo=siteinfo(1);}
+                {$sinfo[copyright]}
+            </div>
+            <div class="footer_100">
+                <div class="footer_100_text">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--
+    <div class="go">
+    </div>
+    <div style="display: none; height: 0px; width: 0px; overflow: hidden" id="cnzztongji">
+    </div>  
+     -->
+		
+ 
+ 
+
+<script type="text/javascript"> 
+ 
+ 
+function dialog_iframe(boxId,title,url){
+ 		Util.Dialog({
+ 		boxID: boxId,
+ 		fixed: true,
+		title : title,
+		content : "iframe:"+url,
+		showbg: true,
+		border: {opacity: "0", radius: "3"}
+	});
+}
+function dialog_confirm(title,content,url){
+    Util.Dialog({
+		fixed: true,showbg: true,title : title,
+		content: "text:<center style='line-height:25px;padding:15px 60px 15px 60px'>"+content+"</center>",
+		button: ["确定","取消"],
+		callback: function(){
+		   f.action=url;
+		   f.submit();
+		}
+	});
+ 
+}
+function dialog_alert(content){
+  Util.Dialog({
+        boxID: "dialog-callback-value",
+		title: "对话框",
+		fixed: true,
+		content: "text:<center style='line-height:25px;padding:15px 60px 15px 60px'>"+content+"</center>",
+		button: ["确定"],
+		callback: function(){
+			closeDialog = true; //是否关闭窗口
+		}
+		
+	});
+  
+}
+function loading(){
+  Util.Dialog({
+			title : "无标题，3秒后关闭",
+			boxID : "notitle",
+			fixed : true,
+			height: 30,
+			content : "text:<div style='padding:8px 15px'>载入中……</div>",
+			showtitle : "remove",
+			time : 10000,
+			border : {opacity:"0"},
+			bordercolor : "#666"
+		});
+}
+function success(msg){
+ 	Util.Dialog({
+			title : "无标题，3秒后关闭",
+			boxID : "notitle",
+			fixed: true,
+			content : "text:<div style=\"background:url({siteurl($siteid)}/images/tick_48.png) #c3e4fd no-repeat 20px 50%;height:60px;line-height:51px;padding-left:80px;padding-right:60px; \"><b>"+msg+"</b></d",
+			showtitle : "remove",
+			time : 2000,
+			border : {opacity:"-2"}
+		});
+		
+}
+ 
+</script>
+ 
+  
+ 
+        <!--E 底部->        
+    </div><!--E .wrap-->
+
+    
+<script type="text/javascript"> 
+
+ 
+//快运单号查询
+function submitF(){
+  var f=document.getElementById("mainForm");
+  if(isNull($("#ord").val()) || $("#ord").val()=='EMS/日本郵便等国际物流单号查询'){
+    dialog_alert("请输入快运单号！");
+    return;
+  }
+  if($("#ord").val().trim().length==13 && (SubString($("#ord").val(),2)=='1Z' || SubString($("#ord").val(),2)=='1z')){
+    window.open("http://www.kuaidi100.com");
+  }else if($("#ord").val().trim().length==22 && SubString($("#ord").val(),1)==9){
+     window.open("http://www.kuaidi100.com");
+  }else if($("#ord").val().trim().length==15){
+  	window.open("http://www.kuaidi100.com");
+  }else if($("#ord").val().trim().length==20 || $("#ord").val().trim().length==13){
+    window.open("http://www.kuaidi100.com");
+  }else{
+   f.submit();
+  }
+ 
+}
+ function tclear() {
+            var obj = $(this).parents("tr").find("input")[0];
+			$(obj).attr("value","");
+        }
+ 
+</script>    
+
+
+<div style="display:none">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3b4b07dba74d672c706219e723707913' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</div>
+<!-- JiaThis Button BEGIN -->
+<script type="text/javascript" >
+var jiathis_config={
+	data_track_clickback:true,
+	summary:"",
+	showClose:true,
+	shortUrl:false,
+	hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?uid=1870795&btn=r.gif&move=0" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+
+
+{php $sinfo=siteinfo(1);}
+{if $sinfo}
+{php $allqq=explode(',',trim($sinfo[qqno]));}
+
+
+<link rel="stylesheet" type="text/css" href="/resource/kefu/css/service.css"/>
+<script type="text/javascript" src="/resource/kefu/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="/resource/kefu/js/jquery.fixed.1.5.1.js"></script>
+<script language="javascript">
+//must window loading,don't use the document loading
+$(window).load(function(){
+	
+	
+	//悬浮客服
+	$("#fixedBox").fix({
+		position 		: "left",	//悬浮位置 - left或right
+		horizontal  	: 0,		//水平方向的位置 - 默认为数字
+		vertical    	: 10,      //垂直方向的位置 - 默认为null
+		halfTop     	: true,	    //是否垂直居中位置
+		minStatue 		: false,		//是否最小化，true则默认最小化
+		hideCloseBtn 	: false,	//是否隐藏关闭按钮
+		skin 			: "blue",	//皮肤
+		showBtnWidth 	: 28,       //show_btn_width
+		contentBoxWidth : 154, 		//side_content_width
+		durationTime 	: 1000		//完成时间
+	});
+	
+});
+</script>
+
+<!-- S 客服 -->
+<div class="fixed_box" id="fixedBox">
+    <div class="content_box">
+        <div class="content_inner">
+        	<div class="close_btn"><a title="关闭"><span>关闭</span></a></div>
+            <div class="content_title"><span>客服中心</span></div>
+            <div class="content_list">            	
+                <div class="qqserver">
+                    {loop $allqq $q}
+					{php $arrq=explode('|',$q);}
+					<p>                              
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin={$arrq[0]}&amp;site=qq&amp;menu=yes">
+                          <img border="0" src="http://wpa.qq.com/pa?p=2:{$arrq[0]}:41" alt="{$arrq[1]}" title="{$arrq[1]}">
+                          <span>{$arrq[1]}</span>
+                    	</a>
+                    </p>
+                    {/loop}   <br>
+					<p style="font-size:15px; text-align:left; margin-left:15px;">安速海淘群</p>
+					<p style="text-align:left; margin-left:15px;">                          
+                        <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=e35fea54ee8c7a448ee7e787d5a798168bd51eb6217bfa56af0fd4918d5c9a62">
+						<img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="安速海淘3群" title="安速海淘3群">
+						</a>
+                    </p>
+                </div>               
+                <hr>
+                <div class="phoneserver">
+				<p align=center style="font-size:16px;margin-bottom:5px;">服务热线</p>
+                    <h5 style="color:#ff6600">{$sinfo[public_tel]}</h5>
+                   <p>&nbsp;</p>
+                </div>
+               
+            </div>
+            <div class="content_bottom"></div>
+        </div>
+    </div>
+    <div class="show_btn"><span>展开客服</span></div>
+</div>
+<!-- E 客服 -->
+{/if}
+
+
+
+

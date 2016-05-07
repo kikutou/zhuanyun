@@ -1,0 +1,752 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title><?php echo $this->__all__urls[0]['waybill'];?>--<?php echo $this->wap['sitename'];?></title>
+
+<link href="/resource/wap/css/lists.css" rel="stylesheet" type="text/css" />
+
+<script src="/resource/wap/js/jquery.min.js" type="text/javascript"></script>
+<style>
+label,td{font-size:14px;}
+</style>
+</head>
+
+<body class="mode_webapp">
+
+{template "wap","header_min"}
+
+
+
+<link href="/resource/wap/css/news3_.css" rel="stylesheet" type="text/css" />
+
+<div id="ui-header">
+<div class="fixed">
+<a class="ui-title" id="popmenu">运单详细</a>
+<a class="ui-btn-left_pre" href="javascript:history.go(-1);"></a><a class="ui-btn-right_home" href="{WAP_SITEURL}"></a>
+</div>
+</div>
+
+    
+{if !$__is__userinfo__full[value]}
+ <form action="/index.php?m=wap&c=waybill&a=edit&aid={$an_info[aid]}&hid={$an_info[storageid]}" id="mainForm" name="mainForm" method="post"  enctype="multipart/form-data" onsubmit="return submitcheck();">
+
+ <input type="hidden" name="forward" id="forward" value="{php echo urlencode($_GET['forward']);}" />
+ 
+
+<div class="contact-info" style=" margin-top:10px;">
+<ul>
+
+<li>
+<table style="padding: 0; margin: 0; width: 100%;">
+<tbody>
+
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">订单号：</label></td>
+<td >
+{$info[waybillid]}
+</td>
+</tr>
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">入库仓库：</label></td>
+<td >
+{$info[storagename]}
+</td>
+</tr>
+
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">发货线路：</label></td>
+<td >
+{$info[shippingname]}
+     
+   
+</td>
+</tr>
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">用 户 名：</label></td>
+<td >
+{$info[username]}
+     
+   
+</td>
+</tr>
+<tr>
+<td width="80px"><label for="email" class="ui-input-text">电    话：</label></td>
+<td >
+{$mobile}
+    
+</td>
+</tr>
+<tr>
+										<td><label for="email" class="ui-input-text">下单时间： </label></td>
+										<td>{date('Y-m-d H:i:s',$info[addtime])} </td>
+										</tr>
+{php $takeaddress=str_replace('|','&nbsp;&nbsp;',$info['takeaddressname']);}
+{php $sendaddress=str_replace('|','&nbsp;&nbsp;',$info['sendaddressname']);}
+
+
+<tr>
+<th colspan=2 style="background:#e9e9e9;height:28px;font-size:14px;">快件物品详情</th>
+</tr>
+<tr>
+<td colspan=2>
+
+
+
+{php $valuedfee=0;}
+{php $allwaybill_goods = string2array($info[goodsdatas]);}
+
+ <table width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge" style="border:solid 1px #999;" id="tb__product"> 
+ 
+
+
+  {loop $allwaybill_goods $k $goods}
+					
+  {php $num=$k+1;}	
+  {php $number=$goods[number];}
+
+<tr id="trProduct{if $k>0 }{$num}{/if}" class="goods__row" name="{$goodsid}">
+ <td align=center class="w58" class="index_number"  style="display:none">{$num}</td>
+ <td>
+ <input id="number{if $k>0 }{$num}{/if}" name="waybill_goods[{$num}][number]"  type="hidden"   value="{$num}">
+<input id="packageid{if $k>0 }{$num}{/if}" name="waybill_goods[{$num}][packageid]"  type="hidden"   value="{$goodsid}">
+
+ <table border=0 width="100%">
+	 
+	
+	   <tr>
+		<th >品名</th>
+		<td ><div >{$goods[goodsname]}</div> </td>	
+		<th >数量</th>
+		<td><div >{$goods[amount]}</div></td>
+		<th>价值</th>
+		<td><div >{$goods[price]}</div></td>
+	  </tr>
+
+
+
+	 
+  </table>
+  </td></tr>
+
+
+  {/loop}	
+
+  
+  </table>
+
+  
+
+</td>
+</tr>
+
+<tr>
+<td ><label for="email" class="ui-input-text">数量合计：</label></td>
+<td >
+<div >{$info[totalamount]}</div>
+</td>
+</tr>
+
+<tr>
+<td ><label for="email" class="ui-input-text">价值合计：</label></td>
+<td >
+<div >{$info[totalprice]}</div>
+</td>
+</tr>
+<tr>
+<td ><label for="email" class="ui-input-text">增值服务：</label></td>
+<td style="font-size:12px;">
+{php $waybillallvalues=string2array($info[addvalues]);}
+						
+							{php $sel="";}
+							{loop $waybillallvalues $bill}
+						<p>
+							{$bill[title]} <font color="#FF953F">{$bill[currencyname]}{$bill['price']}</font>/{$bill[unitname]}
+</p>
+							{/loop}
+</td>
+</tr>
+<tr>
+<td ><label for="email" class="ui-input-text">备注：</label></td>
+<td >
+ {$info[remark]}
+</td>
+</tr>
+</tbody></table>	
+
+{if $info['returnedstatus']==1}	
+													<br/>
+													
+													
+													<table class="table-date">
+			                                    <thead>
+													<tr><th colspan=2>退货信息</th></tr>
+			                                    </thead>
+			                                        <tbody>
+													<tr>	
+			                                            <td bgcolor="#ffffff" width=100>退货费用</td>
+														<td bgcolor="#ffffff">{$allwaybill_goods[0][returnfee]}</td>
+													</tr>
+													<tr>	
+			                                            <td bgcolor="#ffffff">操作时间</td>
+														<td  bgcolor="#ffffff">{date('Y-m-d H:i:s',$allwaybill_goods[0][returntime])}</td>
+													</tr>
+													<tr>	
+			                                            <td bgcolor="#ffffff">操作者</td>
+														<td bgcolor="#ffffff">{$allwaybill_goods[0][returnname]}</td>
+													</tr>
+													<tr>	
+			                                            <td  bgcolor="#ffffff">收货地址</td>
+														<td  bgcolor="#ffffff">{$allwaybill_goods[0][return_address]}</td>
+													</tr>
+													<tr>	
+			                                            <td bgcolor="#ffffff">联系人</td>
+														<td bgcolor="#ffffff">{$allwaybill_goods[0][return_person]}</td>
+													</tr>
+													<tr>	
+			                                            <td   bgcolor="#ffffff">手机号码</td>
+														<td bgcolor="#ffffff">{$allwaybill_goods[0][return_mobile]}</td>
+													</tr>
+													<tr>	
+			                                            <td bgcolor="#ffffff">退货备注</td>
+														<td bgcolor="#ffffff">{$allwaybill_goods[0][returnremark]}</td>
+													</tr>
+													</tbody>
+													</table>
+													{/if}
+
+													{if $info[picture]}<br/>
+													
+													
+													<table class="table-date">
+			                                    <thead>
+													<tr><th >验货照片</th></tr>
+			                                    </thead>
+			                                        <tbody>
+													<tr>	
+			                                            <td scope="col" >
+						
+						
+							 <a href="{$info[picture]}" target=_blank> <img src="{$info[picture]}" border=0 width="100%"/></a>
+														
+														</td>
+			                                        </tr>
+												</table>
+													{/if}
+													<br>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge" >
+ <tr>
+    <th  class="cc" colspan=4>包裹单 {$info[waybillid]} 跟踪信息</th></th>
+  </tr>
+   <tbody>
+												
+			                                        <tr>
+													<td colspan=4 style="padding-left:0;padding-right:0;">
+													
+													<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" >	
+													<tr>			
+													<td width="16%" height="30" align="right" bgcolor="#EBF4FB">重量：&nbsp;</td>			
+													<td width="22%" >&nbsp;{$info[totalweight]}</td>		
+													<td width="12%" align="center" bgcolor="#EBF4FB">品名：</td>	<td width="50%" >{$info[goodsname]}</td>	
+													</tr>		       
+															
+													<tr>			
+													<td height="30" align="right" bgcolor="#EBF4FB">收货地址：&nbsp;</td>		
+													<td height="30" colspan="3" >{$takeaddress}</td>		
+													</tr> 
+												
+														  
+													
+														<tr>			
+													<td height="30" align="right" bgcolor="#EBF4FB">总运费合计(美元)：&nbsp;</td>		
+													<td height="30" colspan="3" bgcolor="#EBF4FB" >运费<input type="text" name="totalship" value="{$info[totalship]}" class="inp" size=5 readonly /> 会员折扣<input type="text" name="memberdiscount" value="{$info[memberdiscount]}" class="inp" size=6 readonly />%&nbsp;额外折扣<input type="text" name="otherdiscount" value="{$info[otherdiscount]}" class="inp" size=5 readonly />%&nbsp;总增值费<input type="text" name="valuedadd" value="{$info[allvaluedfee]}" class="inp" size=5 readonly />其它费用<input type="text" name="otherfee" value="{$info[otherfee]}" class="inp" size=5 readonly /></td>		
+													</tr> <?php 
+													$payedfee = $info['payfeeusd'];
+													if(!$payedfee){
+													$memberdiscount = $info[memberdiscount] * 0.01;
+													$otherdiscount = $info[otherdiscount] * 0.01;
+													$discount = $memberdiscount + $otherdiscount;
+													if($discount==0){
+														$discount=1;
+													}
+													$payedfee = ($info[totalship] * $discount+$info[allvaluedfee]+$info[otherfee]+$info[overdaysfee]+$info[taxfee]);
+													}
+													
+													?>
+													
+													<tr>			
+													<td height="30" align="right" bgcolor="#EBF4FB"></td>		
+													<td height="30" colspan="3" bgcolor="#EBF4FB">税金费用 <input type="text" name="taxfee" value="{$info[taxfee]}" class="inp" size=6 readonly style="margin-top:5px;"/> 包裹超期费用(美元/天)<input type="text" name="overdaysfee" value="{$info[overdaysfee]}" class="inp" size=6 readonly style="margin-top:5px;"/> 包裹超期(天)<input type="text" name="overdayscount" value="{$info[overdayscount]}" class="inp" size=6 readonly style="margin-top:5px;"/> </td>		
+													</tr>
+													
+													<tr>			
+													<td height="30" align="right" bgcolor="#EBF4FB"></td>		
+													<td height="30" colspan="3" bgcolor="#EBF4FB">汇率<input type="text" name="wayrate" value="{$info[wayrate]}" class="inp" size=6 readonly style="margin-top:5px;"/> 实付运费(USD)<input type="text" name="payedfee" value="{$payedfee}" class="inp" size=6 readonly style="margin-top:5px;"/> 美元 &nbsp;&nbsp;实付运费(RMB)<input type="text" name="payedfee1" value="{$info['payedfee']}" class="inp" size=6 readonly style="margin-top:5px;"/>元 </td>		
+													</tr> 
+													
+													
+
+													
+													</table>
+													
+													</td>
+													</tr>
+
+													<tr>	
+			                                            <td scope="col" >处理时间</td>
+														<td scope="col" >处理地点</td>
+														<td scope="col" >处理信息</td>
+														<td scope="col" >操作</td>
+			                                        </tr>
+			                                        {loop $handledata  $bill}
+													   {if $bill[isshow]=='0'}
+														<tr>
+															<td scope="col" >{date('Y-m-d H:i:s',$bill[addtime])}</td>
+															<td scope="col" >{$bill[placename]}</td>
+															<td scope="col" >{$bill[remark]}</td>
+															<td scope="col" >{$bill[username]}</td>
+														</tr>
+														{/if}
+													{/loop}
+
+			                                        </tbody>
+  </table>
+
+</li>
+</ul>
+   
+    </div>
+
+    
+    
+    <div class="footReturn" style="margin-bottom:80px;">
+	 <input type="hidden" name="dosubmit" id="dosubmit" value="1"/>
+	 <input type="hidden" name="lastindex" id="lastindex" value="1"/>
+	
+	 
+<div class="window" id="windowcenter">
+<div id="title" class="wtitle">操作提示<span class="close" id="alertclose"></span></div>
+<div class="content">
+<div id="txt"></div>
+</div>
+</div>
+</div>
+    </form>
+<script type="text/javascript"> 
+
+
+var oLay = document.getElementById("overlay");	
+$(document).ready(function () { 
+
+
+$("#showcard").click(function () { 
+	
+	var storageid =  $('#storageid').val();
+	var expressid =  $('#expressid').val();
+	var expressname =  document.getElementById('expressname').value;
+	var expressno =  document.getElementById('expressno').value;
+	var goodsname =  document.getElementById('goodsname').value;
+	var amount =  document.getElementById('amount').value;
+	var weight =  document.getElementById('weight').value;
+	var price =  document.getElementById('price').value;
+	var remark =  document.getElementById('remark').value;
+	
+	var forward =  document.getElementById('forward').value;
+	var submitData = {
+		expressid: expressid,
+		expressname: expressname,
+		expressno: expressno,
+		goodsname: goodsname,
+		amount: amount,
+		price: price,
+		weight: weight,
+		remark: remark,
+		forward: forward,
+		dosubmit: "register"
+	};
+
+	$.post('/index.php?m=wap&c=waybill&a=add&hid='+storageid+'&t='+Math.random(), submitData,
+	function(data) {
+		if (data.status) {
+		   alert(data.msg,data.url);
+		} else{
+			$('#parssword').addClass('err');
+			alert(data.msg,'');
+		}
+	},
+	"json");
+
+ 
+oLay.style.display = "block";
+}); 
+}); 
+
+$("#windowclosebutton").click(function () { 
+$("#windowcenter").slideUp(500);
+oLay.style.display = "none";
+
+}); 
+$("#alertclose").click(function () { 
+$("#windowcenter").slideUp(500);
+oLay.style.display = "none";
+
+}); 
+
+function alert(title,url){ 
+
+$("#windowcenter").slideToggle("slow"); 
+$("#txt").html(title);
+if(url!=''){setTimeout('$("#windowcenter").slideUp(500,function(){window.location.href ="'+url+'";})',4000);}else{
+	setTimeout('$("#windowcenter").slideUp(500)',4000);
+}
+} 
+
+</script>
+
+
+
+  <script  type="text/javascript">
+
+  function forminit(){
+	document.getElementById('sendname').value=document.getElementById('sendid').options[document.getElementById('sendid').selectedIndex].text;
+  }
+	
+  forminit();
+
+  function submitcheck(){
+  
+	if($("#storageid").val()=='0'){
+		alert("请选择发货仓库！",'');
+		return false;
+	}
+
+	if($("#sendid").val()=='0'){
+		alert("请选择发货地 (国家和地区)！",'');
+		return false;
+	}
+
+	if($("#takeid").val()=='0'){
+		alert("请选择收货地 (国家和地区)！",'');
+		return false;
+	}
+
+	if($("#shippingid").val()=='0'){
+		alert("请选择转运方式！",'');
+		return false;
+	}
+
+	var gotoflag=0;
+	$(".goods__row").each(function(){
+		
+		if($(this).find("select[id^='expressid']").val()=="0")
+		{
+			gotoflag=1;
+			$(this).find("select[id^='expressid']").attr("style","border:solid 1px #f8cccc");
+		}
+
+		$(this).find("input[id^='expressname']").val($(this).find("select[id^='expressid'] option[selected]").text());
+
+		if($(this).find("input[id^='expressno']").val()=="")
+		{
+			gotoflag=1;
+			$(this).find("input[id^='expressno']").attr("style","background:#ffe7e7");
+		}
+
+		if($(this).find("input[id^='goodsname']").val()=="")
+		{
+			gotoflag=1;
+			$(this).find("input[id^='goodsname']").attr("style","background:#ffe7e7");
+		}
+
+		if($(this).find("input[id^='amount']").val()=="")
+		{
+			gotoflag=1;
+			$(this).find("input[id^='amount']").attr("style","background:#ffe7e7");
+		}
+		if($(this).find("input[id^='price']").val()=="")
+		{
+			gotoflag=1;
+			$(this).find("input[id^='price']").attr("style","background:#ffe7e7");
+		}
+	});
+
+	if(gotoflag==1)
+	{
+		alert("请在运单里填写包裹！",'');
+		return false;
+	}
+
+	if($("#totalamount").val()=='' || $("#totalprice").val()==''){
+		alert("请在运单里填写包裹！",'');
+		return false;
+	}
+
+
+	
+	
+
+	//判断发货地址
+	
+	
+	if($('input:radio[name="waybill[sendaddressid]"]:checked').val()==null){
+		alert("请填写发货地址！",'');
+		return false;
+	}
+
+	if($('input:radio[name="waybill[sendaddressid]"]:checked').val()==0){
+		//判断新发货地址
+		if($("#send_truename").val()==''){
+			alert("请填写发货寄件人！",'');
+			return false;
+		}
+		if($("#send_country").val()==''){
+			alert("请填写发货国家！",'');
+			return false;
+		}
+		if($("#send_province").val()==''){
+			alert("请填写发货省/州！",'');
+			return false;
+		}
+		if($("#send_city").val()==''){
+			alert("请填写发货市！",'');
+			return false;
+		}
+		if($("#send_address").val()==''){
+			alert("请填写发货详细地址！",'');
+			return false;
+		}
+		
+		
+		if($("#send_mobile").val()==''){
+			alert("请填写发货手机号码！",'');
+			return false;
+		}
+		
+	}
+
+	//判断收货地址
+	
+	
+	if($('input:radio[name="waybill[takeaddressid]"]:checked').val()==null){
+		alert("请填写收货地址！",'');
+		return false;
+	}
+
+
+	if($('input:radio[name="waybill[takeaddressid]"]:checked').val()==0){
+		//判断新收货地址
+		if($("#take_truename").val()==''){
+			alert("请填写收货寄件人！",'');
+			return false;
+		}
+		if($("#take_country").val()==''){
+			alert("请填写收货国家！",'');
+			return false;
+		}
+		if($("#take_province").val()==''){
+			alert("请填写收货省/州！",'');
+			return false;
+		}
+		if($("#take_city").val()==''){
+			alert("请填写收货市！",'');
+			return false;
+		}
+		if($("#take_address").val()==''){
+			alert("请填写收货详细地址！",'');
+			return false;
+		}
+	
+		if($("#take_mobile").val()==''){
+			alert("请填写收货手机号码！",'');
+			return false;
+		}
+		if($("#take_email").val()==''){
+			alert("请填写收货邮箱地址！",'');
+			return false;
+		}
+	}
+
+	//shippingid
+
+  }	
+
+
+  function newaddress(id,flag){
+	if(flag==0){
+		if(id==0)
+		{
+			document.getElementById('new_waybill_sendaddress').style.display="block"
+		}else{
+			document.getElementById('new_waybill_sendaddress').style.display="none"
+		}
+	}else if(flag==1){
+		if(id==0)
+		{
+			document.getElementById('new_waybill_takeaddress').style.display="block"
+		}else{
+			document.getElementById('new_waybill_takeaddress').style.display="none"
+		}
+	}
+  }
+
+ function ajaxOpt(areaid,flag){
+	if(flag==1){
+
+	if(document.getElementById('sendid').options[document.getElementById('sendid').selectedIndex].value==0){
+			document.getElementById('takeid').length=1;
+		}else{
+
+		$.post("/index.php?m=wap&c=waybill&a=gettakelists&areaid="+areaid,function(data){
+		
+			var datas = eval(data);
+			var takeobj = document.getElementById('takeid');
+			takeobj.length=1;
+			for(var i=0;i<datas.length;i++){
+				var obj = datas[i];
+				takeobj.options[i+1] = new Option(obj.name,obj.linkageid);
+				
+			}
+			$("#takeid").val('{$an_info[takeid]}');
+
+		});}
+	}else{
+
+	if(document.getElementById('takeid').options[document.getElementById('takeid').selectedIndex].value==0){
+			document.getElementById('shippingid').length=1;
+		}else{
+		
+		var sendid = document.getElementById('sendid').options[document.getElementById('sendid').selectedIndex].value;
+
+		$.post("/index.php?m=wap&c=waybill&a=getshippingmethod&sendid="+sendid+"&idd="+areaid,function(data){
+		
+			var datas = eval(data);
+			var takeobj = document.getElementById('shippingid');
+			takeobj.length=1;
+			for(var i=0;i<datas.length;i++){
+				var obj = datas[i];
+				takeobj.options[i+1] = new Option(obj.title,obj.aid);
+				
+			}
+			$("#shippingid").val('{$an_info[shippingid]}');
+
+		});}
+	}
+}
+
+
+	function addRow(){ 
+		var n = $("#lastindex").val();
+		
+		if(n>8)
+		{
+			return false;
+		}
+		
+		var num = $(".goods__row").size()+1;
+		var mClone = $("#trProduct").clone(true);
+
+		mClone[0].id="trProduct"+num;
+		mClone.find("input[id^='packageid']").val(0);
+		mClone.find("input[id^='expressid']").val(0);
+		mClone.find("input[id^='expressname']").val("");
+
+		mClone.find("input[id^='expressno']").val("");
+		mClone.find("input[id^='goodsname']").val("");
+		mClone.find("input[id^='amount']").val(0);
+		mClone.find("input[id^='price']").val(0);
+
+
+		mClone.appendTo($("#tb__product"));
+		orderRow();
+	}
+	
+	function blurcheck(obj){
+		if(obj.value!=""){
+			obj.style.background="#ffffff";
+		}else{
+			obj.style.background="#ffe7e7";
+		}
+
+		if(obj.name.indexOf('[amount]')!=-1 || obj.name.indexOf('[price]')!=-1){
+			computtotal();//运算价格与数量
+		}
+	}
+
+
+	function delRow(obj){
+		var delid = $(obj).parent().parent().parent().parent().parent().attr("id");
+		if(delid!='trProduct'){
+			$("#"+delid).remove();
+			orderRow();
+		}
+		
+	}
+
+	function orderRow(){
+		$("#lastindex").val(1);
+		$(".goods__row").each(function(i){
+			$(this).find("td:first").html($("#lastindex").val());
+			var num = $("#lastindex").val();
+			$(this).find("input[id^='number']").val(num);
+
+			$(this).find("select[id^='expressid']").attr("id","expressid"+num);
+			$(this).find("input[id^='expressname']").attr("id","expressname"+num);
+
+			$(this).find("input[id^='expressno']").attr("id","expressno"+num);
+			$(this).find("input[id^='goodsname']").attr("id","goodsname"+num);
+			$(this).find("input[id^='amount']").attr("id","amount"+num);
+			$(this).find("input[id^='price']").attr("id","price"+num);
+			$(this).find("input[id^='number']").attr("id","number"+num);
+
+			$(this).find("input[id^='packageid']").attr("id","packageid"+num);
+
+			$(this).find("input[id^='number']").attr("name","waybill_goods["+num+"][number]");
+			$(this).find("select[id^='expressid']").attr("name","waybill_goods["+num+"][expressid]");
+			$(this).find("input[id^='expressname']").attr("name","waybill_goods["+num+"][expressname]");
+
+			$(this).find("input[id^='expressno']").attr("name","waybill_goods["+num+"][expressno]");
+			$(this).find("input[id^='goodsname']").attr("name","waybill_goods["+num+"][goodsname]");
+			$(this).find("input[id^='amount']").attr("name","waybill_goods["+num+"][amount]");
+			$(this).find("input[id^='price']").attr("name","waybill_goods["+num+"][price]");
+			$(this).find("input[id^='packageid']").attr("name","waybill_goods["+num+"][packageid]");
+
+			
+
+			var obj = $(this);
+			//重新排序物品增值服务
+			var srv=0;
+			obj.find(".tdrow").find("input").each(function(){
+			
+				var $this = $(this);
+				var onename = $this.attr("name").replace("service_order","");
+				var arrname = onename.split('_');
+				$this.attr("name","waybill_goods["+num+"][addvalues]["+srv+"]");
+				srv++;
+			});
+			num = parseInt(num)+1;
+			$("#lastindex").val(num);
+		});
+	}
+	//计算
+	function computtotal(){
+		
+		var totalamount=0,totalprice=0;
+		$(".goods__row").each(function(){
+			
+			totalamount += parseInt($(this).find("input[id^='amount']").val());
+			totalprice +=parseFloat($(this).find("input[id^='price']").val());
+		});
+
+		$("#totalamount").val(totalamount);
+		$("#totalprice").val(totalprice);
+	}
+	ajaxOpt('{$an_info[sendid]}',1);
+	computtotal();
+</script>
+{/if}
+{template "wap","footer"}
+</body>
+</html>

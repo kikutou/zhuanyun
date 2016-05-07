@@ -1,0 +1,218 @@
+ {template 'member', 'header'}
+
+        <!--E 导航-->   
+  
+        <!--S 内容-->
+        <div id="ht-main" class="clearfixed">	
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的账户">我的账户</a>
+                <span>&gt;</span>
+                <span class="curmbs-active">修改地址</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">  
+			{template 'member', 'top'}
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+						<div class="pcont-mod">
+                        	<div class="pcont-mod-hd">
+                            	<h3>修改地址信息</h3>
+                                <div class="plink-mod">
+                                	<a href="/index.php?m=address&c=index&a=init" class="p-btn radius-five" title="返回"  style="color:#fff;">返&nbsp;回</a>
+                                </div><!--E .plink-mod-->
+                            </div><!--E .pcont-mod-hd-->
+                            <div class="pcont-mod-bd pro-info">
+                                <div class="balance-info">地址信息 &nbsp;<font color=red>大陆用户收件地址用中文填写</font></div><!--E .balance-info-->
+                                <span class="blank"></span>
+                                     <form action="/index.php?m=address&c=index&a=edit&aid={$an_info[aid]}" id="mainForm" name="mainForm" method="post"  enctype="multipart/form-data" onsubmit="return submitcheck();">
+								<div class="pro-info-v02">
+                              
+                     <ul class="pform-list tip-pform-list">
+                <li >
+                    <label for="name">地址类型<em class="color-red">*</em></label>
+                    <!--<input type="radio" value="0" name="address[addresstype]"  id="addresstype" {if $an_info[addresstype]==0}checked="checked"{/if}/><label class="label-other">默认地址</label>--><input type="radio" value="1" name="address[addresstype]"  id="addresstype" {if $an_info[addresstype]==1}checked="checked"{/if}/><label class="label-other">收件人</label> <!--<input type="radio" value="2" name="address[addresstype]"  id="addresstype" {if $an_info[addresstype]==2}checked="checked"{/if}/><label class="label-other">发件人</label>    -->                                    
+                </li>  
+                 <li>
+                    <label for="name">姓名<em class="color-red">*</em></label>
+                    <input id="truename" name="address[truename]" value="{$an_info[truename]}" datatype="*" nullmsg="请输入姓名!" maxlength="20" class="inp w268" type="text" tabindex="1">     
+                                                              
+                </li> 
+				 <li>
+                    <label for="country">国家<em class="color-red">*</em></label>
+                    <!--<input id="country" name="address[country]" value="{$an_info[country]}" maxlength="20" class="inp w268" type="text" tabindex="1">  -->
+					
+					<select  id="country" name="address[country]" style="height: 26px;border-radius: 2px;width: 278px;">
+					<?php
+					$countrydatas = $this->getline();
+					foreach($countrydatas as $v){
+					$sel="";
+						if(trim($an_info[country])==trim($v['name'])){$sel=" selected ";}
+						echo '<option value="'.trim($v['name']).'" '.$sel.'>'.$v['name'].'</option>';
+					}
+					?>	
+					</select>
+                                                              
+                </li> 
+                 <li>
+					<label>省/州<em class="color-red">*</em></label>
+                    <input id="province" name="address[province]" value="{$an_info[province]}"  maxlength="20" class="inp w268" type="text" tabindex="1">
+                </li>   
+                 <li>
+                    <label>市<em class="color-red">*</em></label>
+ 					<input id="city" name="address[city]" value="{$an_info[city]}"  maxlength="20" class="inp w268" type="text" tabindex="1">
+                </li>   
+				
+                <li>
+                    <label for="add">详细地址<em class="color-red">*</em></label>
+                    <input id="address" name="address[address]"  value="{$an_info[address]}" datatype="*" nullmsg="请输入联系地址!" maxlength="250" class="inp w468" type="text" tabindex="4">     
+                                                                     
+                </li>
+				 <!---<li>
+                    <label for="company">公司名称<em class="color-red"></em></label>
+                    <input id="company" name="address[company]"  value="{$an_info[company]}" maxlength="100" class="inp w268" type="text" tabindex="4">     
+                                                                     
+                </li>--->
+                <li>
+                    <label for="a4">邮政编码<em class="color-red">*</em></label>
+                    <input id="postcode" name="address[postcode]" onKeyUp="this.value=this.value.replace(/[^0-9]/gi,'')" style="ime-mode:disabled;" datatype="*" nullmsg="请输入邮政编码!" value="{$an_info[postcode]}" maxlength="6" class="inp w268" type="text" tabindex="5">     
+                                                                  
+                </li>
+                <li>
+                    <label for="a5">手机号码<em class="color-red">*</em></label>
+                    <input id="mobile" name="address[mobile]"  value="{$an_info[mobile]}" datatype="m" nullmsg="请输入手机号码!" errormsg="手机号码格式不对!" style="ime-mode:disabled;" maxlength="30"  class="inp w268" type="text" tabindex="6">     
+                                                                  
+                </li>
+
+                  <li>
+                    <label for="email">邮箱地址<em class="color-red"></em></label>
+                    <input id="email" name="address[email]"  style="ime-mode:disabled;" value="{$an_info[email]}" maxlength="30" class="inp w268" type="text" tabindex="10">     
+                                                         
+                </li>
+				 
+				<!---<li >
+                    <label for="idcardtype">身份证类别<em class="color-red"></em></label>
+                    <input type="radio" value="1" name="address[idcardtype]"  id="idcardtype_1" {if $an_info[idcardtype]==1}checked="checked"{/if}/><label class="label-other">大陆地区</label><input type="radio" value="2" name="address[idcardtype]"  id="idcardtype_2" {if $an_info[idcardtype]==2}checked="checked"{/if}/><label class="label-other">非大陆地区</label>                                        
+                </li> 
+                <li>
+                    <label for="idcard">身份证号码<em class="color-red"></em></label>
+                    <input id="idcard" name="address[idcard]" style="ime-mode:disabled;" datatype="idcard" ignore="ignore" errormsg="您填写的身份证号码不对!" value="{$an_info[idcard]}" maxlength="20" class="inp w268" type="text" tabindex="7">  
+                                                             
+                </li>
+               
+			   	<li style="clear:both;">
+                      <label for="idcardbefore">身份证正面<em class="color-red"></em>:</label>
+				 {php echo form::upfiles('address[idcardbefore]','idcardbefore',$an_info[idcardbefore],'address', '0',50,'', '','gif|jpg|jpeg|png');}
+                                                                         
+               </li>
+				<li style="clear:both;">
+                      <label for="idcardafter">身份证反面<em class="color-red"></em>:</label>
+                 {php echo form::upfiles('address[idcardafter]','idcardafter',$an_info[idcardafter],'address', '0',50,'', '','gif|jpg|jpeg|png');}
+					 
+					<script>$("#idcardbefore").addClass("inp w268");$("#idcardafter").addClass("inp w268");</script>    
+				                           
+				</li>--->
+              
+                <li style="display:none">
+                    <label for="a8">备注信息</label>
+                    <textarea class="inp inp-tarea" id="a8"  id="remark" name="address.remark"  name="a8" tabindex="9"></textarea>                  
+                </li>
+ 
+                 <li>
+					<label for="">&nbsp;</label>
+					 <input type="hidden" name="dosubmit" id="dosubmit" value="1"/>
+                    
+					<button type="submit" class="btn-login radius-three fl" tabindex="17" title="保存">保&nbsp;存</button>
+					<button type="button" onclick="window.location.href='/index.php?m=address&c=index&a=init'" class="btn-login btn-cancel radius-three fl" tabindex="18" title="取消">取&nbsp;消</button>
+				</li>
+                </ul>
+                                </div><!--E .pro-info-v01-->
+                               </form>
+                             <span class="blank22"></span>
+                          </div><!--E .pcont-mod-bd-->
+                        </div><!--E .pcont-mod-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			     
+				  
+				 {template 'member', 'left'}
+
+
+
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+     <script  type="text/javascript">
+
+
+
+  function submitcheck(){
+
+	if($("#truename").val()==''){
+		
+		alert("请输入姓名!！");
+		$("#truename").focus();
+		return false;
+	}
+
+	if($("#country").val()==''){
+		
+		alert("请输入国家！");
+		$("#country").focus();
+		return false;
+	}
+
+	if($("#province").val()==''){
+		
+		alert("请输入省/州");
+		
+		return false;
+	}
+	if($("#city").val()==''){
+		
+		alert("收货人城市！");
+		
+		return false;
+	}
+	if($("#address").val()=='' ){
+		
+		alert("请输入详细地址！");
+		$("#address").focus();
+		return false;
+	}
+
+	if($("#postcode").val()=='' ){
+		
+		alert("请输入邮编！");
+		$("#postcode").focus();
+		return false;
+	}
+
+	/*if($("#mobile").val()=='' || $("#mobile").val().length!=11){
+		
+		alert("请输入11位手机号码 ！");
+		$("#mobile").focus();
+		return false;
+	}
+
+	if($("#email").val()=='' || $("#email").val().indexOf('@')==-1){
+		
+		alert("请输入正确邮箱地址！");
+		$("#email").focus();
+		return false;
+	}*/
+
+	
+	return true;
+ }
+	</script>
+</div>
+</div> 
+  {template 'member', 'footer'}

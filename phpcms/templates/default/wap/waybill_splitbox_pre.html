@@ -1,0 +1,270 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title><?php echo $this->__all__urls[0]['waybill'];?>--<?php echo $this->wap['sitename'];?></title>
+
+<link href="/resource/wap/css/lists.css" rel="stylesheet" type="text/css" />
+
+<script src="/resource/wap/js/jquery.min.js" type="text/javascript"></script>
+<style>
+</style>
+</head>
+
+<body class="mode_webapp">
+
+{template "wap","header_min"}
+<link href="/resource/wap/css/news3_.css" rel="stylesheet" type="text/css" />
+
+<div id="ui-header">
+<div class="fixed">
+<a class="ui-title" id="popmenu">分箱发货</a>
+<a class="ui-btn-left_pre" href="javascript:history.go(-1);"></a><a class="ui-btn-right_home" href="{WAP_SITEURL}"></a>
+</div>
+</div>
+
+
+        <!--E 导航-->   
+		 
+         
+			
+        <!--S 内容-->
+      	<div class="contact-info" style=" margin-top:10px;">
+<ul>
+
+<li>
+         	<!--S 内容-->
+        	
+							
+							{php $allpackagestatus = $this->getorderstatus();}
+                            <div class="pcont-mod-bd">
+							
+						
+                            	<!--S 右边内容开始-->
+			                	<div class="bag-mod">
+							    
+							        <div id="tab-cont">
+							          <div id="tab-cont-v01"> 
+			                           		<div class="pcont-date-mod" style="padding:0; width:100%">
+				                                <form action="/index.php?m=wap&c=waybill&a=splitbox&hid={php echo $this->hid;}" method="post" name="mainForm" id="mainForm">
+									
+		
+			                                	<table class="table-date" style="font-size:12px;">
+			                                   
+			                                        <thead>
+			                                        	<tr style="background:#E5E9F3;">
+                                                          	
+			                                            <td scope="col" style="display:none;"><input type="checkbox" name="chk_all"  onclick="allchk(this)"></td>
+														<!---<th scope="col" >编号</th>-->
+														<td scope="col"  style="width:25%;">运单号</td>
+														<!---<th scope="col" >发货公司</th>-->
+														
+														<!---<th scope="col" >数量</th>-->
+														
+														<!---<th scope="col" >价值</th>-->
+														<td scope="col" style="width:15%;">品名</td>
+														<td scope="col" style="width:12%;">重量(g)</td>
+														<!---<th scope="col" >长x宽x高 </th>-->
+														<!---<th scope="col" >运费</th>-->
+														<td scope="col" style="width:10%;">状态</td>
+														<td scope="col" style="width:20%;">时间</td>
+													
+			                                        		
+			                                        	</tr>
+			                                        </thead>
+			                                        <tbody>
+			                                        
+			                                        {loop $datas  $package}
+													
+															<tr>
+																	<td scope="col" style="display:none;">
+															
+																	<input type="checkbox" name="aid[]" value="{$package[aid]}" checked>
+															
+																	</td>
+																	
+																	<!---<td scope="col" >{$package[aid]}</td>-->
+											<td scope="col"  style="width:25%; word-wrap:break-all;"><a href="/index.php?m=waybill&c=index&a=waybill_detail&bid={$package[aid]}" target=_blank>{$package[waybillid]}</a><hr>
+											邮单号:{$package[expressno]}
+											</td>
+																	
+																	<!---<td scope="col" >{$package[totalamount]}</td>-->
+																	
+																	<!---<td scope="col" >{$package[totalprice]}</td>-->
+																	<td scope="col" style="width:15%" >{$package[goodsname]}</td>
+																	<td scope="col" style="width:10%" >{$package[totalweight]}</td>
+																	<!---<td scope="col" >{$package[bill_long]}x{$package[bill_width]}x{$package[bill_height]}</td>-->
+																	
+																	<!---<td scope="col" >{$package[payedfee]}</td>-->
+																	<td scope="col" style="width:10%" >
+																	{L("waybill_status".$package[status])}
+																	</td>
+																	<td scope="col" style="width:20%" >{date('y-m-d',$package[addtime])}</td>
+																	
+																</tr>
+													{/loop}
+			                                        </tbody>
+			                                    </table>
+			          
+			                                           <br>
+<p>
+											<table class="table-date" style="width:100%;">
+			                                   
+			                                        <thead>
+			                                        	<tr>
+														<td scope="col"  style="background:#E5E9F3;">分箱数量</td>
+			                                        	</tr>
+			                                        </thead>
+			                                        <tbody>
+													<tr>
+													<td>
+														分 <font color=red>{$split_number}</font> 	箱
+														<input type="hidden" name="split_number" value="{$split_number}"/>
+
+													</td></tr>
+													</tbody>
+													</table>
+
+</p>
+<br>
+													   <p>
+													   
+
+											<table class="table-date">
+			                                   
+			                                        <thead>
+			                                        	<tr>
+														<td scope="col"  style="background:#E5E9F3;">分箱增值服务</td>
+			                                        	</tr>
+			                                        </thead>
+			                                        <tbody>
+													<tr>
+													<td>
+													
+
+
+													{loop $binning_datas $srv}
+						
+						{php $currencyname = $this->getcurrency($srv['currencyid']);}
+						{php $unitname = $this->getunits($srv['unit']);}
+
+						
+
+						<input name="service_value[{$srv[aid]}][title]" type="hidden"  value="{$srv['title']}"/>
+						<input name="service_value[{$srv[aid]}][currencyname]" type="hidden"  value="{$currencyname}"/>
+						<input name="service_value[{$srv[aid]}][unitname]" type="hidden"  value="{$unitname}"/>
+
+						<input name="service_value[{$srv[aid]}][price]" type="hidden"  value="{$srv['price']}"/>
+						<input name="service_value[{$srv[aid]}][currencyid]" type="hidden"  value="{$srv['currencyid']}"/>
+						<input name="service_value[{$srv[aid]}][unitid]" type="hidden"  value="{$srv['unit']}"/>
+						<input name="service_value[{$srv[aid]}][servicetype]" type="hidden"  value="{$srv[type]}"/>
+						<input  name="service_value[{$srv[aid]}][servicetypeid]"  value="{$srv[aid]}" type="checkbox" > <label for="service{$srv[aid]}" style="float:none;width:auto;" >{$srv[title]}<em class="color-red"></em></label>&nbsp;&nbsp;
+						{if $srv[title]=="分箱"}
+									<font color="#FF953F">{$currencyname} 0～200</font>/{$unitname}&nbsp;&nbsp;&nbsp;&nbsp;
+								{else}
+									<font color="#FF953F">{$currencyname} {$srv['price']}</font>/{$unitname}&nbsp;&nbsp;&nbsp;&nbsp;
+								{/if}
+						
+						
+					{/loop}	  
+                      
+
+													</td>
+													</tr> 
+													<tr><td style="background:#EBEBEB;"><font color="#F40">
+													说明：如对分箱有特殊要求（按货品种类、数量精确分箱），请勾选收费项目并在备注中填写详细要求
+													</font></td></tr>
+													</tbody>
+													</table>
+
+													   </p>
+													   <br/>
+
+													   <p>
+													   
+
+											<table class="table-date" style="width:100%;">
+			                                   
+			                                        <thead>
+			                                        	<tr>
+														<td scope="col"  style="background:#E5E9F3;">备注</td>
+			                                        	</tr>
+			                                        </thead>
+			                                        <tbody>
+													<tr>
+													<td>
+													
+<textarea id="remark" name="remark"  class="inp " style="height:60px;width:90%;"></textarea> 
+
+                      
+
+													</td>
+													</tr>
+													</tbody>
+													</table>
+
+													   </p>
+													   <br/>
+									<p>
+									<table border=0><tr><td>
+<button type="submit" class="btn-login btn-cancel radius-three fl submit_b" tabindex="18" >提交分箱发货</button>&nbsp;&nbsp;</td></tr></table>
+									</p>
+
+									<input type="hidden" name="dosubmit" value="1"/>
+									   </form>                                                                
+									              <div class="function-page fr">
+									               
+	<div class="page">
+		
+	 
+		<!--<span class="page-total">共<em>&nbsp;0&nbsp;</em>条记录&nbsp;&nbsp;1/1 页</span>-->
+		{$pages}
+		</div> <!-- End page -->   
+		  
+									              </div><!--E .function-page--> 
+			                                      
+			                                </div><!--E .pcont-date-mod-->                          
+			                          </div><!--E #tab-cont-v01-->
+							        
+			                        </div><!--E #tab-cont-->                      
+			                    </div><!--E .bag-mod-->  
+                                <!--E 右边内容结束-->
+                           
+            </div>
+            <!--E 内容-->                 
+       
+   <script type="text/javascript">
+   function allchk(obj){
+     $("input[name='aid[]']").attr("checked",obj.checked);
+   }
+
+   function batch_pay(){
+	 var str="";
+	 $("input[name='aid[]']:checked").each(function(){
+		if(str=="")
+		{str=$(this).val();}else{
+			str+=","+$(this).val();
+		}
+	 });
+
+	 if(str==""){
+		alert("请选择所需要扣款订单");
+		return false;
+	 }else{
+		$("#mainForm").attr("action","/index.php?m=waybill&c=index&a=waybill_batch_pay&hid={php echo $this->hid;}");
+		$("#mainForm").submit();
+	 }
+   }
+   </script>
+ 
+ </div>
+ </li>
+ </ul>
+ </div>
+
+ {template "wap","footer"}
+</body>
+</html>

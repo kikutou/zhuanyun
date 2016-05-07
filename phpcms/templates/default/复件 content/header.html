@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="all" name="robots" />
+    <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+     <meta name="keywords" content="{$SEO['keyword']}">
+	<meta name="description" content="{$SEO['description']}">
+	<link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="{IMG_PATH}mlogo57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="{IMG_PATH}mlogo72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="{IMG_PATH}mlogo114.png" />
+<script type="text/javascript" src="{JS_PATH}jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" src="{JS_PATH}util.js"></script>
+
+ 
+
+    <link rel="stylesheet" href="{CSS_PATH}w-index.css" type="text/css" />
+    <link rel="stylesheet" href="{CSS_PATH}n-index.css" type="text/css" />
+	
+    <link rel="stylesheet" href="{CSS_PATH}jquery.bigautocomplete.css" type="text/css" />
+	
+
+    <link rel="stylesheet" type="text/css" href="{CSS_PATH}Vizo-style.css" />
+    <link href="{CSS_PATH}Pager.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    
+    <div style="position: relative">
+        <div id="head">
+            <div class="head_w">
+                <a href="/" class="logo">转运</a> 
+				<div class="top-nav" style="top:5px; float:right;margin-right:20px;margin-top:5px;">
+					<ul class="top-nList clearfix">
+                       <li>
+						<script type="text/javascript">document.write('<iframe src="{APP_PATH}index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid={get_siteid()}" allowTransparency="true"  width="180" height="24" frameborder="0" scrolling="no"></iframe>')</script>
+						</li>
+						
+                        
+					</ul>
+				</div>
+                <div class="fav">
+                    <a onclick="this.style.behavior='url(#default#homepage)';this.sethomepage('http://');">设为首页</a> | <a href="javascript:;" id="sfav">加入收藏</a>
+                </div>
+                <div class="w_sina">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lineb">
+    </div>
+    <div class="nav_w">
+        <div class="navmain">
+            <div id="weixin">
+                
+            </div>
+            <div id="yixin">
+                
+            </div>
+
+			
+
+            <ul class="nav">
+				<li><a href="/index.html">首页</a></li>
+				{pc:content action="category" catid="0" num="10"  siteid="$siteid" order="listorder ASC"}
+				{php $k=11}
+				{loop $data $r}
+				{if $r[catid]!=17}
+				{$k++}
+				
+                	<li id="{$k}">
+                	<a href="{$r[url]}" title="{$r[catname]}" target="_top">
+                	{$r[catname]}</a>
+
+					
+
+                	</li>
+				
+                {/loop}
+				{/if}
+				{/pc}
+
+               <li><a href="/index.php?m=member&siteid=1">会员中心</a></li>
+
+            </ul>
+
+			
+		</div>
+    </div>
+
+	<div class="nav_bottom"></div>

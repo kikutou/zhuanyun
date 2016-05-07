@@ -1,0 +1,199 @@
+ {template 'member', 'header'}
+<link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+
+        <!--E 导航-->   
+  
+        <!--S 内容-->
+        <article class="content">
+        	<!--S 面包屑-->
+            <div class="layout crumbs">
+                <em>当前位置：</em>
+                <a href="/index.php?m=member&siteid=1" title="我的快运">我的快运</a>
+				
+                <span>&gt;</span>
+                <span class="curmbs-active">账户付款</span>
+            </div>
+            <!--E 面包屑-->
+         	<!--S 内容-->
+        	<div class="layout pro-mod">        
+            	<div class="layout grid-s12m0">
+			       <div class="col-main">
+			       	 <div class="main-wrap">
+                        <!--update 2013-3-21-->
+						<div class="pcont-mod cash-mod">
+                        	<div class="pcont-mod-hd">
+                              <span class="balance-info">当前账户可用余额：<em>{$memberinfo['amount']}</em>元</span>
+                               <h3 >使用付款方式：</h3>
+                               <ul class="cash-list clearfix">
+                                 <li id="cash" class="current"><a href="javascript:show('cash');" title="在线支付">在线支付</a></li>
+                                 <li id="card" ><a href="javascript:show('card');" title="账户余额">账户余额</a></li>
+                               </ul>
+                            </div><!--E .pcont-mod-hd--> 
+                            <div class="pcont-mod-bd" id="cash-cont">
+                              <!--S 现金付款-->
+                              <form action="/index.php?m=pay&c=deposit&a=pay_recharge"  name="mainForm" id="mainForm" method="post">
+							  <input type="hidden" name="oid" value="{$oid}">
+                              <div id="cash-cont-v01" >
+                           		<div class="pcont-date-mod">
+                                 	<div class="line-box" style="display:none">
+                                    	<h4>请填入预付金额：</h4>
+                                        <div class="pform-list">
+                                            <label for="price">付款金额</label>
+                                            <input id="price" name="info[price]" class="inp w128" maxlength="8"  value="{if is_numeric($_GET['price'])}{$_GET['price']}{/if}{$totalprice}" style="ime-mode:disabled;" onKeyUp="this.value=this.value.replace(/[^0-9.]/gi,'')"  type="text" tabindex="1">&nbsp;元 
+                                            <span class="Validform_checktip"  id="msgid">付款成功后，付款金额将自动显示在您的账户中。</span>                                                                                    
+                                        </div><!--E .pform-list--
+                                        <div class="pform-list">
+                                            <label for="money">&nbsp;</label>
+                                            <span class="color-blue">注意：每成功支付 <em class="color-red">1</em> 元，将可获得 <em class="color-red">1</em> 个金币，当前美元汇率为：<em class="color-red">6.5</em></span>                                                                                         
+                                        </div><!--E .pform-list-->
+                                    </div><!--E .line-box-->
+                                    <span class="blank5"></span>
+                                 	<div class="line-box">
+                                    	<h4>选择支付方式：</h4>
+                                        <div class="pform-list pl-w45 clearfix">
+										{if $pay_types}
+											{loop $pay_types $key $pay}
+											<label class="img-label">
+                                            	<input type="radio" value="{$pay[pay_id]}" checked="checked" id="payment{$pay[pay_id]}" name="pay_type" tabindex="2">
+                                                <img src="{IMG_PATH}logo-{$pay[pay_code]}.gif" alt="zhifubao">
+                                            </label>  
+											{/loop}
+											{else}本站暂未开启在线支付功能，如需帮助请联系管理员。{/if}
+
+											                                                                                   
+                                        </div><!--E .pform-list-->
+                                       <span class="Validform_checktip" style="padding-left: 50px;">注意：支付完成后，请等待界面自动跳转以确认付款成功，不要急于手动关闭界面避免付款不成功的现象。 </span>
+									
+										<br/>
+                                 	<div class="line-box" style="margin:16px 0 0 160px;">
+                                        <div class="pform-list">
+                                            <label for="money">&nbsp;</label>
+                                            <button type="submit" class="btn-login radius-three" tabindex="4" title="下一步">下一步</button>
+                                        </div><!--E .pform-list-->
+                                    </div><!--E .line-box-->
+                                    </div><!--E .line-box-->
+                                </div><!--E .pcont-date-mod-->                              
+                              </div>
+							  <input type="hidden" name="dosubmit" value="1"/>
+							  <input name="info[email]" type="hidden" id="email"  value="{$memberinfo['email']}"  />
+							  <input name="info[name]" type="hidden" id="contactname"  value="{$memberinfo['username']}"  />
+							  <input name="info[telephone]" type="hidden" id="telephone"  value="{$memberinfo['mobile']}" />
+                              </form>
+                              <!--E 现金付款-->
+                             <!--S 预付卡-->
+                              <form action="/index.php?m=member&c=index&a=pay_bill" name="cardForm" id="cardForm" method="post"  onsubmit="return chkTotal();">
+							  <input type="hidden" name="oid" value="{$oid}">
+							  <input type="hidden" id="account_total" name="account_total" value="{$totalprice}">
+                              <input type="hidden" name="dosubmit" value="1"/>
+
+                              <div class="pcont-date-mod" id="cash-cont-v02" style="display:none">
+                               <div class="line-box" style="margin:16px 0 0 160px;">
+										<div class="pform-list">
+                                            <label for="money">实付费用：</label>
+                                           <span style="font-weight:700;color:#f54302;padding:5px;font-size:18px;"> {number_format($totalprice,2,".",",")}元</span>
+                                        </div><!--E .pform-list-->
+										<br/>
+                                        <div class="pform-list">
+                                            <label for="money">&nbsp;</label>
+                                            <button type="submit" class="btn-login radius-three" tabindex="4" title="付款">付款</button>
+                                        </div><!--E .pform-list-->
+                                    </div><!--E .line-box-->
+
+
+                               <div>
+                               <p>&nbsp;</p>
+                               <span class="Validform_checktip" style="line-height: 28px;">                              
+                               	<strong>温馨提示：</strong><br>
+							   &nbsp;&nbsp;余额可以先充值后再直接支付。<br>
+							   
+                               
+                                </span>
+                              </div>
+                              </div>
+                 
+                              </form>
+                              <!--E 预付卡-->
+                             
+                            </div><!--E .pcont-mod-bd-->                       
+                        </div><!--E .pcont-mod-->
+                        <!--update 2013-3-21-->
+                     </div><!--E .main-wrap-->
+			       </div><!--E .col-main-->
+			      {template 'member', 'left'}
+                </div><!--E .grid-s12m0-->
+            </div>
+            <!--E 内容-->                 
+        </article>
+        <!--E 内容-->
+        <!--S 底部-->
+        <script type="text/javascript">
+<!--
+$(function(){
+	$.formValidator.initConfig({autotip:true,formid:"mainForm",onerror:function(msg){}});
+	$("#price").formValidator({onshow:"请输入要付款的金额",onfocus:"付款金额不能为空"}).inputValidator({min:1,max:999,onerror:"付款金额不能为空"}).regexValidator({regexp:"^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){1,2})?$",onerror:"付款金额必须为整数或小数(保留两位小数)"});
+
+	$(".payment-show").each(function(i){
+		if(i==0){
+			$(this).addClass("payment-show-on");
+		}
+   		$(this).click(
+			function(){
+				$(this).addClass("payment-show-on");
+				$(this).siblings().removeClass("payment-show-on");
+			}
+		)
+ 	});
+})
+
+function chkTotal(){
+	var currentTotal="{$memberinfo['amount']}";
+	var accountTotal=$("#account_total").val();
+	if(parseFloat(currentTotal)<parseFloat(accountTotal)){
+		 dialog_confirm("","账户金额不足，请充值再支付！");
+		 return false;
+	}
+	return true;
+}
+function show(o){
+  $("#cash").removeClass("current");
+  $("#card").removeClass("current");
+  $("#"+o).addClass("current");
+  if("cash"==o){
+     $("div#cash-cont-v01").show();
+     $("div#cash-cont-v02").hide();
+  }else{
+     $("div#cash-cont-v01").hide();
+     $("div#cash-cont-v02").show();
+  }
+}
+function reduce(i){
+  if($("#number_"+i).val()>1){
+  	$("#number_"+i).val(parseInt($("#number_"+i).val())-1);
+  }
+}
+function add(i){
+  if($("#number_"+i).val()>0){
+  	$("#number_"+i).val(parseInt($("#number_"+i).val())+1);
+  }
+}
+var f=document.getElementById("cardForm");
+function submitCardForm(id,number,price,totalPrice,payment){
+  $("#prepaidCardId").val(id);
+  $("#financePayment").val(payment);
+  $("#prepaidCardNum").val($("#number_"+number).val());
+  var i=parseInt($("#number_"+number).val());
+  if(i>=2){
+     dialog_confirm("充值确定","充值 <strong>"+totalPrice*i+"</strong> 金币，支付金额 <strong>"+price*i+"</strong> 元。","alipay?act=card");
+  }else{
+  	f.submit();
+  }
+ 
+}
+
+{if $payflag==1}
+show('card');
+{/if}
+//-->
+</script>
+ 
+  {template 'member', 'footer'}
