@@ -182,7 +182,7 @@ catch(e)  {
 							<div class="t_news">
 							<b id="top">今日汇率：</b>
 							<ul onMouseOver="document.all.menulayer_1.style.visibility=''" onMouseOut="document.all.menulayer_1.style.visibility='hidden'" class="news_li">
-							<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=446674c84fa49422c9f49a9710e10246&action=lists&catid=27&num=16&siteid=%24siteid&order=id+ASC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'27','siteid'=>$siteid,'order'=>'id ASC','limit'=>'16',));}?>
+							<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=446674c84fa49422c9f49a9710e10246&action=lists&catid=27&num=16&siteid=%24siteid&order=id+ASC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'27','siteid'=>$siteid,'order'=>'id ASC','limit'=>'16',));}?>
 								<?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
 								<li style="color:red;"><?php echo $r['title'];?></li>
 								<?php $n++;}unset($n); ?>
@@ -215,7 +215,7 @@ catch(e)  {
 			<div style="float:right; padding-top:48px; width:103px;">
 				
 
-                        <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=ccc805d662e02fd7d11df6a7c4fabc06&sql=SELECT+%2A+from+t_poster+where+spaceid%3D11+and+disabled%3D0+order+by+listorder+&num=3&return=addata\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("SELECT * from t_poster where spaceid=11 and disabled=0 order by listorder  LIMIT 3");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$addata = $a;unset($a);?>
+                        <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=ccc805d662e02fd7d11df6a7c4fabc06&sql=SELECT+%2A+from+t_poster+where+spaceid%3D11+and+disabled%3D0+order+by+listorder+&num=3&return=addata\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("SELECT * from t_poster where spaceid=11 and disabled=0 order by listorder  LIMIT 3");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$addata = $a;unset($a);?>
 						<?php $k=0;?>
 						<?php $n=1;if(is_array($addata)) foreach($addata AS $rs) { ?>
 						<?php $settings=string2array($rs[setting])?>
@@ -259,12 +259,12 @@ catch(e)  {
 .nav-mList li .second a:hover{background:#f6f6f6; padding:0 32px; }
 .nav-mList li .second{position:absolute;left:0;display:none; }
 </style>
-				<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=da4e9d0bec1f05caf76032527da518c4&action=category&catid=0&num=7&siteid=%24siteid\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'category')) {$data = $content_tag->category(array('catid'=>'0','siteid'=>$siteid,'limit'=>'7',));}?>
+				<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=da4e9d0bec1f05caf76032527da518c4&action=category&catid=0&num=7&siteid=%24siteid\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'category')) {$data = $content_tag->category(array('catid'=>'0','siteid'=>$siteid,'limit'=>'7',));}?>
 				<?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
 				<?php if($r[catid]!=8) { ?>
                 	<li data-id="<?php echo $r['catid'];?>" <?php if($ccatid==$r[catid]) { ?>class="current"<?php } ?>>
                 	<a href="<?php echo $r['url'];?>" title="<?php echo $r['catname'];?>" target="_top"><?php echo $r['catname'];?></a>
-					<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=696bf3aabb4119ae8b381f6d942f7bb0&action=category&catid=%24r%5Bcatid%5D&num=7&return=data2\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'category')) {$data2 = $content_tag->category(array('catid'=>$r[catid],'limit'=>'7',));}?>
+					<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=696bf3aabb4119ae8b381f6d942f7bb0&action=category&catid=%24r%5Bcatid%5D&num=7&return=data2\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'category')) {$data2 = $content_tag->category(array('catid'=>$r[catid],'limit'=>'7',));}?>
 						<?php if($data2) { ?>
 						<div class="second">
 						<?php $n=1;if(is_array($data2)) foreach($data2 AS $r2) { ?>

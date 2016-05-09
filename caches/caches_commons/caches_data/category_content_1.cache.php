@@ -155,7 +155,7 @@ return array (
     'parentdir' => '',
     'catdir' => 'news',
     'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=13',
-    'items' => '14',
+    'items' => '15',
     'hits' => '0',
     'setting' => 'array (
   \'workflowid\' => \'\',
