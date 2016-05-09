@@ -16,7 +16,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => '',
-    'url' => 'http://192.168.1.3/index.php?m=member&siteid=1',
+    'url' => 'http://localhost/index.php?m=member&siteid=1',
     'items' => '0',
     'hits' => '0',
     'setting' => 'array (
@@ -52,7 +52,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'xinshou',
-    'url' => 'http://192.168.1.3/xinshou/',
+    'url' => 'http://localhost/xinshou/',
     'items' => '7',
     'hits' => '0',
     'setting' => 'array (
@@ -103,7 +103,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'zhinan',
-    'url' => 'http://192.168.1.3/zhinan/',
+    'url' => 'http://localhost/zhinan/',
     'items' => '8',
     'hits' => '0',
     'setting' => 'array (
@@ -256,7 +256,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => '',
-    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=7',
+    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=7',
     'items' => '0',
     'hits' => '0',
     'setting' => 'array (
@@ -343,7 +343,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'aboutus',
-    'url' => 'http://192.168.1.3/aboutus/',
+    'url' => 'http://localhost/aboutus/',
     'items' => '4',
     'hits' => '0',
     'setting' => 'array (

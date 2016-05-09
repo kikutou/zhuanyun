@@ -27,13 +27,13 @@ return array(
 'js_path' => '/resource/js/', //CDN JS
 'css_path' => '/resource/css/', //CDN CSS
 'img_path' => '/resource/images/', //CDN img
-'app_path' => 'http://192.168.1.3/', //动态域名配置地址
+'app_path' => 'http://localhost/', //动态域名配置地址
 
 'charset' => 'utf-8', //网站字符集
 'timezone' => 'Etc/GMT-8', //网站时区（只对php 5.1以上版本有效），Etc/GMT-8 实际表示的是 GMT+8
 'debug' => 1, //是否显示调试信息
-'admin_log' => 1, //是否记录后台操作日志
-'errorlog' => 1, //1、保存错误日志到 cache/error_log.php | 0、在页面直接显示
+'admin_log' => 0, //是否记录后台操作日志
+'errorlog' => 0, //1、保存错误日志到 cache/error_log.php | 0、在页面直接显示
 'gzip' => 1, //是否Gzip压缩后输出
 'auth_key' => 'fwePr09eooKRkGdTT9bv', //密钥
 'lang' => 'zh-cn',  //网站语言包

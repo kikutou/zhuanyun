@@ -3,10 +3,10 @@
 return array (
 	'default' => array (
 		'hostname' => 'localhost',
-		'database' => 'pinganyou_cn',
-		'username' => 'pinganyou_cn',
-		'password' => 'pinganyoucn151228',
-		'tablepre' => 't_sso_',
+		'database' => 'axultrax',
+		'username' => 'root',
+		'password' => '123456',
+		'tablepre' => 't_',
 		'charset' => 'utf8',
 		'type' => 'mysql',
 		'debug' => true,

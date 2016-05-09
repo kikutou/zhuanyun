@@ -1,5 +1,5 @@
 <?php
-defined('IN_PHPCMS') or exit('No permission resources.');
+defined('IN_PHPCMS') or exit('No permission resources.'); 
 
 $session_storage = 'session_'.pc_base::load_config('system','session_storage');
 pc_base::load_sys_class($session_storage);
@@ -14,8 +14,6 @@ if ($checkcode->width <= 0) {
 	$checkcode->width = 130;
 }
 
-
-
 if (isset($_GET['height']) && intval($_GET['height'])) $checkcode->height = intval($_GET['height']);
 if ($checkcode->height <= 0) {
 	$checkcode->height = 50;
@@ -27,8 +25,5 @@ if($checkcode->height > $max_height) $checkcode->height = $max_height;
 
 if (isset($_GET['font_color']) && trim(urldecode($_GET['font_color'])) && preg_match('/(^#[a-z0-9]{6}$)/im', trim(urldecode($_GET['font_color'])))) $checkcode->font_color = trim(urldecode($_GET['font_color']));
 if (isset($_GET['background']) && trim(urldecode($_GET['background'])) && preg_match('/(^#[a-z0-9]{6}$)/im', trim(urldecode($_GET['background'])))) $checkcode->background = trim(urldecode($_GET['background']));
-
-
 $checkcode->doimage();
 $_SESSION['code']=$checkcode->get_code();
-

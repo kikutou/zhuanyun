@@ -26,6 +26,7 @@ class index extends admin {
 	
 	public function login() {
 		if(isset($_GET['dosubmit'])) {
+			
 
 			$system = pc_base::load_config('system');
 			

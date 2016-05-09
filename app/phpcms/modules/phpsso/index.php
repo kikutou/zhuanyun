@@ -39,8 +39,12 @@ class index extends phpsso {
 		$this->random = isset($this->data['random']) && !empty($this->data['random']) ? $this->data['random'] : create_randomstr(6);
 		$this->password = isset($this->data['password']) ? create_password($this->data['password'], $this->random) : '';
 		$this->email = isset($this->data['email']) ? $this->data['email'] : '';
-		$this->type = isset($this->appid) ? 'app' : 'connect';
 		$this->regip = isset($this->data['regip']) ? $this->data['regip'] : '';
+		$this->username = isset($this->data['username']) ? $this->data['username'] : '';
+		$clientname = isset($this->data['clientname']) ? $this->data['clientname'] : '';
+		$clientcode = isset($this->data['clientcode']) ? $this->data['clientcode'] : '';
+
+		$this->type = isset($this->appid) ? 'app' : 'connect';
 		$this->appid = isset($this->appid) ? $this->appid : '';
 		$this->appname = $this->applist[$this->appid]['name'];
 
@@ -61,6 +65,7 @@ class index extends phpsso {
 		//UCenter会员注册
 		$ucuserid = 0;
 		if ($this->config['ucuse']) {
+
 			pc_base::load_config('uc_config');
 			require_once PHPCMS_PATH.'api/uc_client/client.php';
 			$uid= uc_user_register($this->username, $this->data['password'], $this->email, $this->random);
@@ -98,19 +103,23 @@ class index extends phpsso {
 					'password' => $this->password,
 					'email' => $this->email,
 					'regip' => $this->regip,
+					'lastip' => $this->regip,
 					'regdate' => SYS_TIME,
 					'lastdate' => SYS_TIME,
-					'appname' => $this->appname,
-					'type' => $this->type,
-					'random' => $this->random,
-					'ucuserid'=>$ucuserid
+					//'appname' => $this->appname,
+					//'type' => $this->type,
+					'encrypt' => $this->random,
+					//'ucuserid'=>$ucuserid
+					'clientname' => $clientname,
+					'clientcode' => $clientcode
 					);
-		$uid = $this->db->insert($data, 1);
+		$userid = $this->db->insert($data, 1);
 		/*插入消息队列*/
-		$noticedata = $data;
-		$noticedata['uid'] = $uid;
-		messagequeue::add('member_add', $noticedata);
-		exit("$uid");	//exit($uid) 不可以If status is an integer, that value will also be used as the exit status. 
+		//$noticedata = $data;
+		//$noticedata['userid'] = $userid;
+		//messagequeue::add('member_add', $noticedata);
+
+		exit("$userid");	//exit($uid) 不可以If status is an integer, that value will also be used as the exit status.
 	}
 	
 	/**
@@ -287,6 +296,7 @@ class index extends phpsso {
 	 * @return array {-2;密码错误;-1:用户不存在;array(userinfo):用户信息}
 	 */
 	public function login() {
+
 		$this->password = isset($this->data['password']) ? $this->data['password'] : '';
 		$this->email = isset($this->data['email']) ? $this->data['email'] : '';
 		if($this->email) {
@@ -296,12 +306,15 @@ class index extends phpsso {
 		}
 		
 		if ($this->config['ucuse']) {
+
 			pc_base::load_config('uc_config');
 			require_once PHPCMS_PATH.'api/uc_client/client.php';
 			list($uid, $uc['username'], $uc['password'], $uc['email']) = uc_user_login($this->username, $this->password, 0);
 		}
+
 		
 		if($userinfo) {
+
 			//ucenter登陆部份
 			if ($this->config['ucuse']) {
 				if($uid == -1) {	//uc不存在该用户，调用注册接口注册用户
@@ -324,7 +337,8 @@ class index extends phpsso {
 
 					//获取UC中用户的信息
 					$r = $uc_db->get_one(array('uid'=>$uid));
-					$datas = $data = array('username'=>$r['username'], 'password'=>$r['password'], 'random'=>$r['salt'], 'email'=>$r['email'], 'regip'=>$r['regip'], 'regdate'=>$r['regdate'],  'lastdate'=>$r['lastlogindate'], 'appname'=>'ucenter', 'type'=>'app');
+					//$datas = $data = array('username'=>$r['username'], 'password'=>$r['password'], 'random'=>$r['salt'], 'email'=>$r['email'], 'regip'=>$r['regip'], 'regdate'=>$r['regdate'],  'lastdate'=>$r['lastlogindate'], 'appname'=>'ucenter', 'type'=>'app');
+					$datas = $data = array('username'=>$r['username'], 'password'=>$r['password'], 'random'=>$r['encrypt'], 'email'=>$r['email'], 'regip'=>$r['regip'], 'regdate'=>$r['regdate'],  'lastdate'=>$r['lastdate']);
 					$datas['ucuserid'] = $uid;
 					$datas['lastip'] = $r['lastloginip'];
 					if ($data['uid'] = $this->db->insert($datas, true)) {
@@ -347,10 +361,15 @@ class index extends phpsso {
 				exit(serialize($userinfo));
 			}
 		}
-		
-		if(!empty($userinfo) && $userinfo['password'] == create_password($this->password, $userinfo['random'])) {
+
+		//if(!empty($userinfo) && $userinfo['password'] == create_password($this->password, $userinfo['random'])) {
+		if(!empty($userinfo) && $userinfo['password'] == create_password($this->password, $userinfo['encrypt'])) {
+
+
+
 			//登录成功更新用户最近登录时间和ip
-			$this->db->update(array('lastdate'=>SYS_TIME, 'lastip'=>ip()), array('uid'=>$userinfo['uid']));
+			//$this->db->update(array('lastdate'=>SYS_TIME, 'lastip'=>ip()), array('uid'=>$userinfo['uid']));
+			$this->db->update(array('lastdate'=>SYS_TIME, 'lastip'=>ip()));
 			exit(serialize($userinfo));
 		} else {
 			exit('-2');

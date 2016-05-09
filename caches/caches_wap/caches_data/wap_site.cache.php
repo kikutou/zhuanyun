@@ -5,7 +5,7 @@ return array (
     'siteid' => '1',
     'sitename' => '日本转运',
     'logo' => '/uploadfile/2015/0731/20150731035943734.png',
-    'domain' => 'http://localhost/app',
+    'domain' => 'http://localhost/',
     'setting' => 'array (
   \'listnum\' => \'10\',
   \'thumb_w\' => \'600\',

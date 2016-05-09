@@ -39,19 +39,19 @@
   <script>
 
   //if(navigator.userAgent.match(/.*Mobile.*/)){
-/*	if(window.location.href=="http://192.168.1.3" || window.location.href=="http://192.168.1.3/" || window.location.href=="http://192.168.1.3/index.php" || window.location.href=="http://192.168.1.3/index.html")
-	window.location.href="http://192.168.1.3/index.php?m=wap&siteid=1";
+/*	if(window.location.href=="http://localhost" || window.location.href=="http://localhost/" || window.location.href=="http://localhost/index.php" || window.location.href=="http://localhost/index.html")
+	window.location.href="http://localhost/index.php?m=wap&siteid=1";
   }
 
    if(/AppleWebKit.*mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
     if(window.location.href.indexOf("?mobile")<0){
         try{
             if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)){
-                window.location.href="http://192.168.1.3/index.php?m=wap&siteid=1";
+                window.location.href="http://localhost/index.php?m=wap&siteid=1";
             }else if(/iPad/i.test(navigator.userAgent)){
-                window.location.href="http://192.168.1.3/index.php?m=wap&siteid=1";
+                window.location.href="http://localhost/index.php?m=wap&siteid=1";
             }else{
-                window.location.href="http://192.168.1.3/index.php?m=wap&siteid=1"
+                window.location.href="http://localhost/index.php?m=wap&siteid=1"
             }
         }catch(e){}
     }
@@ -110,7 +110,7 @@ ul,li{list-style-type:none;margin:0px;}
 function setHomePage1(o){ 
  try {    
 	o.style.behavior='url(#default#homepage)';
-	o.setHomePage('http://192.168.1.3/');
+	o.setHomePage('http://localhost/');
      } catch (e) {    
     dialog_alert("你的浏器览不支持设为首页操作，请自行设置!");
    }
@@ -118,7 +118,7 @@ function setHomePage1(o){
  
 function addFavorite(){ 
  try {    
-	window.external.AddFavorite("http://192.168.1.3/","讯立快运  - 您的私人快运公司");
+	window.external.AddFavorite("http://localhost/","讯立快运  - 您的私人快运公司");
      } catch (e) {    
     dialog_alert("你的浏器览不支持收藏操作，请收藏!");
    }
@@ -193,7 +193,7 @@ catch(e)  {
 						</li>
 
 						<li style="width:185px;padding-right:15px;">
-						<script type="text/javascript">document.write('<iframe src="index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid=1" allowTransparency="true"  width="200" height="24" frameborder="0" scrolling="no"></iframe>')</script>
+						<script type="text/javascript">document.write('<iframe src="http://localhost/index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid=1" allowTransparency="true"  width="200" height="24" frameborder="0" scrolling="no"></iframe>')</script>
 						</li>
 						
  
@@ -202,13 +202,13 @@ catch(e)  {
                         <li><a href="###" class="h-yMessage radius-three">消息<em>2</em></a></li>
                         -->
                         <li class="h-nLine">|</li>
-                        <li><a href="javascript:void(0)" onclick="SetHome(this,'http://192.168.1.3/');">设为首页</a></li>
+                        <li><a href="javascript:void(0)" onclick="SetHome(this,'http://localhost/');">设为首页</a></li>
                         <li class="h-nLine">|</li>
                         <li><a href="javascript:void(0)" onclick="AddFavorite('',location.href)">加入收藏</a></li>
                     </ul>
                 </div>
                 <!--E 头部栏目-->
-				            	<h1 class="fl logo"><a href="http://192.168.1.3/" title="日本转运_日本亚马逊_乐天_日本海淘首选日本转运公司_日本转运" style="background:url(/uploadfile/2015/0731/20150731035943734.png);">日本转运_日本亚马逊_乐天_日本海淘首选日本转运公司_日本转运</a></h1>
+				            	<h1 class="fl logo"><a href="http://localhost/" title="日本转运_日本亚马逊_乐天_日本海淘首选日本转运公司_日本转运" style="background:url(/uploadfile/2015/0731/20150731035943734.png);">日本转运_日本亚马逊_乐天_日本海淘首选日本转运公司_日本转运</a></h1>
                
 			<div style="float:left; padding-top: 50px; padding-left: 160px; font-family: 宋体; font-size: 18px; color:#747474;">统一客服热线：日本：+81-888888888 中国：0755-88888888</div>
 			<div style="float:right; padding-top:48px; width:103px;">
@@ -249,7 +249,7 @@ catch(e)  {
         	<div class="nav-mod radius-three">
             	<div class="nav-main" style="margin-left:8px;">
                 	<ul class="nav-mList clearfix" id="J_NavList">
-                	<li data-id="0" class="current"><a href="http://192.168.1.3/" title="首页" >首页</a></li>
+                	<li data-id="0" class="current"><a href="http://localhost/" title="首页" >首页</a></li>
 					               
 <style>
 *{ margin:0; padding:0; list-style:none;}
@@ -258,15 +258,15 @@ catch(e)  {
 .nav-mList li .second{position:absolute;left:0;display:none; }
 </style>
 												                	<li data-id="17" >
-                	<a href="http://192.168.1.3/index.php?m=member&siteid=1" title="我的仓库" target="_top">我的仓库</a>
+                	<a href="http://localhost/index.php?m=member&siteid=1" title="我的仓库" target="_top">我的仓库</a>
 																							
                 	</li>
 				                				                	<li data-id="18" >
-                	<a href="http://192.168.1.3/xinshou/" title="新手上路" target="_top">新手上路</a>
+                	<a href="http://localhost/xinshou/" title="新手上路" target="_top">新手上路</a>
 																							
                 	</li>
 				                				                	<li data-id="19" >
-                	<a href="http://192.168.1.3/zhinan/" title="日淘教程" target="_top">日淘教程</a>
+                	<a href="http://localhost/zhinan/" title="日淘教程" target="_top">日淘教程</a>
 																							
                 	</li>
 				                				                	<li data-id="13" >
@@ -282,7 +282,7 @@ catch(e)  {
 																							
                 	</li>
 				                				                	<li data-id="23" >
-                	<a href="http://192.168.1.3/aboutus/" title="关于我们" target="_top">关于我们</a>
+                	<a href="http://localhost/aboutus/" title="关于我们" target="_top">关于我们</a>
 																							
                 	</li>
 				                				                	
@@ -311,7 +311,8 @@ $(function(){
             </div><!--E .nav-mod-->
         </div>
 		<div style="background:url(/resource/images/nav_bottom3.png) repeat-x; height:15px;"></div>
-        <!--E 导航-->      
+        <!--E 导航-->
+		</div>  
 
  <style>
 /* index */
@@ -386,7 +387,7 @@ $(function(){
 						<label for="desc">会员登录</label><br>
 						</div>
 						<div style="  padding:5px 10px 0 15px;">
-						<script type="text/javascript">document.write('<iframe src="http://192.168.1.3/index.php?m=member&c=index&a=mini&flag=1&forward='+encodeURIComponent(location.href)+'&siteid=1" allowTransparency="true"  width="275" height="153" frameborder="0" scrolling="no"></iframe>')</script>
+						<script type="text/javascript">document.write('<iframe src="http://localhost/index.php?m=member&c=index&a=mini&flag=1&forward='+encodeURIComponent(location.href)+'&siteid=1" allowTransparency="true"  width="275" height="153" frameborder="0" scrolling="no"></iframe>')</script>
 						</div>
 					</div>
                   	   <div class="mod radius-three box-shadow-v01" style="border: 1px solid rgb(202, 202, 202); border-image: none; width: 302px; height: 225px; margin: 230px 0 0 0;">
@@ -429,12 +430,6 @@ $(function(){
 								<div id="scrollDiv_keleyi_com" class="scrollDiv">
 									<ul>
 																		                                    	<li style="background: none; padding-left:0; height: 130px; line-height:normal;">
-                                    		<img src="/resource/images/nopic.gif" width="150" height="105" alt="999" style="float:left; padding-right:15px; padding-top:10px">
-                                        	<a href="http://localhost/index.php?m=content&c=index&a=show&catid=25&id=34" title="999" style="float:none;"><font style=" line-height:28px; font-size:16px; ">999</font></a>
-                                            <br><a class="n"  href="http://localhost/index.php?m=content&c=index&a=show&catid=25&id=34" title="999" style="float:none;"><font style=" line-height:18px;">99999...</font></a>
-											<br><br>  <span>2015-10-11</span>
-                                        </li>
-                     				                                     	<li style="background: none; padding-left:0; height: 130px; line-height:normal;">
                                     		<img src="/uploadfile/2015/0806/thumb_100_100_20150806010648409.jpg" width="150" height="105" alt="哇咔咔，美美哒来晒单啦，哈哈哈" style="float:left; padding-right:15px; padding-top:10px">
                                         	<a href="http://localhost/index.php?m=content&c=index&a=show&catid=25&id=31" title="哇咔咔，美美哒来晒单啦，哈哈哈" style="float:none;"><font style=" line-height:28px; font-size:16px; ">哇咔咔，美美哒来晒单啦，哈哈哈</font></a>
                                             <br><a class="n"  href="http://localhost/index.php?m=content&c=index&a=show&catid=25&id=31" title="哇咔咔，美美哒来晒单啦，哈哈哈" style="float:none;"><font style=" line-height:18px;">海淘真的很简单呢， 之前朋友淘了不少的宝贝，被我发现后，自己禁不住也想体验一下，这不就碰上日本亚马逊促销时抢了这么多的宝贝，而正在为转运发愁时，恰巧看到日本转运做返现活动，果断用了，我用的是EMS速度   ...</font></a>
@@ -487,11 +482,6 @@ kindle paper的话，是要14280日元。...</font></a>
                                 <div class="mod-bd mod-shadow" style="display:none;">
                                 	<ul class="news-list">
                                 	 									                                    	<li style="background: none; padding-left:0; height: 120px; line-height:normal;">
-                                    		<img src="/resource/images/nopic.gif" width="150" height="100" alt="999" style="float:left; padding-right:15px; padding-top:10px">
-                                        	<a href="http://localhost/index.php?m=content&c=index&a=show&catid=25&id=34" title="999" style="float:none;"><font style=" line-height:28px; font-size:16px; ">999</font></a>
-                                            <br><a class="n"  href="http://localhost/index.php?m=content&c=index&a=show&catid=25&id=34" title="999" style="float:none;"><font style=" line-height:18px;">99999...</font></a>
-                                        </li>
-                     				                                     	<li style="background: none; padding-left:0; height: 120px; line-height:normal;">
                                     		<img src="/uploadfile/2015/0806/thumb_100_100_20150806010648409.jpg" width="150" height="100" alt="哇咔咔，美美哒来晒单啦，哈哈哈" style="float:left; padding-right:15px; padding-top:10px">
                                         	<a href="http://localhost/index.php?m=content&c=index&a=show&catid=25&id=31" title="哇咔咔，美美哒来晒单啦，哈哈哈" style="float:none;"><font style=" line-height:28px; font-size:16px; ">哇咔咔，美美哒来晒单啦，哈哈哈</font></a>
                                             <br><a class="n"  href="http://localhost/index.php?m=content&c=index&a=show&catid=25&id=31" title="哇咔咔，美美哒来晒单啦，哈哈哈" style="float:none;"><font style=" line-height:18px;">海淘真的很简单呢， 之前朋友淘了不少的宝贝，被我发现后，自己禁不住也想体验一下，这不就碰上日本亚马逊促销时抢了这么多的宝贝，而正在为转运发愁时，恰巧看到日本转运做返现活动，果断用了，我用的是EMS速度   ...</font></a>
@@ -548,37 +538,37 @@ kindle paper的话，是要14280日元。...</font></a>
                                 	<ul class="news-list">
                                 	 									                                    	<li>
                                     	
-                                        	<a href="http://localhost/index.php?m=content&c=index&a=show&catid=13&id=190" title="Panasonic ES-WH71-P 松下家用激光脱毛器    ">Panasonic ES-WH71-P 松下家用激光脱毛器    </a>
+                                        	<a href="http://www.pinganyou.cn/index.php?m=content&c=index&a=show&catid=13&id=190" title="Panasonic ES-WH71-P 松下家用激光脱毛器    ">Panasonic ES-WH71-P 松下家用激光脱毛器    </a>
                                             <span style="display:none;">2015-07-28</span>
                                         </li>
                      				                                     	<li>
                                     	
-                                        	<a href="http://localhost/index.php?m=content&c=index&a=show&catid=13&id=189" title="【日亚】 KANEBO/嘉娜宝 Suisai药用酵母洗颜粉！">【日亚】 KANEBO/嘉娜宝 Suisai药用酵母洗颜粉！</a>
+                                        	<a href="http://www.pinganyou.cn/index.php?m=content&c=index&a=show&catid=13&id=189" title="【日亚】 KANEBO/嘉娜宝 Suisai药用酵母洗颜粉！">【日亚】 KANEBO/嘉娜宝 Suisai药用酵母洗颜粉！</a>
                                             <span style="display:none;">2015-07-27</span>
                                         </li>
                      				                                     	<li>
                                     	
-                                        	<a href="http://localhost/index.php?m=content&c=index&a=show&catid=13&id=188" title="【日亚】日亚破天荒的20%优惠券。活动延长至7月31日23时！">【日亚】日亚破天荒的20%优惠券。活动延长至7月31日23时！</a>
+                                        	<a href="http://www.pinganyou.cn/index.php?m=content&c=index&a=show&catid=13&id=188" title="【日亚】日亚破天荒的20%优惠券。活动延长至7月31日23时！">【日亚】日亚破天荒的20%优惠券。活动延长至7月31日23时！</a>
                                             <span style="display:none;">2015-07-26</span>
                                         </li>
                      				                                     	<li>
                                     	
-                                        	<a href="http://localhost/index.php?m=content&c=index&a=show&catid=13&id=187" title="【日本乐天】再次开起Super Deal 促销活动,最大50%返点">【日本乐天】再次开起Super Deal 促销活动,最大50%返点</a>
+                                        	<a href="http://www.pinganyou.cn/index.php?m=content&c=index&a=show&catid=13&id=187" title="【日本乐天】再次开起Super Deal 促销活动,最大50%返点">【日本乐天】再次开起Super Deal 促销活动,最大50%返点</a>
                                             <span style="display:none;">2015-07-26</span>
                                         </li>
                      				                                     	<li>
                                     	
-                                        	<a href="http://localhost/index.php?m=content&c=index&a=show&catid=13&id=186" title="【日亚】松下产品大促销，最大2000日元OFF哦">【日亚】松下产品大促销，最大2000日元OFF哦</a>
+                                        	<a href="http://www.pinganyou.cn/index.php?m=content&c=index&a=show&catid=13&id=186" title="【日亚】松下产品大促销，最大2000日元OFF哦">【日亚】松下产品大促销，最大2000日元OFF哦</a>
                                             <span style="display:none;">2015-07-22</span>
                                         </li>
                      				                                     	<li>
                                     	
-                                        	<a href="http://localhost/index.php?m=content&c=index&a=show&catid=13&id=183" title="药妆店必败的人气酵素">药妆店必败的人气酵素</a>
+                                        	<a href="http://www.pinganyou.cn/index.php?m=content&c=index&a=show&catid=13&id=183" title="药妆店必败的人气酵素">药妆店必败的人气酵素</a>
                                             <span style="display:none;">2015-07-18</span>
                                         </li>
                      				                                     	<li>
                                     	
-                                        	<a href="http://localhost/index.php?m=content&c=index&a=show&catid=13&id=182" title="【日本乐天】Dodonpa 促销活动 0719日高调开始">【日本乐天】Dodonpa 促销活动 0719日高调开始</a>
+                                        	<a href="http://www.pinganyou.cn/index.php?m=content&c=index&a=show&catid=13&id=182" title="【日本乐天】Dodonpa 促销活动 0719日高调开始">【日本乐天】Dodonpa 促销活动 0719日高调开始</a>
                                             <span style="display:none;">2015-07-16</span>
                                         </li>
                      				 									                                     	
@@ -682,6 +672,7 @@ kindle paper的话，是要14280日元。...</font></a>
 							 																	<li><a href="http://rpx.a8.net/svt/ejp?a8mat=2C0PLX+8645MA+2HOM+6DC6A&amp;rakuten=y&amp;a8ejpredirect=http%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2F0ea62065.34400275.0ea62066.204f04c0%2Fa14112090896_2C0PLX_8645MA_2HOM_6DC6A%3Fpc%3Dhttp%253A%252F%252Fwww.rakuten.co.jp%252F%26m%3Dh" title="乐天" target="_blank"><img src="/uploadfile/2015/0606/20150606091948467.jpg"  width="190" height="85" ></a></li>
 																	<li><a href="http://www.amazon.co.jp//ref=as_sl_pc_tf_lc?tag=a8-affi-216356-22&amp;camp=1&amp;creative=1131&amp;linkCode=ur1&amp;ref-refURL=http%3A%2F%2Fwww.a8.net%2Fa8v2%2FasAmazonBannerSearchAction.do" title="Amazon" target="_blank"><img src="/uploadfile/2015/0606/20150606092336738.png"  width="190" height="85" ></a></li>
 																	<li><a href="http://shopping.yahoo.co.jp/" title="yahoo" target="_blank"><img src="/uploadfile/2015/0606/20150606092527758.jpg"  width="190" height="85" ></a></li>
+																	<li><a href="http://www.ems.com.cn" title="EMS" target="_blank"><img src="/uploadfile/2016/0509/20160509045537861.jpg"  width="190" height="85" ></a></li>
 																	<li><a href="http://www.cosme.com/" title="cosme" target="_blank"><img src="/uploadfile/2015/0606/20150606093004685.jpg"  width="190" height="85" ></a></li>
 															 							
 						</ul>
@@ -1010,7 +1001,7 @@ function success(msg){
 			title : "无标题，3秒后关闭",
 			boxID : "notitle",
 			fixed: true,
-			content : "text:<div style=\"background:url(http://192.168.1.3/images/tick_48.png) #c3e4fd no-repeat 20px 50%;height:60px;line-height:51px;padding-left:80px;padding-right:60px; \"><b>"+msg+"</b></d",
+			content : "text:<div style=\"background:url(http://localhost/images/tick_48.png) #c3e4fd no-repeat 20px 50%;height:60px;line-height:51px;padding-left:80px;padding-right:60px; \"><b>"+msg+"</b></d",
 			showtitle : "remove",
 			time : 2000,
 			border : {opacity:"-2"}

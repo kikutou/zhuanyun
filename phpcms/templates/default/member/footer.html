@@ -1,96 +1,90 @@
   <style>
-	.t_kind{font-family:微软雅黑,宋体,Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#cbda69;}
-	#footerListLi{float:left; margin-left:57px;}
-	#txt1{text-align:left; line-height:25px; }
-	.txt22 a{color:#fafafa; font:12px/1.5 Tahoma, Arial, sans-serif, microsoft yahei;}
-	.txt22 a:hover{color:#0080C6;}
-	td,th{border:0px; padding:0px;}
+.t_kind{font-family:微软雅黑,宋体,Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold; color:#cbda69;}
+#footerListLi{float:left; margin-left:57px;}
+#txt1{text-align:left; line-height:25px; }
+.txt22 a{color:#fafafa; font:12px/1.5 Tahoma, Arial, sans-serif, microsoft yahei;}
+.txt22 a:hover{color:#0080C6;}
+td,th{border:0px; padding:0px;}
  </style> 
  
  
-<footer class="footer">
-	<div class="layout footer-mod">
-		<table width="100%" border="0" cellspacing="0" cellpadding="0">
-			<tr>
-				<td align="center" valign="top" >
-					<table width="1002" border="0" cellspacing="0" cellpadding="0">
-      					<tr>
-        					<td align="center">
-								<table width="1002" border="0" cellpadding="5" cellspacing="0" style="margin-bottom:20px">
-									<tr>
-										{pc:get sql="select * from t_category where catid>11" num="9" return="data2"}
-											{loop $data2 $r}
-												{if $r[catid]==18 || $r[catid]==20 || $r[catid]==21}
-          											<td width="152" align="center" valign="top" bgcolor="#667503"><label class="t_kind">{$r[catname]}</label></td>
-												{/if}
-											{/loop}
-										{/pc}
+        <footer class="footer">
+		<div class="layout footer-mod">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="top" >
+	<table width="1002" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="center">
+		<table width="1002" border="0" cellpadding="5" cellspacing="0" style="margin-bottom:20px">
+        <tr>
+		{pc:get sql="select * from t_category where catid>11" num="9" return="data2"}
+				{loop $data2 $r}
+				{if $r[catid]==18 || $r[catid]==20 || $r[catid]==21}
+          <td width="152" align="center" valign="top" bgcolor="#667503"><label class="t_kind">{$r[catname]}</label></td>
+				{/if}
+			{/loop}
+		{/pc}
 
-										{pc:get sql="select * from t_category where catid>11" num="9" return="data3"}
-											{loop $data3 $rr}
-												{if $rr[catid]==12 || $rr[catid]==22 || $rr[catid]==23}
-          											<td width="152" align="center" valign="top" bgcolor="#667503"><label class="t_kind">{$rr[catname]}</label></td>
-												{/if}
-											{/loop}
-										{/pc}
-									</tr>
-									<tr>
-										{pc:get sql="select * from t_category where catid>11" num="9" return="data0"}
-											{loop $data0 $r0}
-												{if $r0[catid]==18 || $r0[catid]==20 || $r0[catid]==21}
-          											<td align="left" valign="top" style="padding-top:5px;">
-		  												<div id="footerListLi">
-              												<ul id="txt1">
-			  													{pc:content action="lists" catid="$r0[catid]" num="5"  siteid="$siteid"  return="data1"}
-																	{loop $data1 $r1}
-                     													<li class="txt22"><a href="{$r1[url]}">{$r1[title]}</a></li>
-																	{/loop}
-			  													{/pc}
-															</ul>
-          												</div>
-													</td>
-		  										{/if}
-		  									{/loop}
-										{/pc}
-										{pc:get sql="select * from t_category where catid>11" num="9" return="data2"}
-											{loop $data2 $r2}
-												{if $r2[catid]==12 || $r2[catid]==22 || $r2[catid]==23}
-          											<td align="left" valign="top" style="padding-top:5px;">
-		  												<div id="footerListLi">
-              												<ul id="txt1">
-			  													{pc:content action="lists" catid="$r2[catid]" num="5"  siteid="$siteid"  return="data11"}
-																	{loop $data11 $r11}
-                     													<li class="txt22">
-																			<a href="{$r11[url]}">{$r11[title]}</a>
-																		</li>
-																	{/loop}
-			  													{/pc}
-															</ul>
-          												</div>
-													</td>
-												{/if}
-											{/loop}
-										{/pc}
-          							</tr>
-    							</table>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
+		{pc:get sql="select * from t_category where catid>11" num="9" return="data3"}
+				{loop $data3 $rr}
+				{if $rr[catid]==12 || $rr[catid]==22 || $rr[catid]==23}
+          <td width="152" align="center" valign="top" bgcolor="#667503"><label class="t_kind">{$rr[catname]}</label></td>
+				{/if}
+			{/loop}
+		{/pc}
+		
+        </tr>
+        <tr>
+		{pc:get sql="select * from t_category where catid>11" num="9" return="data0"}
+			{loop $data0 $r0}
+			{if $r0[catid]==18 || $r0[catid]==20 || $r0[catid]==21}
+          <td align="left" valign="top" style="padding-top:5px;">
+		  <div id="footerListLi">
+              <ul id="txt1">
+			  {pc:content action="lists" catid="$r0[catid]" num="5"  siteid="$siteid"  return="data1"}
+				{loop $data1 $r1}
+                     <li class="txt22"><a href="{$r1[url]}">{$r1[title]}</a></li>
+				{/loop}
+			  {/pc}	  
+			</ul>
+          </div>
+		  </td>
+		  {/if}
+		  {/loop}
+		{/pc}
+		{pc:get sql="select * from t_category where catid>11" num="9" return="data2"}
+			{loop $data2 $r2}
+			{if $r2[catid]==12 || $r2[catid]==22 || $r2[catid]==23}
+          <td align="left" valign="top" style="padding-top:5px;">
+		  <div id="footerListLi">
+              <ul id="txt1">
+			  {pc:content action="lists" catid="$r2[catid]" num="5"  siteid="$siteid"  return="data11"}
+				{loop $data11 $r11}
+                     <li class="txt22"><a href="{$r11[url]}">{$r11[title]}</a></li>
+				{/loop}
+			  {/pc}	  
+			</ul>
+          </div>
+		  </td>
+		  {/if}
+		  {/loop}
+		{/pc}
+         
+          </tr>
+    </table>
 	</div>
-
-	<div class="layout footer-mod">
-		<center>
-			<div class="footer-link tc"></div>
-		</center>
-
-		{php $_sinfo=siteinfo(1);}
-		<p class="tc" style="font:12px/1.5 Tahoma, Arial, sans-serif, microsoft yahei; color:#333;">{$_sinfo['copyright']} </p>
-
-	</div>
-</footer>
+        	<div class="layout footer-mod">
+        	<center> 
+	            <div class="footer-link tc">
+	               
+	            </div>
+			</center> 
+			{php $_sinfo=siteinfo(1);}
+	            <p class="tc" style="font:12px/1.5 Tahoma, Arial, sans-serif, microsoft yahei; color:#333;">{$_sinfo['copyright']} </p>
+				
+            </div>
+         </footer>   
        
 		
  
@@ -171,19 +165,19 @@ function success(msg){
     <!--S 快捷菜单-->
     
 <div class="quick-mod" style="display:none">
-  	<div class="quick-cont clearfix">
-		<h3 class="fl">快捷菜单：</h3>
-		<ul class="fl">
-			<li><a href="packs" title="我的包裹">我的包裹</a></li>
-			<li><a href="order_packs" title="提交订单">提交订单</a></li>
-			<li><a href="support_packs" title="提交增值服务">提交增值服务</a></li>
-			<li><a href="/index.php?m=pay&c=deposit&a=pay" title="充值">充值</a></li>
-			<li><a href="/index.php?m=address&c=index&a=init" title="地址簿">地址簿</a></li>
-			<li><a href="/index.php?m=yuyue&c=index&a=add" title="预约取件">预约取件</a></li>
-			<li><a href="/index.php?m=yuyue&c=index&a=init" title="我的预约记录">我的预约记录</a></li>
-		</ul>
-  	</div>
-</div>
+      <div class="quick-cont clearfix">
+        <h3 class="fl">快捷菜单：</h3>
+        <ul class="fl">
+          <li><a href="packs" title="我的包裹">我的包裹</a></li>
+          <li><a href="order_packs" title="提交订单">提交订单</a></li>
+          <li><a href="support_packs" title="提交增值服务">提交增值服务</a></li>
+          <li><a href="/index.php?m=pay&c=deposit&a=pay" title="充值">充值</a></li>
+          <li><a href="/index.php?m=address&c=index&a=init" title="地址簿">地址簿</a></li>
+          <li><a href="/index.php?m=yuyue&c=index&a=add" title="预约取件">预约取件</a></li>
+		  <li><a href="/index.php?m=yuyue&c=index&a=init" title="我的预约记录">我的预约记录</a></li>
+        </ul>
+      </div>
+    </div>
     <!--E 快捷菜单-->
 </body>
 </html>

@@ -9,7 +9,7 @@ return array (
     'version' => '1.0',
     'description' => '',
     'setting' => 'array (
-  \'admin_email\' => \'juteng2005@gmail.com\',
+  \'admin_email\' => \'wuhanpizi@gmail.com\',
   \'maxloginfailedtimes\' => \'8\',
   \'minrefreshtime\' => \'2\',
   \'mail_type\' => \'1\',
@@ -20,7 +20,7 @@ return array (
   \'mail_auth\' => \'1\',
   \'mail_from\' => \'service@baidu.com\',
   \'mail_password\' => \'123456\',
-  \'errorlog_size\' => \'500\',
+  \'errorlog_size\' => \'200\',
 )',
     'listorder' => '0',
     'disabled' => '0',

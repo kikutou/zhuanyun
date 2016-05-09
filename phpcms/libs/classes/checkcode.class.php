@@ -74,14 +74,8 @@ class checkcode {
 	 * 生成图片
 	 */
 	public function doimage() {
-
-
-
 		$code = $this->creat_code();
-
 		$this->img = imagecreatetruecolor($this->width, $this->height);
-
-
 		if (!$this->font_color) {
 			$this->font_color = imagecolorallocate($this->img, rand(0,156), rand(0,156), rand(0,156));
 		} else {

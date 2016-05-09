@@ -1,32 +1,32 @@
-<!DOCTYPE HTML>
+<?php defined('IN_PHPCMS') or exit('No permission resources.'); ?><!DOCTYPE HTML>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="keywords" content="" />
   <meta name="description" content="" />
-  <title>{L('member','','member').L('manage_center')}</title>
-  <link type="text/css" rel="stylesheet" href="{CSS_PATH}global.css" media="screen" />
-  <link rel="stylesheet" href="{CSS_PATH}style.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="{CSS_PATH}reset.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="{CSS_PATH}dialog_simp.css" type="text/css" media="all" />
-   <link rel="stylesheet" href="{CSS_PATH}lrtk.css" type="text/css" media="all" />
+  <title><?php echo L('member','','member').L('manage_center');?></title>
+  <link type="text/css" rel="stylesheet" href="<?php echo CSS_PATH;?>global.css" media="screen" />
+  <link rel="stylesheet" href="<?php echo CSS_PATH;?>style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="<?php echo CSS_PATH;?>reset.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="<?php echo CSS_PATH;?>dialog_simp.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="<?php echo CSS_PATH;?>lrtk.css" type="text/css" media="all" />
   <!--[if lt IE 9]>
-  <script type="text/javascript" src="{JS_PATH}html5.js"></script>
+  <script type="text/javascript" src="<?php echo JS_PATH;?>html5.js"></script>
   <![endif]-->
   <!--[if IE 6]>
-    <script type="text/javascript" src="{JS_PATH}CC_belatedPNG.js" ></script>
+    <script type="text/javascript" src="<?php echo JS_PATH;?>CC_belatedPNG.js" ></script>
     <script type="text/javascript">CC_belatedPNG.fix('img,.h-btn,.nav');</script>
   <![endif]-->  
-    <script type="text/javascript" src="{JS_PATH}jquery.js"></script>
-  <script type="text/javascript" src="{JS_PATH}lrtk.js"></script>
-  <script type="text/javascript" src="{JS_PATH}jquery-1.6.2.min.js"></script>
-  <script type="text/javascript" src="{JS_PATH}common.js"></script>
-  <script type="text/javascript" src="{JS_PATH}util.js"></script>
-<!--  <script type="text/javascript" src="{JS_PATH}Validform_v5.2.1_min.js"></script>-->
-  <script type="text/javascript" src="{JS_PATH}cookie.js"></script>
-  <script type="text/javascript" src="{JS_PATH}dialog.js"></script>
-  <script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
-  <script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="<?php echo JS_PATH;?>jquery.js"></script>
+  <script type="text/javascript" src="<?php echo JS_PATH;?>lrtk.js"></script>
+  <script type="text/javascript" src="<?php echo JS_PATH;?>jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" src="<?php echo JS_PATH;?>common.js"></script>
+  <script type="text/javascript" src="<?php echo JS_PATH;?>util.js"></script>
+<!--  <script type="text/javascript" src="<?php echo JS_PATH;?>Validform_v5.2.1_min.js"></script>-->
+  <script type="text/javascript" src="<?php echo JS_PATH;?>cookie.js"></script>
+  <script type="text/javascript" src="<?php echo JS_PATH;?>dialog.js"></script>
+  <script type="text/javascript" src="<?php echo JS_PATH;?>formvalidator.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="<?php echo JS_PATH;?>formvalidatorregex.js" charset="UTF-8"></script>
   
   <link href="/favicon.ico" rel="shortcut icon">
 <style type="text/css">
@@ -35,7 +35,7 @@
     
         .btn-zone{ right:30px; top:30px;}
     
-    .content{ height:540px; background:url({IMG_PATH}big-bg.jpg) no-repeat center center; border-bottom:1px solid #BBB;}
+    .content{ height:540px; background:url(<?php echo IMG_PATH;?>big-bg.jpg) no-repeat center center; border-bottom:1px solid #BBB;}
     .l-mod{ position:relative;}
 	.ms-mod{ padding-bottom:19px; width:390px;background: none repeat scroll 0 0 rgba(255, 255, 255, 0.85); position:absolute; top:20px; right:30px;}
     .l-mod-hd{ padding:0px 0 0 18px;}
@@ -68,7 +68,7 @@
 $(function(){
 	$.formValidator.initConfig({autotip:true,formid:"myregform",onerror:function(msg){}});
 
-	$("#username").formValidator({onshow:"{L('input').L('username')}",onfocus:"帐号名称必须为5-16位的英文或者数字等"}).inputValidator({min:3,max:16,onerror:"帐号名称必须为5-16位的英文或者数字等"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"{L('username').L('format_incorrect')}"}).ajaxValidator({
+	$("#username").formValidator({onshow:"<?php echo L('input').L('username');?>",onfocus:"帐号名称必须为5-16位的英文或者数字等"}).inputValidator({min:3,max:16,onerror:"帐号名称必须为5-16位的英文或者数字等"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"<?php echo L('username').L('format_incorrect');?>"}).ajaxValidator({
 	    type : "get",
 		url : "",
 		data :"m=member&c=index&a=public_checkname_ajax",
@@ -82,16 +82,16 @@ $(function(){
 			}
 		},
 		buttons: $("#dosubmit"),
-		onerror : "{L('deny_register').L('or').L('user_already_exist')}",
-		onwait : "{L('connecting_please_wait')}"
+		onerror : "<?php echo L('deny_register').L('or').L('user_already_exist');?>",
+		onwait : "<?php echo L('connecting_please_wait');?>"
 	});
 	
 	$("#firstname").formValidator({onshow:"请填真实的名(拼音)",onfocus:"请填真实的名(拼音)"}).inputValidator({min:2,max:20,onerror:"请填真实的名(拼音)"});
 	$("#lastname").formValidator({onshow:"请填真实的姓(拼音)",onfocus:"请填真实的姓(拼音)"}).inputValidator({min:2,max:20,onerror:"请填真实的姓(拼音)"});
 
-	$("#password").formValidator({onshow:"{L('input').L('password')}",onfocus:"{L('password').L('between_6_to_20')}"}).inputValidator({min:6,max:20,onerror:"{L('password').L('between_6_to_20')}"});
-	$("#pwdconfirm").formValidator({onshow:"{L('input').L('cofirmpwd')}",onfocus:"{L('passwords_not_match')}",oncorrect:"{L('passwords_match')}"}).compareValidator({desid:"password",operateor:"=",onerror:"{L('passwords_not_match')}"});
-	$("#email").formValidator({onshow:"{L('input').L('email')}",onfocus:"{L('email').L('format_incorrect')}",oncorrect:"{L('email').L('format_right')}"}).inputValidator({min:2,max:32,onerror:"{L('email').L('between_2_to_32')}"}).regexValidator({regexp:"email",datatype:"enum",onerror:"{L('email').L('format_incorrect')}"}).ajaxValidator({
+	$("#password").formValidator({onshow:"<?php echo L('input').L('password');?>",onfocus:"<?php echo L('password').L('between_6_to_20');?>"}).inputValidator({min:6,max:20,onerror:"<?php echo L('password').L('between_6_to_20');?>"});
+	$("#pwdconfirm").formValidator({onshow:"<?php echo L('input').L('cofirmpwd');?>",onfocus:"<?php echo L('passwords_not_match');?>",oncorrect:"<?php echo L('passwords_match');?>"}).compareValidator({desid:"password",operateor:"=",onerror:"<?php echo L('passwords_not_match');?>"});
+	$("#email").formValidator({onshow:"<?php echo L('input').L('email');?>",onfocus:"<?php echo L('email').L('format_incorrect');?>",oncorrect:"<?php echo L('email').L('format_right');?>"}).inputValidator({min:2,max:32,onerror:"<?php echo L('email').L('between_2_to_32');?>"}).regexValidator({regexp:"email",datatype:"enum",onerror:"<?php echo L('email').L('format_incorrect');?>"}).ajaxValidator({
 	    type : "get",
 		url : "",
 		data :"m=member&c=index&a=public_checkemail_ajax",
@@ -105,10 +105,10 @@ $(function(){
 			}
 		},
 		buttons: $("#dosubmit"),
-		onerror : "{L('deny_register').L('or').L('email_already_exist')}",
-		onwait : "{L('connecting_please_wait')}"
+		onerror : "<?php echo L('deny_register').L('or').L('email_already_exist');?>",
+		onwait : "<?php echo L('connecting_please_wait');?>"
 	});
-	/*$("#nickname").formValidator({onshow:"请选择客服",onfocus:"{L('nickname').L('between_2_to_20')}"}).inputValidator({min:2,max:20,onerror:"{L('nickname').L('between_2_to_20')}"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"{L('nickname').L('format_incorrect')}"}).ajaxValidator({
+	/*$("#nickname").formValidator({onshow:"请选择客服",onfocus:"<?php echo L('nickname').L('between_2_to_20');?>"}).inputValidator({min:2,max:20,onerror:"<?php echo L('nickname').L('between_2_to_20');?>"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"<?php echo L('nickname').L('format_incorrect');?>"}).ajaxValidator({
 			type : "get",
 			url : "",
 			data :"m=member&c=index&a=public_checknickname_ajax",
@@ -122,18 +122,18 @@ $(function(){
 				}
 			},
 			buttons: $("#dosubmit"),
-			onerror : "{L('already_exist').L('already_exist')}",
-			onwait : "{L('connecting_please_wait')}"
+			onerror : "<?php echo L('already_exist').L('already_exist');?>",
+			onwait : "<?php echo L('connecting_please_wait');?>"
 		});*/
 
-	$(":checkbox[name='protocol']").formValidator({tipid:"protocoltip",onshow:"{L('read_protocol')}",onfocus:"{L('read_protocol')}"}).inputValidator({min:1,onerror:"{L('read_protocol')}"});
+	$(":checkbox[name='protocol']").formValidator({tipid:"protocoltip",onshow:"<?php echo L('read_protocol');?>",onfocus:"<?php echo L('read_protocol');?>"}).inputValidator({min:1,onerror:"<?php echo L('read_protocol');?>"});
 
 	
 
 });
 
 function show_protocol() {
-	art.dialog({lock:false,title:'{L('register_protocol')}',id:'protocoliframe', iframe:'?m=member&c=index&a=register&protocol=1',width:'500',height:'310',yesText:'{L('agree')}'}, function(){
+	art.dialog({lock:false,title:'<?php echo L('register_protocol');?>',id:'protocoliframe', iframe:'?m=member&c=index&a=register&protocol=1',width:'500',height:'310',yesText:'<?php echo L('agree');?>'}, function(){
 		$("#protocol").attr("checked",true);
 	});
 }
@@ -156,37 +156,37 @@ ul,li{list-style-type:none;margin:0px;}
 }
 
 .weixin{ width:30px; height:24px; float:left; position:relative; font-size:12px; text-align:center;}
-.weixin a{width:30px; height:24px; display:block; position:absolute; left:0; top:0;background:url({IMG_PATH}h_weixin.png); }
+.weixin a{width:30px; height:24px; display:block; position:absolute; left:0; top:0;background:url(<?php echo IMG_PATH;?>h_weixin.png); }
 .weixin .weixin_nr{width:120px; height:140px; padding:10px; background:#fff; text-align:center; position:absolute; left:-45px; top:45px; display:none;}
 .weixin .weixin_nr img{ margin-bottom:5px;}
 .weixin .weixin_nr .arrow{ width:0; height:0; border-bottom:10px solid #fff;border-left:10px solid transparent;border-right:10px solid transparent; position:absolute; left:50px; top:-10px;}
 .weixin.on .weixin_nr{ display:block;}
-.weixin.on a{ background:url({IMG_PATH}h_weixin.png));}
+.weixin.on a{ background:url(<?php echo IMG_PATH;?>h_weixin.png));}
 
 .wtel{ width:26px; height:24px; margin-left:10px; float:left; position:relative; font-size:12px; text-align:center;}
-.wtel a{width:16px; height:24px; display:block; position:absolute; left:0; top:0;background:url({IMG_PATH}mb.jpg); }
+.wtel a{width:16px; height:24px; display:block; position:absolute; left:0; top:0;background:url(<?php echo IMG_PATH;?>mb.jpg); }
 .wtel .wtel_nr{width:120px; height:140px; padding:10px; background:#fff; text-align:center; position:absolute; left:-45px; top:45px; display:none;}
 .wtel .wtel img{ margin-bottom:5px;}
 .wtel .wtel_nr .arrow{ width:0; height:0; border-bottom:10px solid #fff;border-left:10px solid transparent;border-right:10px solid transparent; position:absolute; left:50px; top:-10px;}
 .wtel.on .wtel_nr{ display:block;}
-.wtel.on a{ background:url({IMG_PATH}mb.jpg));}
+.wtel.on a{ background:url(<?php echo IMG_PATH;?>mb.jpg));}
 
 .weibo{ width:28px; height:24px; margin-left:2px; float:left; position:relative; font-size:12px; text-align:center;}
-.weibo a{width:28px; height:24px; display:block; position:absolute; left:0; top:0;background:url({IMG_PATH}weibo.png); }
+.weibo a{width:28px; height:24px; display:block; position:absolute; left:0; top:0;background:url(<?php echo IMG_PATH;?>weibo.png); }
 .weibo .weibo_nr{width:120px; height:140px; padding:10px; background:#fff; text-align:center; position:absolute; left:-45px; top:45px; display:none;}
 .weibo .weibo img{ margin-bottom:5px;}
 .weibo .weibo_nr .arrow{ width:0; height:0; border-bottom:10px solid #fff;border-left:10px solid transparent;border-right:10px solid transparent; position:absolute; left:50px; top:-10px;}
 .weibo.on .weibo_nr{ display:block;}
-.weibo.on a{ background:url({IMG_PATH}weibo.png));}
+.weibo.on a{ background:url(<?php echo IMG_PATH;?>weibo.png));}
  </style>
-  <link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+  <link href="<?php echo CSS_PATH;?>table_form.css" rel="stylesheet" type="text/css" />
 
   <script language="JavaScript">
 <!--
 $(function(){
 	$.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
-	$("#username").formValidator({onshow:"{L('input').L('username')}",onfocus:"应该为5-16位之间"}).inputValidator({min:5,max:20,onerror:"应该为5-16位之间"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"{L('username').L('format_incorrect')}"});
-	$("#password").formValidator({onshow:"{L('input').L('password')}",onfocus:"{L('password').L('between_6_to_20')}"}).inputValidator({min:6,max:20,onerror:"{L('password').L('between_6_to_20')}"});
+	$("#username").formValidator({onshow:"<?php echo L('input').L('username');?>",onfocus:"应该为5-16位之间"}).inputValidator({min:5,max:20,onerror:"应该为5-16位之间"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"<?php echo L('username').L('format_incorrect');?>"});
+	$("#password").formValidator({onshow:"<?php echo L('input').L('password');?>",onfocus:"<?php echo L('password').L('between_6_to_20');?>"}).inputValidator({min:6,max:20,onerror:"<?php echo L('password').L('between_6_to_20');?>"});
 
 });
 //-->
@@ -234,8 +234,8 @@ function AddFavorite(title, url) {
     	<!--S 头部->
     	<header class="header">
         	<div class="layout header-mod clearfix">
-            	<h1 class="fl logo"><a href="{$siteinfo['domain']}" title="返回首页">返回首页</a></h1>
-                <a href="{$siteinfo['domain']}" title="返回首页" class="h-btn btn-zone">返回首页</a>
+            	<h1 class="fl logo"><a href="<?php echo $siteinfo['domain'];?>" title="返回首页">返回首页</a></h1>
+                <a href="<?php echo $siteinfo['domain'];?>" title="返回首页" class="h-btn btn-zone">返回首页</a>
             </div><!--E .header-mod->
         </header>
         <!--E 头部-->  
@@ -250,18 +250,18 @@ function AddFavorite(title, url) {
 							<div class="t_news">
 							<b id="top">今日汇率：</b>
 							<ul onMouseOver="document.all.menulayer_1.style.visibility=''" onMouseOut="document.all.menulayer_1.style.visibility='hidden'" class="news_li">
-							{pc:content action="lists" catid="27" num="16"  siteid="$siteid" order="id ASC"}
-								{loop $data $r}
-								<li style="color:red;">{$r[title]}</li>
-								{/loop}
-							{/pc}
+							<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=446674c84fa49422c9f49a9710e10246&action=lists&catid=27&num=16&siteid=%24siteid&order=id+ASC\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data = $content_tag->lists(array('catid'=>'27','siteid'=>$siteid,'order'=>'id ASC','limit'=>'16',));}?>
+								<?php $n=1;if(is_array($data)) foreach($data AS $r) { ?>
+								<li style="color:red;"><?php echo $r['title'];?></li>
+								<?php $n++;}unset($n); ?>
+							<?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
 							</ul>
 							<ul class="swap"></ul>
 							</div>
 						</li>
 
 						<li style="width:185px;padding-right:15px;">
-						<script type="text/javascript">document.write('<iframe src="{APP_PATH}index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid={get_siteid()}" allowTransparency="true"  width="200" height="24" frameborder="0" scrolling="no"></iframe>')</script>
+						<script type="text/javascript">document.write('<iframe src="<?php echo APP_PATH;?>index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid=<?php echo get_siteid();?>" allowTransparency="true"  width="200" height="24" frameborder="0" scrolling="no"></iframe>')</script>
 						</li>
 						
  
@@ -270,33 +270,33 @@ function AddFavorite(title, url) {
                         <li><a href="###" class="h-yMessage radius-three">消息<em>2</em></a></li>
                         -->
                         <li class="h-nLine">|</li>
-                        <li><a href="javascript:void(0)" onclick="SetHome(this,'{APP_PATH}');">设为首页</a></li>
+                        <li><a href="javascript:void(0)" onclick="SetHome(this,'<?php echo APP_PATH;?>');">设为首页</a></li>
                         <li class="h-nLine">|</li>
-                        <li><a href="javascript:void(0)" onclick="AddFavorite('{$SEO['title']}',location.href)">加入收藏</a></li>
+                        <li><a href="javascript:void(0)" onclick="AddFavorite('<?php echo $SEO['title'];?>',location.href)">加入收藏</a></li>
                     </ul>
                 </div>
                 <!--E 头部栏目-->
-				{php $sinfo=siteinfo(1);}
-            	<h1 class="fl logo"><a href="{siteurl($siteid)}/" title="{$SEO['site_title']}" style="background:url({$sinfo['logo']});">{$SEO['site_title']}</a></h1>
+				<?php $sinfo=siteinfo(1);?>
+            	<h1 class="fl logo"><a href="<?php echo siteurl($siteid);?>/" title="<?php echo $SEO['site_title'];?>" style="background:url(<?php echo $sinfo['logo'];?>);"><?php echo $SEO['site_title'];?></a></h1>
                
-			<div style="float:left; padding-top: 50px; padding-left: 160px; font-family: 宋体; font-size: 18px; color:#747474;">统一客服热线：{$sinfo['public_tel']}</div>
+			<div style="float:left; padding-top: 50px; padding-left: 160px; font-family: 宋体; font-size: 18px; color:#747474;">统一客服热线：<?php echo $sinfo['public_tel'];?></div>
 			<div style="float:right; padding-top:48px; width:103px;">
 				
-                        {pc:get sql="SELECT * from t_poster where spaceid=11 and disabled=0 order by listorder " num="3"  return="addata" }
-						{php $k=0;}
-						{loop $addata $rs}
-						{php $settings=string2array($rs[setting])}
-					   <div class="{if $k==0}weixin{elseif $k==1}wtel{elseif $k==2}weibo{/if}" onmouseover="this.className = '{if $k==0}weixin on{elseif $k==1}wtel on{elseif $k==2}weibo on{/if}';" onmouseout="this.className = '{if $k==0}weixin{elseif $k==1}wtel{elseif $k==2}weibo{/if}';">
+                        <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=ccc805d662e02fd7d11df6a7c4fabc06&sql=SELECT+%2A+from+t_poster+where+spaceid%3D11+and+disabled%3D0+order+by+listorder+&num=3&return=addata\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("SELECT * from t_poster where spaceid=11 and disabled=0 order by listorder  LIMIT 3");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$addata = $a;unset($a);?>
+						<?php $k=0;?>
+						<?php $n=1;if(is_array($addata)) foreach($addata AS $rs) { ?>
+						<?php $settings=string2array($rs[setting])?>
+					   <div class="<?php if($k==0) { ?>weixin<?php } elseif ($k==1) { ?>wtel<?php } elseif ($k==2) { ?>weibo<?php } ?>" onmouseover="this.className = '<?php if($k==0) { ?>weixin on<?php } elseif ($k==1) { ?>wtel on<?php } elseif ($k==2) { ?>weibo on<?php } ?>';" onmouseout="this.className = '<?php if($k==0) { ?>weixin<?php } elseif ($k==1) { ?>wtel<?php } elseif ($k==2) { ?>weibo<?php } ?>';">
 							<a href="javascript:;"></a>
-							<div class="{if $k==0}weixin_nr{elseif $k==1}wtel_nr{elseif $k==2}weibo_nr{/if}">
+							<div class="<?php if($k==0) { ?>weixin_nr<?php } elseif ($k==1) { ?>wtel_nr<?php } elseif ($k==2) { ?>weibo_nr<?php } ?>">
 								<div class="arrow"></div>
-								<img src="{$settings[1][imageurl]}" width="120" height="120" />
-								{$settings[1][alt]}
+								<img src="<?php echo $settings['1']['imageurl'];?>" width="120" height="120" />
+								<?php echo $settings['1']['alt'];?>
 							</div>
 						</div>
-						{php $k++;}
-						{/loop}
-						{/pc}
+						<?php $k++;?>
+						<?php $n++;}unset($n); ?>
+						<?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
 					
                     
 			</div>
@@ -306,14 +306,14 @@ function AddFavorite(title, url) {
             </div><!--E .header-mod-->
         </header>
         <!--S 内容-->
-		{pc:get sql="SELECT * from t_poster where spaceid=13 and disabled=0 order by listorder " num="5"  return="addata2" }
-		{php $k=0;}
-		{loop $addata2 $rr}
-			{php $settings=string2array($rr[setting])}
-        <article class="content" style="background:url({$settings[1][imageurl]}) no-repeat center center;">
-		{php $k++;}
-		{/loop}
-		{/pc}
+		<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=2d3cd2a11f792cd3f676c5f03aa4d2df&sql=SELECT+%2A+from+t_poster+where+spaceid%3D13+and+disabled%3D0+order+by+listorder+&num=5&return=addata2\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("SELECT * from t_poster where spaceid=13 and disabled=0 order by listorder  LIMIT 5");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$addata2 = $a;unset($a);?>
+		<?php $k=0;?>
+		<?php $n=1;if(is_array($addata2)) foreach($addata2 AS $rr) { ?>
+			<?php $settings=string2array($rr[setting])?>
+        <article class="content" style="background:url(<?php echo $settings['1']['imageurl'];?>) no-repeat center center;">
+		<?php $k++;?>
+		<?php $n++;}unset($n); ?>
+		<?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
           <div class="layout l-mod">
             <div class="ms-mod">
           	<div class="l-mod-hd">
@@ -322,8 +322,8 @@ function AddFavorite(title, url) {
             <div class="l-mod-bd">
             	<div class="login-form-mod">
                 <form action="" method="post"  id="myregform" name="myregform" >
-				<input type="hidden" name="siteid" value="{$siteid}" />
-				<input type="hidden" name="forward" value="{php echo urlencode($_GET['forward']);}" />
+				<input type="hidden" name="siteid" value="<?php echo $siteid;?>" />
+				<input type="hidden" name="forward" value="<?php echo urlencode($_GET['forward']);?>" />
                 	<ul class="login-form-list">
 
                     	<li>
@@ -357,7 +357,7 @@ function AddFavorite(title, url) {
                             <input id="protocol" type="checkbox"   tabindex="5" name="protocol" value="1" checked>
 							<label class="remember" for="protocol" style="text-align: left;">同意《<a href="javascript:void(0);" id="btn_show_text">用户注册协议</a>》 </label>
 							-->
-							<input type="checkbox" name="protocol" id="protocol" value=""><a href="javascript:void(0);" onclick="show_protocol();return false;" class="blue">{L('click_read_protocol')}</a>
+							<input type="checkbox" name="protocol" id="protocol" value=""><a href="javascript:void(0);" onclick="show_protocol();return false;" class="blue"><?php echo L('click_read_protocol');?></a>
 							 
                             </div>
                         </li>
@@ -371,7 +371,7 @@ function AddFavorite(title, url) {
                 </div><!--E .login-form-mod-->
                 <div class="error-cont hidden">错误的用户名或密码</div>
                 <div class="l-mod-remark">
-                	<span>&gt; 已拥有账号？</span><a href="{$siteinfo['domain']}index.php?m=member&c=index&a=login&forward={urlencode($_GET['forward'])}&siteid={$siteid}" title="直接登录">直接登录</a>
+                	<span>&gt; 已拥有账号？</span><a href="<?php echo $siteinfo['domain'];?>index.php?m=member&c=index&a=login&forward=<?php echo urlencode($_GET['forward']);?>&siteid=<?php echo $siteid;?>" title="直接登录">直接登录</a>
                 </div><!--E .l-mod-remark-->
             </div><!--E .l-mod-bd-->
             </div><!--E .ms-mod-->
@@ -388,8 +388,8 @@ function AddFavorite(title, url) {
 	            <div class="footer-link tc">
 	               
 	            </div></center> 
-	            <p class="tc">{php $sinfo=siteinfo(1);}
-                {$sinfo[copyright]}</p>
+	            <p class="tc"><?php $sinfo=siteinfo(1);?>
+                <?php echo $sinfo['copyright'];?></p>
 	    
             </div>
          </footer>   
@@ -405,8 +405,8 @@ function AddFavorite(title, url) {
         <!--E 底部-->        
     </div><!--E .wrap--> 
 
-<link rel="stylesheet" href="{CSS_PATH}core.css" type="text/css" media="all" />
-<script type="text/javascript" src="{JS_PATH}XYTipsWindow-3.0.js"></script>
+<link rel="stylesheet" href="<?php echo CSS_PATH;?>core.css" type="text/css" media="all" />
+<script type="text/javascript" src="<?php echo JS_PATH;?>XYTipsWindow-3.0.js"></script>
 
 </body>
 </html>
@@ -468,7 +468,7 @@ function success(msg){
 			title : "无标题，3秒后关闭",
 			boxID : "notitle",
 			fixed: true,
-			content : "text:<div style=\"background:url({IMG_PATH}tick_48.png) #c3e4fd no-repeat 20px 50%;height:60px;line-height:51px;padding-left:80px;padding-right:60px; \"><b>"+msg+"</b></d",
+			content : "text:<div style=\"background:url(<?php echo IMG_PATH;?>tick_48.png) #c3e4fd no-repeat 20px 50%;height:60px;line-height:51px;padding-left:80px;padding-right:60px; \"><b>"+msg+"</b></d",
 			showtitle : "remove",
 			time : 2000,
 			border : {opacity:"-2"}

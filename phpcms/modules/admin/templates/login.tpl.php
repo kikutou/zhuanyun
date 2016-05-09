@@ -2,24 +2,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET;?>" />
-	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-	<title><?php echo L('phpcms_logon')?></title>
-	<style type="text/css">
-		div{overflow:hidden; *display:inline-block;}div{*display:block;}
-		.login_box{
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET;?>" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title><?php echo L('phpcms_logon')?></title>
+<style type="text/css">
+	div{overflow:hidden; *display:inline-block;}div{*display:block;}
+	.login_box{
+		
+		/* background:url(<?php echo IMG_PATH?>admin_img/login_bg.jpg) repeat-x;  width:auto; height:416px; overflow:hidden; position:absolute;  top:20%; left:20%;right:20%;*/
 
-			/* background:url(<?php echo IMG_PATH?>admin_img/login_bg.jpg) repeat-x;  width:auto; height:416px; overflow:hidden; position:absolute;  top:20%; left:20%;right:20%;*/
+width: 500px;
+  height: 300px;
+  overflow: hidden;
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  border: 1px #0079ad solid;
 
-			width: 500px;
-			height: 300px;
-			overflow: hidden;
-			position: absolute;
-			top: 20%;
-			left: 30%;
-			border: 1px #0079ad solid;
-
-		}
+	}
 	.login_iptbox{/*bottom:90px;_bottom:72px; color:#FFFFFF;font-size:12px;height:30px;left:50%;margin-left:-280px;position:absolute;width:560px; overflow:visible; */
 	display: block;
   font-size: 12px;
@@ -46,7 +46,7 @@
 	.login_tj_btn{ background:url(<?php echo IMG_PATH?>admin_img/login_dl_btn.jpg) no-repeat 0px 0px; width:52px; height:24px; margin-left:16px; border:none; cursor:pointer; padding:0px; float:right;}
 	.yzm{position:absolute; background:url(<?php echo IMG_PATH?>admin_img/login_ts140x89.gif) no-repeat; width:140px; /* height:89px; */ text-align:center; font-size:12px; display:none;
 	  left: 5px;    top: 40px;
-
+	
 	}
 	.yzm a:link,.yzm a:visited{color:#036;text-decoration:none;}
 	.yzm a:hover{color:#C30;}
@@ -82,13 +82,7 @@
 	 <li>
 	    <input name="dosubmit" value="登录" type="submit" style="  padding: 5px 10px;  width: 173px;  font-size: 16px; float:right;"/>
 	 </li>
-    <div id="yzm" class="yzm">
-		<?php echo form::checkcode('code_img')?>
-		<br />
-		<a href="javascript:document.getElementById('code_img').src='<?php echo SITE_PROTOCOL.SITE_URL.WEB_PATH;?>api.php?op=checkcode&m=admin&c=index&a=checkcode&time='+Math.random();void(0);">
-			<?php echo L('click_change_validate')?>
-		</a>
-	</div>
+    <div id="yzm" class="yzm"><?php echo form::checkcode('code_img')?><br /><a href="javascript:document.getElementById('code_img').src='<?php echo SITE_PROTOCOL.SITE_URL.WEB_PATH;?>api.php?op=checkcode&m=admin&c=index&a=checkcode&time='+Math.random();void(0);"><?php echo L('click_change_validate')?></a></div>
   
 	 </form>
     </div>

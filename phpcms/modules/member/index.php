@@ -13,7 +13,6 @@ class index extends foreground {
 	private $times_db;
 	
 	function __construct() {
-
 		parent::__construct();
 		$this->http_user_agent = $_SERVER['HTTP_USER_AGENT'];
 		$this->memberinfo = $this->get_current_userinfo();
@@ -21,7 +20,6 @@ class index extends foreground {
 	}
 
 	public function init() {
-
 		$sto = pc_base::load_model('storage_model');
 		$stor = $sto->get_one(" aid='15'");
 		$memberinfo = $this->memberinfo;
@@ -40,7 +38,6 @@ class index extends foreground {
 
 		$grouplist = getcache('grouplist');
 		$memberinfo['groupname'] = $grouplist[$memberinfo[groupid]]['name'];
-
 		include template('member', 'index');
 	}
 
@@ -113,7 +110,9 @@ class index extends foreground {
 		
 		$s_info = siteinfo($siteid);
 		$m__db = pc_base::load_model('member_model');
+
 		$code = isset($_GET['code'])  ? intval($_GET['code']) : 0;
+
 		if($code>0){
 			
 			$mymem=$m__db->get_one(array('userid'=>$code));
@@ -134,7 +133,9 @@ class index extends foreground {
 		$sms_setting = $sms_setting_arr[$siteid];		
 		
 		header("Cache-control: private");
+
 		if(isset($_POST['dosubmit'])) {
+
 			if($member_setting['enablcodecheck']=='1'){//开启验证码
 				if ((empty($_SESSION['connectid']) && $_SESSION['code'] != strtolower($_POST['code'])) || empty($_SESSION['code'])) {
 					showmessage(L('code_error'));
@@ -143,21 +144,19 @@ class index extends foreground {
 				}
 			}
 			
-			
-			
 			$userinfo = array();
 			$userinfo['encrypt'] = create_randomstr(6);
 
 			$userinfo['username'] = (isset($_POST['username']) && is_username($_POST['username']) && !empty($_POST['username'])) ? $_POST['username'] : exit('0');
 
 
-			$userinfo['nickname'] = (isset($_POST['nickname']) && is_username($_POST['nickname'])) ? $_POST['nickname'] : '';
+			//$userinfo['nickname'] = (isset($_POST['nickname']) && is_username($_POST['nickname'])) ? $_POST['nickname'] : '';
 
 			$firstname = (isset($_POST['firstname']) && !empty($_POST['firstname'])) ? trim($_POST['firstname']) : '';
 
 			$lastname = (isset($_POST['lastname']) && !empty($_POST['lastname'])) ? trim($_POST['lastname']) : '';
 
-			$promotion = (isset($_POST['promotion']) ) ? trim($_POST['promotion']) : '';
+			//$promotion = (isset($_POST['promotion']) ) ? trim($_POST['promotion']) : '';
 			
 			$userinfo['email'] = (isset($_POST['email']) && is_email($_POST['email']) && !empty($_POST['email'])) ? $_POST['email'] : exit('0');
 			$userinfo['password'] = (isset($_POST['password']) && !empty($_POST['password']) )? $_POST['password'] : exit('0');
@@ -174,10 +173,16 @@ class index extends foreground {
 			$userinfo['from'] = isset($_SESSION['from']) ? $_SESSION['from'] : '';
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-			
+			//产生不重复的用户name和用户编号
 			$userinfo['clientname'] = get__rand__char(5,0);//get__member_number__counter(); //获取新订单号
-					
+			/* 插入订单表 */
+			$error_no = $m__db->count(array('clientname'=>$userinfo['clientname']));
+			do
+			{
+				$userinfo['clientname'] = get__rand__char(6,1); //获取新订单号
+				$error_no = $m__db->count(array('clientname'=>$userinfo['clientname']));
+			}
+			while ($error_no > 0 ); //如果是订单号重复则重新提交数据
 
 			$userinfo['clientcode'] = get__rand__char(6,1);
 			/* 插入订单表 */
@@ -188,7 +193,6 @@ class index extends foreground {
 					$error_no = $m__db->count(array('clientcode'=>$userinfo['clientcode']));
 			}
 			while ($error_no > 0 ); //如果是订单号重复则重新提交数据
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 			
 			//手机强制验证
@@ -245,14 +249,15 @@ class index extends foreground {
 			
 			if(pc_base::load_config('system', 'phpsso')) {
 				$this->_init_phpsso();
-				$status = $this->client->ps_member_register($userinfo['username'], $userinfo['password'], $userinfo['email'], $userinfo['regip'], $userinfo['encrypt']);
+				$status = $this->client->ps_member_register($userinfo['username'], $userinfo['password'], $userinfo['email'], $userinfo['regip'], $userinfo['encrypt'],
+					$userinfo['clientname'], $userinfo['clientcode']);
 				if($status > 0) {
 					$userinfo['phpssouid'] = $status;
 					//传入phpsso为明文密码，加密后存入phpcms_v9
 					$password = $userinfo['password'];
 					$userinfo['password'] = password($userinfo['password'], $userinfo['encrypt']);
 					
-					//推荐人积分计算
+/*					//推荐人积分计算
 					$promotion_point=0;
 					$m_promo=$m__db->get_one(array('username'=>$promotion));
 					if($m_promo){//若推荐人为真
@@ -262,7 +267,7 @@ class index extends foreground {
 						$userinfo['intropoint'] = intval($s_info['introducer']);
 						$userinfo['promotion'] = $promotion;
 
-					}
+					}*/
 
 					$storagedb = pc_base::load_model('storage_model');
 					$warehouse__lists = $storagedb->select("siteid=1 ",'*',10000,'listorder asc');
@@ -280,9 +285,12 @@ class index extends foreground {
 					$userinfo['myaddress'] = $my_address;
 
 
-					$userid = $this->db->insert($userinfo, 1);
+					//$userid = $this->db->insert($userinfo, 1);
+					$userid = $status;
+
+
 					
-					//$this->db->update(array('clientcode'=>($userid+10000)),array('userid'=>$userid));
+					$this->db->update(array('phpssouid'=>$userinfo['phpssouid'],'password' => $userinfo['password'], 'myaddress'=> $userinfo['myaddress'] ),array('userid'=>$status));
 					
 					//会员注册成功自动给它添加默认地址
 					//默认发货地址为美国仓库地址
@@ -827,18 +835,6 @@ class index extends foreground {
 		}
 		
 		if(isset($_POST['dosubmit'])) {
-
-			if($member_setting['enablcodecheck']=='1'){//开启验证码
-
-				if(empty($_SESSION['connectid'])) {
-					//判断验证码
-					$code = isset($_POST['code']) && trim($_POST['code']) ? trim($_POST['code']) : showmessage(L('input_code'), HTTP_REFERER);
-					if ($_SESSION['code'] != strtolower($code)) {
-						showmessage(L('code_error'), HTTP_REFERER);
-					}
-				}
-
-			}
 			
 			$username = isset($_POST['username']) && trim($_POST['username']) ? trim($_POST['username']) : showmessage(L('username_empty'), HTTP_REFERER);
 			$password = isset($_POST['password']) && trim($_POST['password']) ? trim($_POST['password']) : showmessage(L('password_empty'), HTTP_REFERER);
@@ -847,19 +843,22 @@ class index extends foreground {
 			
 			if(pc_base::load_config('system', 'phpsso')) {
 				$this->_init_phpsso();
+
 				$status = $this->client->ps_member_login($username, $password);
 				$memberinfo = unserialize($status);
+
+				$menberinfo['uid'] = $memberinfo['userid'];
 				
-				if(isset($memberinfo['uid'])) {
+				if(isset($memberinfo['userid'])) {
 					//查询帐号
-					$r = $this->db->get_one(array('phpssouid'=>$memberinfo['uid']));
+					$r = $this->db->get_one(array('phpssouid'=>$memberinfo['userid']));
 					if(!$r) {
 						//插入会员详细信息，会员不存在 插入会员
 						$info = array(
 									'phpssouid'=>$memberinfo['uid'],
 						 			'username'=>$memberinfo['username'],
 						 			'password'=>$memberinfo['password'],
-						 			'encrypt'=>$memberinfo['random'],
+						 			'encrypt'=>$memberinfo['encrypt'],
 						 			'email'=>$memberinfo['email'],
 						 			'regip'=>$memberinfo['regip'],
 						 			'regdate'=>$memberinfo['regdate'],
@@ -885,6 +884,7 @@ class index extends foreground {
 					$password = $r['password'];
 					$synloginstr = $this->client->ps_member_synlogin($r['phpssouid']);
  				} else {
+
 					if($status == -1) {	//用户不存在
 						showmessage(L('user_not_exist'), 'index.php?m=member&c=index&a=login');
 					} elseif($status == -2) { //密码错误
@@ -1117,13 +1117,7 @@ class index extends foreground {
 		if($setting['snda_enable'] && param::get_cookie('_from')=='snda') {
 			param::set_cookie('_from', '');
 			$forward = isset($_GET['forward']) && trim($_GET['forward']) ? urlencode($_GET['forward']) : '';
-
-
-			exit(var_dump($forward));
-
-
-			#$logouturl = 'https://cas.sdo.com/cas/logout?url='.urlencode(APP_PATH.'index.php?m=member&c=index&a=logout&forward='.$forward);
-			$logouturl = urlencode(APP_PATH.'index.php?m=member&c=index&a=logout&forward='.$forward);
+			$logouturl = 'https://cas.sdo.com/cas/logout?url='.urlencode(APP_PATH.'index.php?m=member&c=index&a=logout&forward='.$forward);
 			header('Location: '.$logouturl);
 		} else {
 			$synlogoutstr = '';	//同步退出js代码

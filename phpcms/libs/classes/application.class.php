@@ -20,7 +20,7 @@ class application {
 	}
 	
 	/**
-	 * 调用事件
+	 * 调用件事
 	 */
 	private function init() {
 		$controller = $this->load_controller();

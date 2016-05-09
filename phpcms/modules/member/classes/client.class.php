@@ -23,12 +23,13 @@ class client {
 	 * @param string $random	密码随机数
 	 * @return int {-1:用户名已经存在 ;-2:email已存在;-3:email格式错误;-4:用户名禁止注册;-5:邮箱禁止注册；int(uid):成功}
 	 */
-	public function ps_member_register($username, $password, $email, $regip='', $random='') {
+	public function ps_member_register($username, $password, $email, $regip='', $random='',$clientname='',$clientcode='') {
 		if(!$this->_is_email($email)) {
 			return -3;
 		}
 		 
-		return $this->_ps_send('register', array('username'=>$username, 'password'=>$password, 'email'=>$email, 'regip'=>$regip, 'random'=>$random));
+		return $this->_ps_send('register', array('username'=>$username, 'password'=>$password, 'email'=>$email,
+			'regip'=>$regip, 'random'=>$random, 'clientname' => $clientname, 'clientcode' => $clientcode));
 	}
 	/**
 	 * 用户登陆
@@ -315,6 +316,7 @@ EOF;
 	 * @param $data 数据
 	 */
 	private function _ps_send($action, $data = null) {
+
  		return $this->_ps_post($this->ps_api_url."/index.php?m=phpsso&c=index&a=".$action, 500000, $this->auth_data($data));
 	}
 	
@@ -331,6 +333,7 @@ EOF;
 	 */
 	
 	private function _ps_post($url, $limit = 0, $post = '', $cookie = '', $ip = '', $timeout = 15, $block = true) {
+
 		$return = '';
 		$matches = parse_url($url);
 		$host = $matches['host'];
