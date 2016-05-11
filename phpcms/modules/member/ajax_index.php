@@ -992,6 +992,7 @@ class ajax_index extends ajax_foreground {
 	}
 	
 	public function login() {
+
 		$this->_session_start();
 		//获取用户siteid
 		$siteid = isset($_REQUEST['siteid']) && trim($_REQUEST['siteid']) ? intval($_REQUEST['siteid']) : 1;
@@ -1002,7 +1003,7 @@ class ajax_index extends ajax_foreground {
 		
 		if(isset($_POST['dosubmit'])) {
 
-			if($member_setting['enablcodecheck']=='1'){//开启验证码
+/*			if($member_setting['enablcodecheck']=='1'){//开启验证码
 
 				if(empty($_SESSION['connectid'])) {
 					//判断验证码
@@ -1013,7 +1014,7 @@ class ajax_index extends ajax_foreground {
 					}
 				}
 
-			}
+			}*/
 			
 			$username = isset($_POST['username']) && trim($_POST['username']) ? trim($_POST['username']) : die('{"status":false,"msg":"'.L('username_empty').'","url":"'.HTTP_REFERER.'"}');
 			$password = isset($_POST['password']) && trim($_POST['password']) ? trim($_POST['password']) : die('{"status":false,"msg":"'.L('password_empty').'","url":"'.HTTP_REFERER.'"}');
@@ -1023,18 +1024,19 @@ class ajax_index extends ajax_foreground {
 			if(pc_base::load_config('system', 'phpsso')) {
 				$this->_init_phpsso();
 				$status = $this->client->ps_member_login($username, $password);
+
 				$memberinfo = unserialize($status);
 				
-				if(isset($memberinfo['uid'])) {
+				if(isset($memberinfo['userid'])) {
 					//查询帐号
-					$r = $this->db->get_one(array('phpssouid'=>$memberinfo['uid']));
+					$r = $this->db->get_one(array('phpssouid'=>$memberinfo['userid']));
 					if(!$r) {
 						//插入会员详细信息，会员不存在 插入会员
 						$info = array(
-									'phpssouid'=>$memberinfo['uid'],
+									'phpssouid'=>$memberinfo['userid'],
 						 			'username'=>$memberinfo['username'],
 						 			'password'=>$memberinfo['password'],
-						 			'encrypt'=>$memberinfo['random'],
+						 			'encrypt'=>$memberinfo['encrypt'],
 						 			'email'=>$memberinfo['email'],
 						 			'regip'=>$memberinfo['regip'],
 						 			'regdate'=>$memberinfo['regdate'],

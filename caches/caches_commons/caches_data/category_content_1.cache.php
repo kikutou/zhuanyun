@@ -16,7 +16,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => '',
-    'url' => 'http://localhost/index.php?m=member&siteid=1',
+    'url' => 'http://192.168.1.3/index.php?m=member&siteid=1',
     'items' => '0',
     'hits' => '0',
     'setting' => 'array (
@@ -52,7 +52,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'xinshou',
-    'url' => 'http://localhost/xinshou/',
+    'url' => 'http://192.168.1.3/xinshou/',
     'items' => '7',
     'hits' => '0',
     'setting' => 'array (
@@ -103,7 +103,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'zhinan',
-    'url' => 'http://localhost/zhinan/',
+    'url' => 'http://192.168.1.3/zhinan/',
     'items' => '8',
     'hits' => '0',
     'setting' => 'array (
@@ -154,8 +154,8 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'news',
-    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=13',
-    'items' => '15',
+    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=13',
+    'items' => '14',
     'hits' => '0',
     'setting' => 'array (
   \'workflowid\' => \'\',
@@ -205,7 +205,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'kuaidipay',
-    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=12',
+    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=12',
     'items' => '4',
     'hits' => '0',
     'setting' => 'array (
@@ -256,7 +256,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => '',
-    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=7',
+    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=7',
     'items' => '0',
     'hits' => '0',
     'setting' => 'array (
@@ -292,7 +292,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'forbid',
-    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=26',
+    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=26',
     'items' => '1',
     'hits' => '0',
     'setting' => 'array (
@@ -343,7 +343,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'aboutus',
-    'url' => 'http://localhost/aboutus/',
+    'url' => 'http://192.168.1.3/aboutus/',
     'items' => '4',
     'hits' => '0',
     'setting' => 'array (
@@ -394,7 +394,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'zhifu',
-    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=20',
+    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=20',
     'items' => '3',
     'hits' => '0',
     'setting' => 'array (
@@ -445,7 +445,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'peishuo',
-    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=21',
+    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=21',
     'items' => '3',
     'hits' => '0',
     'setting' => 'array (
@@ -496,7 +496,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'xuzhi',
-    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=22',
+    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=22',
     'items' => '3',
     'hits' => '0',
     'setting' => 'array (
@@ -547,8 +547,8 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'shaidan',
-    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=25',
-    'items' => '6',
+    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=25',
+    'items' => '5',
     'hits' => '0',
     'setting' => 'array (
   \'workflowid\' => \'1\',
@@ -598,7 +598,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'rate',
-    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=27',
+    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=27',
     'items' => '5',
     'hits' => '0',
     'setting' => 'array (
@@ -649,7 +649,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'toubao',
-    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=28',
+    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=28',
     'items' => '0',
     'hits' => '0',
     'setting' => 'array (
@@ -691,7 +691,7 @@ return array (
     'description' => '',
     'parentdir' => '',
     'catdir' => 'announce',
-    'url' => 'http://localhost/index.php?m=content&c=index&a=lists&catid=29',
+    'url' => 'http://192.168.1.3/index.php?m=content&c=index&a=lists&catid=29',
     'items' => '4',
     'hits' => '0',
     'setting' => 'array (

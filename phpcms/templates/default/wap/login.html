@@ -314,6 +314,7 @@ dosubmit: "login"
 };
 $.post('/index.php?m=member&c=ajax_index&a=login&t='+Math.random(), submitData,
 function(data) {
+
 	if (data.status) {
 		alert(data.msg,data.url);
 	   //window.location.href =  data.url;

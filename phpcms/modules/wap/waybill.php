@@ -42,10 +42,10 @@ class waybill extends ajax_foreground{
 		$this->WAP_SETTING = string2array($this->wap['setting']);
 
 
-		if(!is_mobile_or_pc()){
-			showmessage("ºÜ±§Ç¸£¡Ó¦ÓÃ½öÏÞÒÆ¶¯Éè±¸·ÃÎÊ£¡");
+/*		if(!is_mobile_or_pc()){
+			showmessage("å¾ˆæŠ±æ­‰ï¼åº”ç”¨ä»…é™ç§»åŠ¨è®¾å¤‡è®¿é—®ï¼");
 			exit;
-		}
+		}*/
 		
 
 	}
@@ -118,7 +118,7 @@ class waybill extends ajax_foreground{
 
 		
 			$address_db = pc_base::load_model('address_model');
-			if($_POST['waybill']['takeaddressid']==0){//ÐÂÔöÊÕ»õµØÖ·,Òª±£»¤½øÈëµØÖ·ÀïÃæ
+			if($_POST['waybill']['takeaddressid']==0){//ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½Ö·,Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½
 				
 
 				$_POST['take_address']['siteid']=$this->siteid;
@@ -160,7 +160,7 @@ class waybill extends ajax_foreground{
 				$_POST['waybill']['status'] = 21;
 			}
 
-			//²åÈëÔöÖµ·þÎñ-----------------------------------------------------------------
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½-----------------------------------------------------------------
 			$addFee=0;
 				$srv_value_array = array();
 				if(is_array($_POST['service_value'])){
@@ -207,7 +207,7 @@ class waybill extends ajax_foreground{
 
 				$historydb = pc_base::load_model('waybill_history_model');
 			
-				//²åÈë´¦Àí¼ÇÂ¼
+				//ï¿½ï¿½ï¿½ë´¦ï¿½ï¿½ï¿½Â¼
 				$handle=array();
 				$handle['siteid'] = 1;
 				$handle['username'] = $this->_username;
@@ -272,7 +272,7 @@ class waybill extends ajax_foreground{
 			$split_number = isset($_POST['split_number']) ? ($_POST['split_number']) : 0;
 			//print_r($_POST);exit;
 
-			//ÔöÖµ·þÎñ-----------------------------------------------------------------
+			//ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½-----------------------------------------------------------------
 				$addFee=0;
 					$srv_value_array = array();
 					if(is_array($_POST['service_value'])){
@@ -346,7 +346,7 @@ class waybill extends ajax_foreground{
 
 					$wayrate = $row['wayrate'];
 					if($otherremark==""){
-						$otherremark.="#".$row['aid']."ºÏÏä";
+						$otherremark.="#".$row['aid']."ï¿½ï¿½ï¿½ï¿½";
 						$expressno=$row['expressno'];
 						$goodsname=$row['goodsname'];
 						$long=$row['bill_long'];
@@ -367,7 +367,7 @@ class waybill extends ajax_foreground{
 
 					}else{
 						$remark.="+"+$row['remark'];
-						$otherremark.="+"."#".$row['aid']."ºÏÏä";
+						$otherremark.="+"."#".$row['aid']."ï¿½ï¿½ï¿½ï¿½";
 						$expressno.="+".$row['expressno'];
 						$goodsname.="+".$row['goodsname'];
 						$long+=$row['bill_long'];
@@ -407,14 +407,14 @@ class waybill extends ajax_foreground{
 						unset($newrow['imagesurl']);
 
 
-						/* ²åÈë¶©µ¥±í */
+						/* ï¿½ï¿½ï¿½ë¶©ï¿½ï¿½ï¿½ï¿½ */
 						$error_no = 0;
 						do
 						{
-								$waybillid = $this->getbill_orderno($org_housecode,$dst_housecode,get__order__counter(),$row['userid'],$row['takeflag']); //»ñÈ¡ÐÂ¶©µ¥ºÅ
+								$waybillid = $this->getbill_orderno($org_housecode,$dst_housecode,get__order__counter(),$row['userid'],$row['takeflag']); //ï¿½ï¿½È¡ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½
 								$error_no = $this->db->count(array('waybillid'=>trim($waybillid)));
 						}
-						while ($error_no > 0 ); //Èç¹ûÊÇ¶©µ¥ºÅÖØ¸´ÔòÖØÐÂÌá½»Êý¾Ý
+						while ($error_no > 0 ); //ï¿½ï¿½ï¿½ï¿½Ç¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 						
 						$newrow['addvalues']=array2string($srv_value_array);
 						$newrow['goodsdatas']=array2string($allgoodsarray);
@@ -540,7 +540,7 @@ class waybill extends ajax_foreground{
 
 			$_oremark = $_POST['remark'];
 
-			//ÔöÖµ·þÎñ-----------------------------------------------------------------
+			//ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½-----------------------------------------------------------------
 				$addFee=0;
 					$srv_value_array = array();
 					if(is_array($_POST['service_value'])){
@@ -600,7 +600,7 @@ class waybill extends ajax_foreground{
 					
 					$hisdatas = $historydb->select(array('waybillid'=>trim($row['waybillid'])),"*",1000);
 
-					$otherremark=$row['waybillid']."·ÖÏä";
+					$otherremark=$row['waybillid']."ï¿½ï¿½ï¿½ï¿½";
 					for($n=0;$n<$split_number;$n++){
 						$newrow = $row;
 						unset($newrow['waybillid']);
@@ -612,14 +612,14 @@ class waybill extends ajax_foreground{
 
 						unset($newrow['imagesurl']);
 
-						/* ²åÈë¶©µ¥±í */
+						/* ï¿½ï¿½ï¿½ë¶©ï¿½ï¿½ï¿½ï¿½ */
 						$error_no = 0;
 						do
 						{
-								$waybillid = $this->getbill_orderno($org_housecode,$dst_housecode,get__order__counter(),$row['userid'],$row['takeflag']); //»ñÈ¡ÐÂ¶©µ¥ºÅ
+								$waybillid = $this->getbill_orderno($org_housecode,$dst_housecode,get__order__counter(),$row['userid'],$row['takeflag']); //ï¿½ï¿½È¡ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½
 								$error_no = $this->db->count(array('waybillid'=>trim($waybillid)));
 						}
-						while ($error_no > 0 ); //Èç¹ûÊÇ¶©µ¥ºÅÖØ¸´ÔòÖØÐÂÌá½»Êý¾Ý
+						while ($error_no > 0 ); //ï¿½ï¿½ï¿½ï¿½Ç¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 						
 						$newrow['addvalues']=array2string($srv_value_array);
 						$newrow['goodsdatas']=array2string(string2array($row['goodsdatas']));
@@ -685,19 +685,19 @@ class waybill extends ajax_foreground{
 			$__mdb = pc_base::load_model('member_model');
 			$userinfo=$__mdb->get_one(array('userid'=>$sysres['userid']));
 
-			//$status_array=array(1=>'Î´Èë¿â',2=>'Èë¿âÖÐ',3=>'ÒÑÈë¿â',4=>'ÒÑ´¦Àí',5=>'´¦ÀíÒì³£',6=>'ÒÑÈ¡Ïû',7=>'ÒÑ¸¶¿î',8=>'´ý¸¶¿î',9=>'ÒÑ³ö¿â',10=>'ÒÑÉ¨Ãè',11=>'ÖÐ×ª³É¹¦',12=>'ÒÑÈëxx²Ö¿â',13=>'µÈ´ý×ÔÈ¡',14=>'¿ìµÝ¸ú×Ù',15=>'µÈ´ýÅâ³¥',16=>'ÒÑÇ©ÊÕ',17=>'´ý·¢»õ');
+			//$status_array=array(1=>'Î´ï¿½ï¿½ï¿½',2=>'ï¿½ï¿½ï¿½ï¿½ï¿½',3=>'ï¿½ï¿½ï¿½ï¿½ï¿½',4=>'ï¿½Ñ´ï¿½ï¿½ï¿½',5=>'ï¿½ï¿½ï¿½ï¿½ï¿½ì³£',6=>'ï¿½ï¿½È¡ï¿½ï¿½',7=>'ï¿½Ñ¸ï¿½ï¿½ï¿½',8=>'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',9=>'ï¿½Ñ³ï¿½ï¿½ï¿½',10=>'ï¿½ï¿½É¨ï¿½ï¿½',11=>'ï¿½ï¿½×ªï¿½É¹ï¿½',12=>'ï¿½ï¿½ï¿½ï¿½xxï¿½Ö¿ï¿½',13=>'ï¿½È´ï¿½ï¿½ï¿½È¡',14=>'ï¿½ï¿½Ý¸ï¿½ï¿½ï¿½',15=>'ï¿½È´ï¿½ï¿½â³¥',16=>'ï¿½ï¿½Ç©ï¿½ï¿½',17=>'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
 
-			//·¢ÓÊ¼þ
+			//ï¿½ï¿½ï¿½Ê¼ï¿½
 			pc_base::load_sys_func('mail');
 			$member_setting = $moduledb->get_one(array('module'=>'member'), 'setting');
 			$member_setting = string2array($member_setting['setting']);
 			$url = APP_PATH."index.php?m=waybill&c=index&a=init&hid=".$sysres['storageid'];
 			$message = $member_setting['expressnoemail'];
 			$message = str_replace(array('{click}','{url}','{no}','{status}'), array('<a href="'.$url.'">'.L('please_click').'</a>',$url,$sysres['waybillid'],$statusinfo), $message);
-			sendmail($userinfo['email'], 'ÄãµÄÔËµ¥ºÅ'.$sysres['waybillid'].$statusinfo, $message);
+			sendmail($userinfo['email'], 'ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½'.$sysres['waybillid'].$statusinfo, $message);
 			}
 	}
-	//Ç©ÊÕ
+	//Ç©ï¿½ï¿½
 	public function waybill_finish(){
 		
 				$bid = isset($_GET['bid']) ? intval($_GET['bid']) : 0;
@@ -709,10 +709,10 @@ class waybill extends ajax_foreground{
 				if($way['status']!=16){
 					if($this->db->update(array('status'=>16),array('aid'=>$bid))){
 					
-						//²åÈë´¦ÀíÈË±¸×¢
+						//ï¿½ï¿½ï¿½ë´¦ï¿½ï¿½ï¿½Ë±ï¿½×¢
 					
 						$val=$sdb->get_one(array('aid'=>$way['storageid']));
-						//²åÈë´¦Àí¼ÇÂ¼
+						//ï¿½ï¿½ï¿½ë´¦ï¿½ï¿½ï¿½Â¼
 						$handle=array();
 						$handle['siteid'] = $this->siteid;
 						$handle['username'] = $this->_username;
@@ -722,12 +722,12 @@ class waybill extends ajax_foreground{
 						$handle['waybillid'] = trim($way['waybillid']);
 						$handle['placeid'] = $way['storageid'];
 						$handle['placename'] = $val['title'];
-						$handle['status'] = 16;//ÖÐ×ª³É¹¦
+						$handle['status'] = 16;//ï¿½ï¿½×ªï¿½É¹ï¿½
 						$handle['remark'] = $this->getonestatus($handle['status']);
 
 						$lid = $historydb->insert($handle);
 
-						//·¢ÓÊ¼þ
+						//ï¿½ï¿½ï¿½Ê¼ï¿½
 						$this->sendemailwaybill($handle['sysbillid'],$handle['remark'],1);
 
 					showmessage(L('operation_success'),'/index.php?m=waybill&c=index&a=init&hid='.$way['storageid']);
@@ -741,7 +741,7 @@ class waybill extends ajax_foreground{
 		
 	}
 
-	//·µ»Ø×ªÔË·½Ê½
+	//ï¿½ï¿½ï¿½ï¿½×ªï¿½Ë·ï¿½Ê½
 	public function getshippingmethod(){
 		
 		$idd = isset($_GET['idd']) ? intval($_GET['idd']) : 0;
@@ -757,7 +757,7 @@ class waybill extends ajax_foreground{
 		exit;
 	}
 
-	//ÔÚÏßÌáÎÊ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public function waybill_onlinequestion(){
 		$bid = intval($_GET['bid']);
 		$info = $this->db->get_one("siteid='".$this->siteid."' and aid='$bid'");
@@ -784,7 +784,7 @@ class waybill extends ajax_foreground{
 		include template('wap', 'waybill_onlinequestion');	
 	}
 
-	//ÔËµ¥ÁÐ±í
+	//ï¿½Ëµï¿½ï¿½Ð±ï¿½
 	public function waybill_detail(){
 		$bid = intval($_GET['bid']);
 		$info = $this->db->get_one("siteid='".$this->siteid."' and aid='$bid'");
@@ -803,9 +803,9 @@ class waybill extends ajax_foreground{
 			$storagename=$s_row['title'];
 		}
 
-		$factweight=$info['factweight'];//Êµ¼ÊÖØÁ¿
-		$volumeweight=$info['volumeweight'];//Êµ¼ÊÖØÁ¿
-		$totalship = 0;//×ÜÔË·Ñ
+		$factweight=$info['factweight'];//Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		$volumeweight=$info['volumeweight'];//Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		$totalship = 0;//ï¿½ï¿½ï¿½Ë·ï¿½
 	    
 		$servicelist = $this->getservicelist($waybillid);
 
@@ -816,7 +816,7 @@ class waybill extends ajax_foreground{
 		include template('wap', 'waybill_detail');	
 	}
 
-	//ÔËµ¥¸¶¿îÁÐ±í
+	//ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	public function waybill_paydetail(){
 		$bid = intval($_GET['bid']);
 		$info = $this->db->get_one("siteid='".$this->siteid."' and aid='$bid'");
@@ -834,7 +834,7 @@ class waybill extends ajax_foreground{
 		include template('wap', 'waybill_paydetail');	
 	}
 
-	//´òÓ¡
+	//ï¿½ï¿½Ó¡
 
 	public function printbill(){
 		$bid = intval($_GET['bid']);
@@ -868,7 +868,7 @@ class waybill extends ajax_foreground{
 
 			
 
-				$addr=explode("|",$sendaddressname);//·¢¼þ
+				$addr=explode("|",$sendaddressname);//ï¿½ï¿½ï¿½ï¿½
 				$send_truename=$addr[0];
 				$send_country=$addr[2];
 				$send_province=$addr[3];
@@ -878,7 +878,7 @@ class waybill extends ajax_foreground{
 				$send_mobile=$addr[1];
 				//$send_company=$addr['company'];
 
-				$addr=explode("|",$takeaddressname);///ÊÕ¼þ
+				$addr=explode("|",$takeaddressname);///ï¿½Õ¼ï¿½
 				$take_truename=$addr[0];
 				$take_country=$addr[2];
 				$take_province=$addr[3];
@@ -894,13 +894,13 @@ class waybill extends ajax_foreground{
 
 	}
 	
-	//»ñÈ¡¿Í»§´úÂë»ò¸öÈËÔËµ¥ºÅ
+	//ï¿½ï¿½È¡ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½
 	public function getbillcode($num){
 		
 		$row = $this->db->get_one("siteid='".$this->siteid."' and userid='$this->_userid'","*","addtime desc");
 		//UK1000000100001KD2
 		if($row){
-			if($num==7)//¿Í»§
+			if($num==7)//ï¿½Í»ï¿½
 				$sourcenumber=intval(substr($row['waybillid'],3,$num))+1;
 			else
 				$sourcenumber=intval(substr($row['waybillid'],10,$num))+1;
@@ -908,9 +908,9 @@ class waybill extends ajax_foreground{
 				$sourcenumber=1;
 		}
 
-		if($num==7){//¿Í»§
+		if($num==7){//ï¿½Í»ï¿½
 			return substr(strval($sourcenumber+10000000),1,$num);
-		}else{//¸öÈË
+		}else{//ï¿½ï¿½ï¿½ï¿½
 			return substr(strval($sourcenumber+100000),1,$num);
 		}
 	}
@@ -975,13 +975,13 @@ class waybill extends ajax_foreground{
 					
 			}
 
-			//Éú³ÉÔËµ¥ºÅ--begin
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½--begin
 			/**
-				ÔËµ¥Éú³É¹æÔò18Î»:   ²Ö¿â´úºÅÁ½¸ö×ÖÄ¸ºÍÒ»¸öÊý×Ö  ¿Í»§´úÂë7Î»Êý×Ö»ò×ÖÄ¸  ¸öÈËÔËµ¥ºÅ5Î»Êý×Ö»ò×ÖÄ¸  Ä¿µÄµØµØÖ·´úÂë2Î»×ÖÄ¸ºÍÒ»¸öÊý×Ö 
+				ï¿½Ëµï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½18Î»:   ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½7Î»ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ä¸  ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½5Î»ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ä¸  Ä¿ï¿½ÄµØµï¿½Ö·ï¿½ï¿½ï¿½ï¿½2Î»ï¿½ï¿½Ä¸ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 			**/
 			$waybillid="";
-			$org_housecode = "000";//²Ö¿â´úÂë3Î» //·¢»õµØ (¹ú¼ÒºÍµØÇø)
-			$dst_housecode = "000";//²Ö¿â´úÂë3Î» //ÊÕ»õµØ (¹ú¼ÒºÍµØÇø)
+			$org_housecode = "000";//ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½3Î» //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ÒºÍµï¿½ï¿½ï¿½)
+			$dst_housecode = "000";//ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½3Î» //ï¿½Õ»ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ÒºÍµï¿½ï¿½ï¿½)
 			$allsendlists = $this->getsendlists();
 			foreach($allsendlists as $addr){
 				if(intval($_POST['waybill']['sendid'])==$addr['linkageid']){
@@ -992,12 +992,12 @@ class waybill extends ajax_foreground{
 				}
 			}
 
-			$seven=str_pad(dechex($this->_userid),7,'0',STR_PAD_LEFT);//¿Í»§´úÂë7Î»
-			$five=$this->getbillcode(5);//¸öÈË´úÂë5Î»
+			$seven=str_pad(dechex($this->_userid),7,'0',STR_PAD_LEFT);//ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½7Î»
+			$five=$this->getbillcode(5);//ï¿½ï¿½ï¿½Ë´ï¿½ï¿½ï¿½5Î»
 			$waybillid=$org_housecode.$seven.$five.$dst_housecode;
-			//Éú³ÉÔËµ¥ºÅ ½áÊøend
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½end
 
-			//Éú³ÉÏµÍ³¶©µ¥ºÅ
+			//ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			$sitedb = pc_base::load_model('site_model');
 			$_rs = $sitedb->get_one("siteid='".$this->siteid."'");
 			$billprefix="";
@@ -1012,15 +1012,15 @@ class waybill extends ajax_foreground{
 
 			$_POST['waybill']['waybillid']=$waybillid;
 			$_POST['waybill']['sysbillid']=$sysbillid;
-			//$_POST['waybill']['status']=1;//Î´Èë¿â
+			//$_POST['waybill']['status']=1;//Î´ï¿½ï¿½ï¿½
 			
 			$address_db = pc_base::load_model('address_model');
 			$_POST['waybill']['storageid'] = intval($_POST['storageidd']);
 
-			$_POST['waybill']['status']=1;//Î´Èë¿â
+			$_POST['waybill']['status']=1;//Î´ï¿½ï¿½ï¿½
 			
 			$address_db = pc_base::load_model('address_model');
-			if($_POST['waybill']['takeaddressid']==0){//ÐÂÔöÊÕ»õµØÖ·,Òª±£»¤½øÈëµØÖ·ÀïÃæ
+			if($_POST['waybill']['takeaddressid']==0){//ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½Ö·,Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½
 				
 				$_POST['take_address']['siteid']=$this->siteid;
 				$_POST['take_address']['addresstype']=1;
@@ -1037,7 +1037,7 @@ class waybill extends ajax_foreground{
 
 
 
-			//±£´æµØÖ·
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
 			$sendaddressname='';
 			$sendaddr=$address_db->get_one(array('aid'=>2));
 			if($sendaddr){
@@ -1056,7 +1056,7 @@ class waybill extends ajax_foreground{
 			}
 			$_POST['waybill']['takeaddressname']=str_replace("&amp;","&",$takeaddressname);
 
-			//²åÈëÔöÖµ·þÎñ-----------------------------------------------------------------
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½-----------------------------------------------------------------
 				$addFee=0;
 
 			
@@ -1125,7 +1125,7 @@ class waybill extends ajax_foreground{
 				
 				$historydb = pc_base::load_model('waybill_history_model');
 			
-				//²åÈë´¦Àí¼ÇÂ¼
+				//ï¿½ï¿½ï¿½ë´¦ï¿½ï¿½ï¿½Â¼
 				$handle=array();
 				$handle['siteid'] = 1;
 				$handle['username'] = $this->current_user['username'];
@@ -1143,6 +1143,7 @@ class waybill extends ajax_foreground{
 					
 			}
 		} else {
+
 			$shippingtypes = $this->getshippingtype();
 			$addresslist = $this->getaddresslist();
 			$servicelist = $this->getservicelist();
@@ -1193,7 +1194,7 @@ class waybill extends ajax_foreground{
 			$_SESSION["isrepeat"]=1;*/
 
 			$address_db = pc_base::load_model('address_model');
-			if($_POST['waybill']['takeaddressid']==0){//ÐÂÔöÊÕ»õµØÖ·,Òª±£»¤½øÈëµØÖ·ÀïÃæ
+			if($_POST['waybill']['takeaddressid']==0){//ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½Ö·,Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½
 				
 
 				$_POST['take_address']['siteid']=$this->siteid;
@@ -1212,7 +1213,7 @@ class waybill extends ajax_foreground{
 			}
 			/*
 
-			if($_POST['waybill']['sendaddressid']==0){//ÐÂÔö·¢»õµØÖ·,Òª±£»¤½øÈëµØÖ·ÀïÃæ
+			if($_POST['waybill']['sendaddressid']==0){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·,Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½
 				
 				$_POST['send_address']['siteid']=$this->siteid;
 				$_POST['send_address']['addtime'] = SYS_TIME;
@@ -1228,7 +1229,7 @@ class waybill extends ajax_foreground{
 				$_POST['waybill']['sendaddressid'] = $address_sidd;
 			}*/
 
-			//±£´æµØÖ·
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
 			$sendaddressname='';
 			$sendaddr=$address_db->get_one(array('aid'=>2));
 			if($sendaddr){
@@ -1245,7 +1246,7 @@ class waybill extends ajax_foreground{
 			}
 			$_POST['waybill']['takeaddressname']=str_replace("&amp;","&",$takeaddressname);
 
-			//²åÈëÔöÖµ·þÎñ-----------------------------------------------------------------
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½-----------------------------------------------------------------
 				$addFee=0;
 				$srv_value_array = array();
 				if(is_array($_POST['service_value'])){
@@ -1343,7 +1344,7 @@ class waybill extends ajax_foreground{
 
 
 	/**
-	 * ÅúÁ¿É¾³ýÔ¤Ô¼
+	 * ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½Ô¤Ô¼
 	 */
 	public function delete($aid = 0) {
 
@@ -1364,11 +1365,11 @@ class waybill extends ajax_foreground{
 				
 					$this->db->delete(array('aid' => $aid));
 					
-					//É¾³ý×Ó¹ØÁªÊý¾Ý
-					$gdb = pc_base::load_model('waybill_goods_model');//ÔËµ¥ÎïÆ·
-					$srvdb = pc_base::load_model('waybill_serviceitem_model');//ÔËµ¥·þÎñÏî
-					$historydb = pc_base::load_model('waybill_history_model');//ÀúÊ·¼ÇÂ¼
-					/*$packdb = pc_base::load_model('package_model');//°ü¹ü
+					//É¾ï¿½ï¿½ï¿½Ó¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					$gdb = pc_base::load_model('waybill_goods_model');//ï¿½Ëµï¿½ï¿½ï¿½Æ·
+					$srvdb = pc_base::load_model('waybill_serviceitem_model');//ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+					$historydb = pc_base::load_model('waybill_history_model');//ï¿½ï¿½Ê·ï¿½ï¿½Â¼
+					/*$packdb = pc_base::load_model('package_model');//ï¿½ï¿½ï¿½ï¿½
 
 					$packall = $gdb->select(array('waybillid' => $waybillid),"*",1000,"");
 					foreach($packall as $pack){
@@ -1389,10 +1390,10 @@ class waybill extends ajax_foreground{
 	}
 	
 	/**
-	 * ÑéÖ¤±íµ¥Êý¾Ý
-	 * @param  		array 		$data ±íµ¥Êý×éÊý¾Ý
-	 * @param  		string 		$a µ±±íµ¥ÎªÌí¼ÓÊý¾ÝÊ±£¬×Ô¶¯²¹ÉÏÈ±Ê§µÄÊý¾Ý¡£
-	 * @return 		array 		ÑéÖ¤ºóµÄÊý¾Ý
+	 * ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param  		array 		$data ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param  		string 		$a ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½È±Ê§ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
+	 * @return 		array 		ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private function check($data = array(), $a = 'add') {
 		//if($data['truename']=='') showmessage(L('truename_cannot_empty'));
@@ -1422,7 +1423,7 @@ class waybill extends ajax_foreground{
 	}
 
 
-	//¸üÐÂÔËµ¥×´Ì¬
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½×´Ì¬
 	private function updatewaybill_status($waybillid){
 		$billgoods = $this->getwaybill_goods($waybillid);
 		$pdb = pc_base::load_model('package_model');
@@ -1442,20 +1443,20 @@ class waybill extends ajax_foreground{
 			}
 		}
 
-		if(count($billgoods)==$status2)//±íÊ¾È«²¿ÒÑÈë¿â
+		if(count($billgoods)==$status2)//ï¿½ï¿½Ê¾È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
-			$wdb->update(array('status'=>3),array('waybillid'=>$waybillid));//¸üÐÂÔËµ¥ÒÑÈë¿â×´Ì¬
-		}elseif($status2>0)//±íÊ¾È«²¿ÒÑÈë¿â
+			$wdb->update(array('status'=>3),array('waybillid'=>$waybillid));//ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
+		}elseif($status2>0)//ï¿½ï¿½Ê¾È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
-			$wdb->update(array('status'=>2),array('waybillid'=>$waybillid));//¸üÐÂÔËµ¥ÒÑÈë¿â×´Ì¬
+			$wdb->update(array('status'=>2),array('waybillid'=>$waybillid));//ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 		}else{
-			$wdb->update(array('status'=>1),array('waybillid'=>$waybillid));//¸üÐÂÔËµ¥ÒÑÈë¿â×´Ì¬
+			$wdb->update(array('status'=>1),array('waybillid'=>$waybillid));//ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 		}
 
 	}
 
 
-	/**¸ù¾ÝÔËµ¥ºÅ»ñÈ¡ÔËµ¥ÎïÆ·ÏêÏ¸**/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½Å»ï¿½È¡ï¿½Ëµï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¸**/
 	private function getwaybill_goods($waybillid){
 		$cdb = pc_base::load_model('waybill_goods_model');
 		$sql = "  waybillid='$waybillid'  ";
@@ -1463,7 +1464,7 @@ class waybill extends ajax_foreground{
 		return $datas;
 	}
 
-	/**¸ù¾ÝÔËµ¥ºÅ»ñÈ¡ÔöÖµ·þÎñ**/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½Å»ï¿½È¡ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½**/
 	private function getwaybill_servicelist($waybillid,$waybill_goodsid){
 		$cdb = pc_base::load_model('waybill_serviceitem_model');
 		$sql = " waybillid='$waybillid' and waybill_goodsid='$waybill_goodsid'";
@@ -1473,7 +1474,7 @@ class waybill extends ajax_foreground{
 
 	
 
-	/**»ñÈ¡×ªÔËÀà±ð**/
+	/**ï¿½ï¿½È¡×ªï¿½ï¿½ï¿½ï¿½ï¿½**/
 	private function getshippingtype(){
 		$cdb = pc_base::load_model('storage_model');
 		$sql = ' siteid=\''.$this->siteid.'\' ';
@@ -1481,7 +1482,7 @@ class waybill extends ajax_foreground{
 		return $datas;
 	}
 
-	/**»ñÈ¡×ªÔËÀà±ðÃû³Æ**/
+	/**ï¿½ï¿½È¡×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½**/
 	private function getshippingtypename($typeid){
 		$cdb = pc_base::load_model('storage_model');
 		$sql = ' siteid=\''.$this->siteid.'\' and  aid='.$typeid.'  ';
@@ -1489,7 +1490,7 @@ class waybill extends ajax_foreground{
 		return $datas;
 	}
 	
-	/**»ñÈ¡ÊÕ»õµØÖ·**/
+	/**ï¿½ï¿½È¡ï¿½Õ»ï¿½ï¿½ï¿½Ö·**/
 	private function getaddresslist(){
 		$cdb = pc_base::load_model('address_model');
 		$sql = ' siteid=\''.$this->siteid.'\' and userid='.$this->_userid.' ';
@@ -1497,7 +1498,7 @@ class waybill extends ajax_foreground{
 		return $datas;
 	}
 
-	/**»ñÈ¡ÔöÖµ·þÎñ**/
+	/**ï¿½ï¿½È¡ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½**/
 	private function getservicelist(){
 		$cdb = pc_base::load_model('service_model');
 		$sql = ' siteid=\''.$this->siteid.'\' and type=\'value-added\'';
@@ -1507,7 +1508,7 @@ class waybill extends ajax_foreground{
 
 
 
-	/** »ñÈ¡·¢»õµØ (¹ú¼ÒºÍµØÇø) **/
+	/** ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ÒºÍµï¿½ï¿½ï¿½) **/
 	private function getsendlists(){
 		$cdb = pc_base::load_model('storage_model');
 		$sql = ' siteid=\''.$this->siteid.'\'  ';
@@ -1526,7 +1527,7 @@ class waybill extends ajax_foreground{
 		return $datas;
 	}
 
-	/** »ñÈ¡ÊÕ»õµØ (¹ú¼ÒºÍµØÇø) **/
+	/** ï¿½ï¿½È¡ï¿½Õ»ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ÒºÍµï¿½ï¿½ï¿½) **/
 	public function gettakelists(){
 
 		$areaid = isset($_GET['areaid']) ? intval($_GET['areaid']) : 0;
@@ -1541,7 +1542,7 @@ class waybill extends ajax_foreground{
 		exit;
 	}
 
-	/**»ñÈ¡¹ú¼ÒµØÇø**/
+	/**ï¿½ï¿½È¡ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½**/
 	private function getline(){
 		$cdb = pc_base::load_model('linkage_model');
 		$sql = ' parentid=0 AND keyid=0 ';
@@ -1549,7 +1550,7 @@ class waybill extends ajax_foreground{
 		return $datas;
 	}
 
-	/**»ñÈ¡×ªÔË·½Ê½**/
+	/**ï¿½ï¿½È¡×ªï¿½Ë·ï¿½Ê½**/
 	private function getturnway(){
 		$cdb = pc_base::load_model('shipline_model');
 		$sql = ' siteid=\''.$this->siteid.'\' ';
@@ -1559,7 +1560,7 @@ class waybill extends ajax_foreground{
 
 	
 
-	/**»ñÈ¡ËùÓÐ»õÔË¹«Ë¾**/
+	/**ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ð»ï¿½ï¿½Ë¹ï¿½Ë¾**/
 	private function getallship($id=0){
 		$cdb = pc_base::load_model('enum_model');
 		$sql = '`siteid`=\''.$this->siteid.'\' AND groupid=1 ';
@@ -1574,7 +1575,7 @@ class waybill extends ajax_foreground{
 	}
 
 	
-	//»ñÈ¡ÔöÖµ·ÖÀàÃû³Æ
+	//ï¿½ï¿½È¡ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private function getvaluetype($val){
 		$valname="";
 		foreach($this->valuecategory() as $r){
@@ -1584,7 +1585,7 @@ class waybill extends ajax_foreground{
 		return $valname;
 	}
 
-	/**»ñÈ¡ËùÓÐ»õ±Ò**/
+	/**ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½**/
 	private function getcurrency($idd=0){
 		$cdb = pc_base::load_model('currency_model');
 		if($idd==0){
@@ -1597,7 +1598,7 @@ class waybill extends ajax_foreground{
 		}
 	}
 
-	/**»ñÈ¡ËùÓÐÄ¬ÈÏ»õ±Òµ¥Î»**/
+	/**ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ï»ï¿½ï¿½Òµï¿½Î»**/
 	private function getdefaultcurrency(){
 		$cdb = pc_base::load_model('currency_model');
 		$sql = '`siteid`=\''.$this->siteid.'\' AND `isdefault`=1';
@@ -1607,7 +1608,7 @@ class waybill extends ajax_foreground{
 		return $datas;
 	}
 
-	/**»ñÈ¡ËùÓÐµ¥Î»**/
+	/**ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ðµï¿½Î»**/
 	private function getunits($idd=0){
 		$cdb = pc_base::load_model('enum_model');
 		if($idd==0){
@@ -1621,7 +1622,7 @@ class waybill extends ajax_foreground{
 		}
 	}
 
-	/**»ñÈ¡ËùÓÐ¶©µ¥´ò°üÔöÖµ·þÎñ**/
+	/**ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½**/
 	private function getgoodsservice(){
 		$cdb = pc_base::load_model('service_model');
 		$sql = '`siteid`=\''.$this->siteid.'\' AND type=\'order\' ';
@@ -1630,20 +1631,20 @@ class waybill extends ajax_foreground{
 	}
 	
 
-	//¸ù¾ÝID·µ»Ø»õ±ÒÃû³Æ
+	//ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½Ø»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private function getcurrencyname($cid){
 		
 
 		return $this->getcurrency($cid);
 	}
 
-	//¸ù¾ÝID·µ»Øµ¥Î»Ãû³Æ
+	//ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½Øµï¿½Î»ï¿½ï¿½ï¿½ï¿½
 	private function getunitname($cid){
 		
 		return $this->getunits($cid);
 	}
 
-	/**»ñÈ¡ËùÓÐ¶©µ¥×´Ì¬**/
+	/**ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½×´Ì¬**/
 	private function getorderstatus(){
 		$cdb = pc_base::load_model('enum_model');
 		$sql = '`siteid`=\''.$this->siteid.'\' AND groupid=9 and value!=99 ';
@@ -1651,7 +1652,7 @@ class waybill extends ajax_foreground{
 		return $datas;
 	}
 
-	/**»ñÈ¡µ¥¸ö¶©µ¥×´Ì¬**/
+	/**ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬**/
 	private function getonestatus($id,$storageid=0){
 		$cdb = pc_base::load_model('enum_model');
 		$sql = '`siteid`=\''.$this->siteid.'\' AND groupid=9 and value=\''.$id.'\' ';
@@ -1659,7 +1660,7 @@ class waybill extends ajax_foreground{
 		
 		
 			$statusname="";
-			if($id==12 && $storageid>0)//ÒÑÈëxx²Ö¿â
+			if($id==12 && $storageid>0)//ï¿½ï¿½ï¿½ï¿½xxï¿½Ö¿ï¿½
 			{
 				$statusname=str_replace(L('enter_xxstorage'),$this->getstoragename($storageid),$datas['title']);
 			}else{
@@ -1670,7 +1671,7 @@ class waybill extends ajax_foreground{
 		return $statusname;
 	}
 
-	//»ñÈ¡µ±Ç°²Ö¿â
+	//ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½Ö¿ï¿½
 	public function getstoragename($storageid){
 		$udb = pc_base::load_model('storage_model');
 		$r = $udb->get_one("aid='$storageid' ");
@@ -1679,7 +1680,7 @@ class waybill extends ajax_foreground{
 
 
 
-	/**»ñÈ¡ËùÓÐµ±Ç°ÓÃ»§°ü¹ü**/
+	/**ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ðµï¿½Ç°ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½**/
 	private function getmypackage($package_array){
 		$cdb = pc_base::load_model('package_model');
 		$datas=array();
@@ -1692,7 +1693,7 @@ class waybill extends ajax_foreground{
 		return $datas;
 	}
 
-	/**·µ»Øµ±Ç°ÓÃ»§°ü¹üÑÕÉ« **/
+	/**ï¿½ï¿½ï¿½Øµï¿½Ç°ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É« **/
 	private function getpackage_color($expressno){
 
 		$expcolor=array();

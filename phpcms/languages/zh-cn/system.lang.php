@@ -289,4 +289,8 @@ $LANG['confirm_common'] = '确认';
 $LANG['tip__confirm_common'] ='你确定要退货吗？';
 $LANG['scanning_gun_storage'] ='扫描枪自动入库';
 $LANG['wbinfocustom']				=	'追踪信息';
+
+$LANG['password_edit_success'] = '密码修改成功！';
+
+
 ?>

@@ -18,7 +18,7 @@
         <td align="center">
 		<table width="1002" border="0" cellpadding="5" cellspacing="0" style="margin-bottom:20px">
         <tr>
-		<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=119dc8d1d86963acd716fc929bebfb09&sql=select+%2A+from+t_category+where+catid%3E11&num=9&return=data2\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("select * from t_category where catid>11 LIMIT 9");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data2 = $a;unset($a);?>
+		<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=119dc8d1d86963acd716fc929bebfb09&sql=select+%2A+from+t_category+where+catid%3E11&num=9&return=data2\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("select * from t_category where catid>11 LIMIT 9");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data2 = $a;unset($a);?>
 				<?php $n=1;if(is_array($data2)) foreach($data2 AS $r) { ?>
 				<?php if($r[catid]==18 || $r[catid]==20 || $r[catid]==21) { ?>
           <td width="152" align="center" valign="top" bgcolor="#667503"><label class="t_kind"><?php echo $r['catname'];?></label></td>
@@ -26,7 +26,7 @@
 			<?php $n++;}unset($n); ?>
 		<?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
 
-		<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=76e85b2bb59cfc040086712be8dfc402&sql=select+%2A+from+t_category+where+catid%3E11&num=9&return=data3\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("select * from t_category where catid>11 LIMIT 9");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data3 = $a;unset($a);?>
+		<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=76e85b2bb59cfc040086712be8dfc402&sql=select+%2A+from+t_category+where+catid%3E11&num=9&return=data3\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("select * from t_category where catid>11 LIMIT 9");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data3 = $a;unset($a);?>
 				<?php $n=1;if(is_array($data3)) foreach($data3 AS $rr) { ?>
 				<?php if($rr[catid]==12 || $rr[catid]==22 || $rr[catid]==23) { ?>
           <td width="152" align="center" valign="top" bgcolor="#667503"><label class="t_kind"><?php echo $rr['catname'];?></label></td>
@@ -36,13 +36,13 @@
 		
         </tr>
         <tr>
-		<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=085f0d1471fe708c665ba918ba226e3f&sql=select+%2A+from+t_category+where+catid%3E11&num=9&return=data0\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("select * from t_category where catid>11 LIMIT 9");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data0 = $a;unset($a);?>
+		<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=085f0d1471fe708c665ba918ba226e3f&sql=select+%2A+from+t_category+where+catid%3E11&num=9&return=data0\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("select * from t_category where catid>11 LIMIT 9");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data0 = $a;unset($a);?>
 			<?php $n=1;if(is_array($data0)) foreach($data0 AS $r0) { ?>
 			<?php if($r0[catid]==18 || $r0[catid]==20 || $r0[catid]==21) { ?>
           <td align="left" valign="top" style="padding-top:5px;">
 		  <div id="footerListLi">
               <ul id="txt1">
-			  <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=d405f14119056565dc2abf719a0b248d&action=lists&catid=%24r0%5Bcatid%5D&num=5&siteid=%24siteid&return=data1\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data1 = $content_tag->lists(array('catid'=>$r0[catid],'siteid'=>$siteid,'limit'=>'5',));}?>
+			  <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=d405f14119056565dc2abf719a0b248d&action=lists&catid=%24r0%5Bcatid%5D&num=5&siteid=%24siteid&return=data1\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data1 = $content_tag->lists(array('catid'=>$r0[catid],'siteid'=>$siteid,'limit'=>'5',));}?>
 				<?php $n=1;if(is_array($data1)) foreach($data1 AS $r1) { ?>
                      <li class="txt22"><a href="<?php echo $r1['url'];?>"><?php echo $r1['title'];?></a></li>
 				<?php $n++;}unset($n); ?>
@@ -53,13 +53,13 @@
 		  <?php } ?>
 		  <?php $n++;}unset($n); ?>
 		<?php if(defined('IN_ADMIN') && !defined('HTML')) {echo '</div>';}?>
-		<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=119dc8d1d86963acd716fc929bebfb09&sql=select+%2A+from+t_category+where+catid%3E11&num=9&return=data2\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("select * from t_category where catid>11 LIMIT 9");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data2 = $a;unset($a);?>
+		<?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"get\" data=\"op=get&tag_md5=119dc8d1d86963acd716fc929bebfb09&sql=select+%2A+from+t_category+where+catid%3E11&num=9&return=data2\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}pc_base::load_sys_class("get_model", "model", 0);$get_db = new get_model();$r = $get_db->sql_query("select * from t_category where catid>11 LIMIT 9");while(($s = $get_db->fetch_next()) != false) {$a[] = $s;}$data2 = $a;unset($a);?>
 			<?php $n=1;if(is_array($data2)) foreach($data2 AS $r2) { ?>
 			<?php if($r2[catid]==12 || $r2[catid]==22 || $r2[catid]==23) { ?>
           <td align="left" valign="top" style="padding-top:5px;">
 		  <div id="footerListLi">
               <ul id="txt1">
-			  <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=02126356e0df1ee9760aa732a1ef2261&action=lists&catid=%24r2%5Bcatid%5D&num=5&siteid=%24siteid&return=data11\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data11 = $content_tag->lists(array('catid'=>$r2[catid],'siteid'=>$siteid,'limit'=>'5',));}?>
+			  <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"content\" data=\"op=content&tag_md5=02126356e0df1ee9760aa732a1ef2261&action=lists&catid=%24r2%5Bcatid%5D&num=5&siteid=%24siteid&return=data11\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$content_tag = pc_base::load_app_class("content_tag", "content");if (method_exists($content_tag, 'lists')) {$data11 = $content_tag->lists(array('catid'=>$r2[catid],'siteid'=>$siteid,'limit'=>'5',));}?>
 				<?php $n=1;if(is_array($data11)) foreach($data11 AS $r11) { ?>
                      <li class="txt22"><a href="<?php echo $r11['url'];?>"><?php echo $r11['title'];?></a></li>
 				<?php $n++;}unset($n); ?>
@@ -76,7 +76,7 @@
         	<center> 
 	            <div class="footer-link tc">
 	               
-	                   <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"link\" data=\"op=link&tag_md5=52ced65e04d0bd896adc3513af4d6165&action=type_list&siteid=%24siteid&linktype=0&order=listorder+DESC&num=8&return=pic_link\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">编辑</a>";}$link_tag = pc_base::load_app_class("link_tag", "link");if (method_exists($link_tag, 'type_list')) {$pic_link = $link_tag->type_list(array('siteid'=>$siteid,'linktype'=>'0','order'=>'listorder DESC','limit'=>'8',));}?>
+	                   <?php if(defined('IN_ADMIN')  && !defined('HTML')) {echo "<div class=\"admin_piao\" pc_action=\"link\" data=\"op=link&tag_md5=52ced65e04d0bd896adc3513af4d6165&action=type_list&siteid=%24siteid&linktype=0&order=listorder+DESC&num=8&return=pic_link\"><a href=\"javascript:void(0)\" class=\"admin_piao_edit\">修改</a>";}$link_tag = pc_base::load_app_class("link_tag", "link");if (method_exists($link_tag, 'type_list')) {$pic_link = $link_tag->type_list(array('siteid'=>$siteid,'linktype'=>'0','order'=>'listorder DESC','limit'=>'8',));}?>
 						<?php $n=1; if(is_array($pic_link)) foreach($pic_link AS $kk => $v) { ?>
 	                <?php if($kk>0) { ?>
 					<em>|</em>

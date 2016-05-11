@@ -18,10 +18,10 @@ class member {
 		
 		$this->WAP_SETTING = string2array($this->wap['setting']);
 
-		if(!is_mobile_or_pc()){
+/*		if(!is_mobile_or_pc()){
 			showmessage("很抱歉！应用仅限移动设备访问！");
 			exit;
-		}
+		}*/
 		
 	}
 	

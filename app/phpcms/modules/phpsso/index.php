@@ -134,7 +134,7 @@ class index extends phpsso {
 	 */
 	public function edit() {
 		$this->email = isset($this->data['email']) ? $this->data['email'] : '';
-		$this->uid = isset($this->data['uid']) ? $this->data['uid'] : '';
+		$this->uid = isset($this->data['userid']) ? $this->data['userid'] : '';
 
 		$userinfo = $this->getuserinfo(1);
 		
@@ -199,12 +199,12 @@ class index extends phpsso {
 		
 			/*插入消息队列*/
 			$noticedata = $data;
-			$noticedata['uid'] = $userinfo['uid'];
+			$noticedata['userid'] = $userinfo['userid'];
 			messagequeue::add('member_edit', $noticedata);
 			if($this->username) {
 				$res = $this->db->update($data, array('username'=>$this->username));
 			} else {
-				$res = $this->db->update($data, array('uid'=>$this->uid));
+				$res = $this->db->update($data, array('userid'=>$this->uid));
 			}
 			exit("$res");
 		} else {

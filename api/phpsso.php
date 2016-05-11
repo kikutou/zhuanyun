@@ -73,7 +73,7 @@
 	 * 编辑用户
 	 */
 	if ($action == 'member_edit') {
-		if(!isset($arr['uid'])) exit('0');
+		if(!isset($arr['userid'])) exit('0');
 		$userinfo = array();
 		if(isset($arr['password'])) {
 			$userinfo['password'] = $arr['password'];
@@ -83,7 +83,7 @@
 			$userinfo['email'] = $arr['email'];
 		}
 		if(empty($userinfo)) exit('1');
-		$status = $db->update($userinfo, array('phpssouid'=> $arr['uid']));
+		$status = $db->update($userinfo, array('phpssouid'=> $arr['userid']));
 		if($status) {
 			exit('1');
 		} else {

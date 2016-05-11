@@ -751,14 +751,18 @@ class index extends foreground {
 			$updateinfo['password'] = $newpassword;
 			
 			$this->db->update($updateinfo, array('userid'=>$this->memberinfo['userid']));
-			if(pc_base::load_config('system', 'phpsso')) {
+/*			if(pc_base::load_config('system', 'phpsso')) {
 				//初始化phpsso
 				$this->_init_phpsso();
 				$res = $this->client->ps_member_edit('', $email, $_POST['info']['password'], $_POST['info']['newpassword'], $this->memberinfo['phpssouid'], $this->memberinfo['encrypt']);
-				
+
+				exit(var_dump($res));
+
 				$message_error = array('-1'=>L('user_not_exist'), '-2'=>L('old_password_incorrect'), '-3'=>L('email_already_exist'), '-4'=>L('email_error'), '-5'=>L('param_error'));
 				if ($res!='1') showmessage($message_error[$res]);
-			}
+			}*/
+
+
 
 			showmessage(L('password_edit_success'), HTTP_REFERER);
 		} else {
@@ -855,7 +859,7 @@ class index extends foreground {
 					if(!$r) {
 						//插入会员详细信息，会员不存在 插入会员
 						$info = array(
-									'phpssouid'=>$memberinfo['uid'],
+									'phpssouid'=>$memberinfo['userid'],
 						 			'username'=>$memberinfo['username'],
 						 			'password'=>$memberinfo['password'],
 						 			'encrypt'=>$memberinfo['encrypt'],
